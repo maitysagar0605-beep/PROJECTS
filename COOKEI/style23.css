@@ -1,0 +1,169 @@
+@import url(https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primay-color: #4ade80;
+  --primay-dark: #22c55e;
+  --bg-dark: #1a1a1a;
+  --text-light: #f3f4f6;
+  --text-gray: #9ca3af;
+  --card-bg: #252525;
+  --input-bg: #333;
+  --border-radius: 10px;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  text-align: center;
+}
+
+.page h1 {
+  font-size: 3rem;
+  margin-bottom: 12px;
+  color: var(--text-light);
+}
+
+.page p {
+  margin-bottom: 24px;
+  color: var(--text-gray);
+}
+
+.reset-btn {
+  padding: 12px 24px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  background: var(--card-bg);
+  color: var(--text-light);
+  border: 1px solid var(--input-bg);
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  transition: all 0.2s ease;
+}
+
+.reset-btn:hover {
+  border-color: var(--primay-color);
+  color: var(--primay-color);
+}
+
+.cookie-banner {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  max-width: 500px;
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.cookie-content {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.cookie-icon {
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.cookie-text h3 {
+  color: var(--text-light);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.cookie-text p {
+  color: var(--text-gray);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.cookie-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  flex: 1;
+  padding: 12px 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary {
+  background: var(--input-bg);
+  color: var(--text-light);
+}
+
+.btn-secondary:hover {
+  background: #404040;
+  color: var(--text-light);
+}
+
+.btn-primary {
+  background: var(--primay-color);
+  color: var(--bg-dark);
+}
+
+.btn-primary:hover {
+  background: var(--primay-dark);
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 540px) {
+  .cookie-banner {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    padding: 20px;
+  }
+
+  .cookie-content {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cookie-actions {
+    flex-direction: column;
+  }
+}

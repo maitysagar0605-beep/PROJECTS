@@ -1,0 +1,161 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+    overflow: hidden;
+}
+
+.container {
+    font-size: 10px;
+    width: 100em;
+    height: 100em;
+    position: relative;
+}
+
+/* Sun at the exact center */
+.sun {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10em;
+    height: 10em;
+    background-color: #ffcc00;
+    border-radius: 50%;
+    box-shadow: 0 0 3em #ffcc00;
+    z-index: 10;
+}
+
+/* Common Orbit Styling */
+.orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 0.1em solid white;
+    border-radius: 50%;
+    animation: orbit linear infinite;
+}
+
+/* Common Planet Styling */
+.orbit::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
+/* --- PLANET SIZES, ORBITS & TIMINGS --- */
+
+/* Mercury (0.24 Earth Years) */
+.mercury {
+    width: 16em;
+    height: 16em;
+    animation-duration: 8.8s;
+}
+.mercury::before {
+    width: 1em;
+    height: 1em;
+    background-color: #a6a6a6;
+}
+
+/* Venus (0.62 Earth Years) */
+.venus {
+    width: 23em;
+    height: 23em;
+    animation-duration: 22.5s;
+}
+.venus::before {
+    width: 1.8em;
+    height: 1.8em;
+    background-color: #e3bb76;
+}
+
+/* Earth (1 Earth Year = 36.5s) */
+.earth {
+    width: 32em;
+    height: 32em;
+    animation-duration: 36.5s;
+}
+.earth::before {
+    width: 2em;
+    height: 2em;
+    background-color: #2b82c5;
+}
+
+/* Mars (1.88 Earth Years) */
+.mars {
+    width: 42em;
+    height: 42em;
+    animation-duration: 68.6s;
+}
+.mars::before {
+    width: 1.4em;
+    height: 1.4em;
+    background-color: #c1440e;
+}
+
+/* Jupiter (11.86 Earth Years) */
+.jupiter {
+    width: 56em;
+    height: 56em;
+    animation-duration: 432s;
+}
+.jupiter::before {
+    width: 4.5em;
+    height: 4.5em;
+    background-color: #b07f35;
+}
+
+/* Saturn (29.46 Earth Years) */
+.saturn {
+    width: 70em;
+    height: 70em;
+    animation-duration: 1075s;
+}
+.saturn::before {
+    width: 3.8em;
+    height: 3.8em;
+    background-color: #e2bf7d;
+    /* Saturn's Ring */
+    box-shadow: 0 0 0 0.6em #3a3326, 0 0 0 1em #e2bf7d;
+}
+
+/* Uranus (84 Earth Years) */
+.uranus {
+    width: 82em;
+    height: 82em;
+    animation-duration: 3066s;
+}
+.uranus::before {
+    width: 2.8em;
+    height: 2.8em;
+    background-color: #4b70dd;
+}
+
+/* Neptune (164.8 Earth Years) */
+.neptune {
+    width: 94em;
+    height: 94em;
+    animation-duration: 6015s;
+}
+.neptune::before {
+    width: 2.6em;
+    height: 2.6em;
+    background-color: #274687;
+}
+
+/* --- ANIMATION KEYFRAMES --- */
+@keyframes orbit {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}

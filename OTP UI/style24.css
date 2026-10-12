@@ -1,0 +1,153 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primay-color: #4ade80;
+  --primay-dark: #22c55e;
+  --bg-dark: #1a1a1a;
+  --text-light: #f3f4f6;
+  --text-gray: #9ca3af;
+  --card-bg: #252525;
+  --input-bg: #333;
+  --border-radius: 10px;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 40px 30px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+}
+
+h1 {
+  color: var(--text-light);
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: var(--text-gray);
+  margin-bottom: 40px;
+}
+
+.otp-container {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.otp-input {
+  width: 56px;
+  height: 64px;
+  background-color: var(--input-bg);
+  border: 2px solid var(--input-bg);
+  border-radius: var(--border-radius);
+  color: var(--text-light);
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  outline: none;
+  transition: 0.3s;
+}
+
+.otp-input:focus {
+  border-color: var(--primay-color);
+  box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.2);
+}
+
+.btn-resend {
+  background: none;
+  border: none;
+  color: var(--primay-color);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: var(--border-radius);
+}
+
+.btn-resend:hover {
+  background: rgba(74, 222, 128, 0.1);
+}
+
+.feedback-ui {
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 24px;
+  background: var(--primay-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: var(--bg-dark);
+  box-shadow: 0 8px 24px rgba(74, 222, 128, 0.3);
+}
+
+.feedback-ui h2 {
+  color: var(--text-light);
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.feedback-message {
+  color: var(--text-gray);
+  margin-bottom: 32px;
+}
+
+.btn-continue {
+  background: var(--primay-color);
+  color: var(--bg-dark);
+  border: none;
+  padding: 14px 40px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(74, 222, 128, 0.3);
+  transition: all 0.3s;
+}
+
+.btn-continue:hover {
+  background: var(--primay-dark);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 30px 20px;
+  }
+
+  .otp-input {
+    width: 48px;
+    height: 56px;
+    font-size: 28px;
+  }
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Rating</title>
+    <link rel="stylesheet" href="style20.css">
+    <script src="script20.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <div class="rating-card">
+            <h2>How Was Your Experience?</h2>
+            <p class="subtitle">We'd love To Hear Your Feedback</p>
+
+            <div class="stars-container">
+                <div class="stars">
+                    <div class="star" data-value="1">&starf;</div>
+                    <div class="star" data-value="2">&starf;</div>
+                    <div class="star" data-value="3">&starf;</div>
+                    <div class="star" data-value="4">&starf;</div>
+                    <div class="star" data-value="5">&starf;</div>
+                </div>
+
+                <p class="rating-text">Click To Rate</p>
+            </div>
+
+            <button class="submit-btn" disabled>Submit Rating</button>
+
+            <!-- Added 'hidden' class by default -->
+            <div class="thank-you hidden">
+                <span class="check-icon">✅</span>
+                <p>Thank You For Your Feedback!!</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

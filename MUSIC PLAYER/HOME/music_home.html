@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME</title>
+    <link rel="stylesheet" href="music_home.css">
+    <script src="https://kit.fontawesome.com/81b1e443de.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Header Section -->
+    <div class="header-sec">
+        <button id="sidebar-toggle" class="menu-btn">☰</button>
+        <div class="brand">
+            <i class="fa-solid fa-brands fa-hive"></i>
+            <div class="brand-text">
+                <h1 id="logo-text">BUZZ-BEE</h1>
+                <p id="header-text">Explore More & Feel the BUZZ🐝🐝</p>
+            </div>
+        </div>
+    <div class="search-wrapper">
+        <div class="search-container">
+            <input type="text" placeholder="Search Songs, Albums, Artists, Podcasts Here" id="search-input">
+            <button id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <div id="search-dropdown" class="search-dropdown hidden"></div>
+    </div> 
+        <div class="nav-btn">
+            <a href="../LOG IN/login.html" id="log-in">Log-In <i class="fa-solid fa-user-lock"></i></a>
+            <a href="../SIGN UP/signup.html" id="sign-up">Sign-up <i class="fa-solid fa-user-plus"></i></a> 
+            <button id="theme-toggle" class="toggle-btn">Day🌞</button>
+        </div>
+    </div>
+
+    <!-- Main Outer Wrapper -->
+    <div class="main-container">
+        <!-- Sidebar Navigation -->
+        <nav id="side-bar" class="sideBar">
+            <ul class="sidebar-links">
+                <li>
+                    <a href="#" class="active">
+                        <span class="icon"><i class="fa-solid fa-house"></i></span>
+                        <span class="link-text">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../EXPLORE/explore.html">
+                        <span class="icon"><i class="fa-solid fa-compass"></i></span>
+                        <span class="link-text">Explore</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../LIBRARY/library.html">
+                        <span class="icon"><i class="fa-solid fa-bookmark"></i></span>
+                        <span class="link-text">Library</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../SAMPLE/sample.html">
+                        <span class="icon"><i class="fa-solid fa-music"></i></span>
+                        <span class="link-text">Sample</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content Area inside Main Container -->
+        <main class="explore-content">
+            <!-- Filter Chips Section -->
+            <section class="explore-chips">
+                <button class="chip active"><i class="fa-solid fa-bolt-lightning"></i> Quick Picks</button>
+                <button class="chip"><i class="fa-solid fa-heart-crack"></i> Forgotten Favourites</button>
+                <button class="chip"><i class="fa-solid fa-ticket"></i> Shows For You</button>
+                <button class="chip"><i class="fa-solid fa-music"></i> Songs</button>
+                <button class="chip"><i class="fa-solid fa-book"></i> Albums</button>
+                <button class="chip"><i class="fa-solid fa-masks-theater"></i> Artists</button>
+                <button class="chip"><i class="fa-solid fa-users"></i> Profiles</button>
+            </section>
+
+              <!-- Section 1: Quick Picks -->
+            <section class="explore-section">
+                <div class="section-header">
+                    <h2>Quick Picks</h2>
+                    <a href="#" class="see-all">See all</a>
+                </div>
+                <div class="card-grid">
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/pick1/300/300" alt="Profile Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Master the Blaster</h3>
+                        <p>Anirudh Ravichander, Bjorn Surrao • 5M+ Plays • Master</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/pick2/300/300" alt="Profile Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Deewana Kar Raha Hai</h3>
+                        <p>Javed Ali • 450M+ Plays • Razz3</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/pick3/300/300" alt="Profile Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Bol Do Na Zara</h3>
+                        <p>Arman Malik • 520M+ Plays • Azhar</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/pick4 /300/300" alt="Profile Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Thoda Thoda Pyaar</h3>
+                        <p>Pritam • 380M+ Plays • Razz3</p>
+                    </div>
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/pick5/300/300" alt="Profile Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Dilko Tumse Payar Hai</h3>
+                        <p>Roop Kumar Rathod • 45M+ Plays • RHTDM</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/pick6/300/300" alt="Profile Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Kaun Tujhe</h3>
+                        <p>Palak Muchhal • 650M+ Plays • M.S. Dhoni: The Untold Story</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/pick11/300/300" alt="Profile Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                       <h3>Agar Tum Saath Ho</h3>
+                       <p>Alka Yagnik, Arijit Singh • 720M+ Plays • Tamasha</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/pick8/300/300" alt="Profile Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Humnava Mere</h3>
+                        <p>Jubin Nautiyal • 1.3B+ Plays • Single</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Forgotten Favourites -->
+            <section class="explore-section">
+                <div class="section-header">
+                    <h2>Forgotten Favourites</h2>
+                    <a href="#" class="see-all">See all</a>
+                </div>
+                <div class="card-grid">
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/forgot1/300/300" alt="Playlist Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Tu Zaroori</h3>
+                        <p>Sarib Toshi, Sunidhi Chauhan • 210M+ Plays • Zid</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/forgot2/300/300" alt="Playlist Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Gallan 4</h3>
+                        <p>Talwinder • 50M+ Plays • Single (2020)</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/forgot3/300/300" alt="Playlist Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3> Patar Bashori </h3>
+                        <p>Ishaan, Sunidhi Nayak & Adit Rahaman(Coke Studio Bangla) • 10M+ Plays • Single(2026)</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/forgot4/300/300" alt="Playlist Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Bulbuli</h3>
+                        <p>Ritu Raj & Nandita(Coke Studio Bangla) • 144M+ Plays • Single(2022)</p>
+                    </div>
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/forgot5/300/300" alt="Playlist Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Pal </h3>
+                        <p>Arijit Singh & Shreya Ghosal • 480M+ Plays • Jalebi</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/forgot6/300/300" alt="Playlist Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>O Saathi</h3>
+                        <p>Atif Aslam & Manoj Bajpayee • 1B Plays • Baaghi 2</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/forgot7/300/300" alt="Playlist Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Milo Na Tum</h3>
+                        <p>Lata Mangeshkar, Gajendra Verma • 120M+ Plays • Single(2017)</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/forgot8/300/300" alt="Playlist Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Behe Chala</h3>
+                        <p>Yasser Desai, Saswat Sachdev & Raj Sekhar • 30M+ Plays • URI: The Surgical Strike </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Shows For You -->
+            <section class="explore-section">
+                <div class="section-header">
+                    <h2>Shows For You</h2>
+                    <a href="#" class="see-all">See all</a>
+                </div>
+                <div class="card-grid">
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/show1/300/300" alt="Podcast Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Interview & Culture</h3>
+                        <p>Podcast • The Ranveer Show(BeerBiceps)</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/show2/300/300" alt="Podcast Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>True Crime & Storytelling</h3>
+                        <p>Podcast • Fear</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/podcast3/300/300" alt="Podcast Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Saved Episodes</h3>
+                        <p>Auto Podcast • Knight </p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/podcast4/300/300" alt="Podcast Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Later Episodes</h3>
+                        <p>Auto Podcast • Sagar</p>
+                    </div>
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/podcast5/300/300" alt="Podcast Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Meditation</h3>
+                        <p>Podcast • Deep</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/podcast6/300/300" alt="Podcast Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Motivation</h3>
+                        <p>Podcast • Limitless</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/podcast7/300/300" alt="Podcast Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Happy Hours</h3>
+                        <p>Podcast • Happy</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/podcast8/300/300" alt="Podcast Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Thriller</h3>
+                        <p>Podcast • Breathtaking</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Songs -->
+            <section class="explore-section">
+                <div class="section-header">
+                    <h2>Your Songs</h2>
+                    <a href="#" class="see-all">See all</a>
+                </div>
+                <div class="card-grid">
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/song1/300/300" alt="Song Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Liked Songs</h3>
+                        <p>Song • <i class="fa-solid fa-thumbs-up"></i> • 280 Tracks</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/song2/300/300" alt="Song Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Top Hindi</h3>
+                        <p>Song • 180 Tracks</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/song3/300/300" alt="Song Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Top Bengali</h3>
+                        <p>Song • 100 Tracks</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/song4/300/300" alt="Song Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Top 20 of Aditya Rikhihari</h3>
+                        <p>Song • 20 Tracks</p>
+                    </div>
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/song5/300/300" alt="Song Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Best of Shreya Ghoshal</h3>
+                        <p>Song • 200 Tracks</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/song6/300/300" alt="Song Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Best of Arijit Singh</h3>
+                        <p>Song • 150 Tracks</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/song7/300/300" alt="Song Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Best of 90's</h3>
+                        <p>Song • 300 Tracks</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/song8/300/300" alt="Song Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Top English</h3>
+                        <p>Song • 80 Tracks</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Albums -->
+            <section class="explore-section">
+                <div class="section-header">
+                    <h2>Albums</h2>
+                    <a href="#" class="see-all">See all</a>
+                </div>
+                <div class="card-grid">
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/album20/300/300" alt="Album Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Rabata</h3>
+                        <p>Album • Pritam</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/album27/300/300" alt="Album Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Bollywood Monsoon Mix</h3>
+                        <p>Album • Various Artists</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/album23/300/300" alt="Album Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Roy</h3>
+                        <p>Album • Various Artists</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/album28/300/300" alt="Album Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Dhurandhar</h3>
+                        <p>Album • Shashwat Sachdev</p>
+                    </div>
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/album25/300/300" alt="Album Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Arijit Forever</h3>
+                        <p>Album • Arijit Singh</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/album26/300/300" alt="Album Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Awarapan2</h3>
+                        <p>Album • Various Artists</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/album24/300/300" alt="Album Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Nine Track Mind(Japan Special Edition)</h3>
+                        <p>Album • Charlie Puth</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/album22/300/300" alt="Album Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Spiderman: Brand New Day</h3>
+                        <p>Album • Various Artists</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Artists -->
+            <section class="explore-section">
+                <div class="section-header">
+                    <h2>Your Artists</h2>
+                    <a href="#" class="see-all">See all</a>
+                </div>
+                <div class="card-grid">
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/artist1/300/300" alt="Artist Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Arijit Singh</h3>
+                        <p>Artist • 150 songs</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/artist2/300/300" alt="Artist Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Mohit Chauhan</h3>
+                        <p>Artist • 150 songs</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/artist3/300/300" alt="Artist Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Anupam Roy</h3>
+                        <p>Artist • 150 songs</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/artist4/300/300" alt="Artist Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>A.R. Rahman</h3>
+                        <p>Artist • 150 songs</p>
+                    </div>
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/artist9/300/300" alt="Artist Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>The Weeknd</h3>
+                        <p>Artist • 150 songs</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/artist6/300/300" alt="Artist Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Shreya Ghoshal</h3>
+                        <p>Artist • 150 songs</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/artist7/300/300" alt="Artist Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Aditya Rikhihari</h3>
+                        <p>Artist • 30 songs</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/artist8/300/300" alt="Artist Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Talwinder</h3>
+                        <p>Artist • 70 songs</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: Profiles -->
+            <section class="explore-section">
+                <div class="section-header">
+                    <h2>Trending Profiles</h2>
+                    <a href="#" class="see-all">See all</a>
+                </div>
+                <div class="card-grid">
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/profile1/300/300" alt="Profile Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Arijit Singh</h3>
+                        <p>Profile • 190M+ Followers</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/profile2/300/300" alt="Profile Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Taylor Swift</h3>
+                        <p>Profile • 160M+ Followers</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/profile3/300/300" alt="Profile Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Billie Eilish</h3>
+                        <p>Profile • 130M+ Followers</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/profile4/300/300" alt="Profile Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>The Weeknd</h3>
+                        <p>Profile • 125M+ Followers</p>
+                    </div>
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/profile10/300/300" alt="Profile Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Bad Bunny</h3>
+                        <p>Profile • 120M+ Followers</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/profile6/300/300" alt="Profile Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Pritam</h3>
+                        <p>Profile • 75M+ Followers</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/profile7/300/300" alt="Profile Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Coldplay</h3>
+                        <p>Profile • 65M+ Followers</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/profile8/300/300" alt="Profile Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Kendrick Lamar</h3>
+                        <p>Profile • 45M+ Followers</p>
+                    </div>
+                </div>
+            </section>
+             <footer class="app-footer">
+                <p id="footer-text">
+                    Copyright © 2026 Music Player. All rights reserved.<br>
+                    Developed by maitysagar0605-beep. Designed by maitysagar0605-beep. All trademarks are property of their respective owners.<br>
+                    Contact: <a href="mailto:maitysagar0605@gmail.com">maitysagar0605@gmail.com</a>
+                </p>
+            </footer>
+        </main>
+    </div>
+
+<!--  Bottom Player Bar  -->
+<div id="bottom-player-bar" class="bottom-player hidden">
+    <!-- Left: Track Details -->
+    <div class="track-info">
+        <img id="bar-cover" src="" alt="Album Cover" class="bar-img">
+        <div class="bar-text">
+            <h4 id="bar-title">Track Title</h4>
+            <p id="bar-artist">Artist Name</p>
+        </div>
+    </div>
+
+    <!-- Center: Playback Controls & Progress Bar -->
+    <div class="bar-center">
+        <div class="bar-controls">
+            <button id="bar-prev-btn"><i class="fa-solid fa-backward-step"></i></button>
+            <button id="bar-play-btn"><i class="fa-solid fa-play"></i></button>
+            <button id="bar-next-btn"><i class="fa-solid fa-forward-step"></i></button>
+        </div>
+        <div class="bar-progress-container">
+            <span id="bar-current-time">00:00</span>
+            <input type="range" id="bar-progress" value="0" min="0" step="0.1">
+            <span id="bar-total-time">00:00</span>
+        </div>
+    </div>
+
+    <!-- Right: Volume Controls -->
+    <div class="bar-right">
+    <span id="bar-vol-icon-wrapper">
+        <i class="fa-solid fa-volume-high" id="bar-vol-icon"></i>
+    </span>
+    <input type="range" id="bar-volume" min="0" max="1" step="0.01" value="1">
+    <span id="bar-vol-tooltip">100%</span>
+
+    <!-- Expand to Full Player Button -->
+        <button id="bar-expand-btn" title="Open Full Player">
+            <i class="fa-solid fa-chevron-up"></i>
+        </button>
+</div>
+    <audio id="bar-audio"></audio>
+ 
+    <script src="music_home.js"></script>
+</body>
+</html>

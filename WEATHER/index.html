@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main class="app-shell">
+        <section class="weather-card" aria-live="polite">
+            <form class="search-panel" id="searchForm">
+                <label class="visually-hidden" for="cityInput">Search city</label>
+                <input id="cityInput" type="search" placeholder="Search city" spellcheck="false" autocomplete="off">
+                <button type="submit" aria-label="Search weather">
+                    <img src="assets/images/S2.jpg" alt="">
+                </button>
+            </form>
+
+            <p class="status-text" id="statusText">Finding your current weather...</p>
+
+            <div class="weather-layout">
+                <div class="hero-weather">
+                    <img id="weatherImage" src="assets/images/MIST.jpg" alt="Current weather" class="weather-image">
+                </div>
+
+                <div class="weather-details">
+                    <p class="eyebrow" id="conditionLabel">Live Weather</p>
+                    <h1 class="temp" id="temperature">--°C</h1>
+                    <h2 class="city" id="cityName">Current location</h2>
+                    <p class="updated" id="updatedTime">Waiting for data</p>
+
+                    <div class="metric-grid">
+                        <article class="metric">
+                            <img src="assets/images/wind.png" alt="">
+                            <div>
+                                <span>Wind Speed</span>
+                                <strong id="windSpeed">-- km/h</strong>
+                            </div>
+                        </article>
+
+                        <article class="metric">
+                            <img src="assets/images/HUM2.png" alt="">
+                            <div>
+                                <span>Humidity</span>
+                                <strong id="humidity">--%</strong>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+
+            <div class="condition-strip" aria-label="Weather condition image set">
+                <img src="assets/images/CLEAR.jpg" alt="Clear weather">
+                <img src="assets/images/DRIZZEL.jpg" alt="Drizzle weather">
+                <img src="assets/images/MIST.jpg" alt="Misty weather">
+                <img src="assets/images/SNOW.jpg" alt="Snow weather">
+                <img src="assets/images/THUDER STROM.jpg" alt="Thunderstorm weather">
+                <img src="assets/images/CLOUD.jpg" alt="Search shortcut">
+                <img src="assets/images/NIGHT.jpg" alt="Search detail">
+            </div>
+        </section>
+    </main>
+</body>
+</html>

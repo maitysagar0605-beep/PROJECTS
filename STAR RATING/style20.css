@@ -1,0 +1,162 @@
+@import url(https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primay-color: #4ade80;
+  --primay-dark: #22c55e;
+  --bg-dark: #1a1a1a;
+  --text-light: #f3f4f6;
+  --text-gray: #9ca3af;
+  --card-bg: #252525;
+  --input-bg: #333;
+  --border-radius: 10px;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
+
+.container {
+  padding: 1.4rem;
+}
+
+.rating-card {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 2rem 2.5rem;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  max-width: 400px;
+  position: relative;
+}
+
+h2 {
+  color: var(--text-light);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: var(--text-gray);
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.stars-container {
+  margin-bottom: 2rem;
+}
+
+.stars {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.star {
+  font-size: 2.5rem;
+  color: var(--input-bg);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.star:hover {
+  transform: scale(1.1);
+}
+
+.star.hover,
+.star.active {
+  color: var(--primay-color);
+}
+
+.rating-text {
+  color: var(--text-gray);
+  font-size: 0.9rem;
+  min-height: 22px;
+}
+
+.rating-text.selected {
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.submit-btn {
+  background-color: var(--primay-color);
+  color: var(--bg-dark);
+  border: none;
+  padding: 0.8rem 2.5rem;
+  font-family: inherit;
+  font-weight: 600;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background-color: var(--primay-dark);
+}
+
+.submit-btn:disabled {
+  background-color: var(--input-bg);
+  color: var(--text-gray);
+  cursor: not-allowed;
+}
+
+.thank-you {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease;
+}
+
+.thank-you.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.check-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--primay-color);
+}
+
+.thank-you p {
+  color: var(--text-light);
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+@media (max-width: 480px) {
+  .rating-card {
+    padding: 32px 24px;
+  }
+
+  .star {
+    font-size: 2rem;
+  }
+}

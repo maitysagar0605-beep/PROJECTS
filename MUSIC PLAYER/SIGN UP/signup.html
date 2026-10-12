@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="signup.css">
+    <script src="https://kit.fontawesome.com/81b1e443de.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>New Here??</h1>
+            <h2>Get Signed Up & Enjoy</h2>
+        </div>
+
+        <form method="post">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" placeholder="Enter Your Username" required>
+            </div>
+
+            <div class="input-group">
+                <label for="gmail">Gmail</label>
+                <input type="email" name="gmail" id="gmail" placeholder="Enter Your Gmail" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" name="password" id="password" placeholder="Enter Your Password (At least 8 characters)" minlength="8" required>
+                    <i class="fa-solid fa-eye" id="toggle-password"></i>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit">Sign Up</button>
+        </form>
+
+        <p class="footer-text">Already Have An Account? <a href="../LOG IN/login.html">Log In</a></p>
+    </div>
+
+    <script src="signup.js"></script>
+</body>
+</html>

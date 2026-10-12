@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expolre Page</title>
+    <link rel="stylesheet" href="explore.css">
+    <script src="https://kit.fontawesome.com/81b1e443de.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="header-sec">
+        <button id="sidebar-toggle" class="menu-btn">☰</button>
+        <div class="brand">
+         <i class="fa-solid fa-brands fa-hive"></i>
+         <div class="brand-text">
+             <h1 id="logo-text">BUZZ-BEE</h1>
+             <p id="header-text">Expolre More & Feel the BUZZ🐝🐝</p>
+         </div>
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="Search Songs,Albums,Artists,Podcasts Here" id="search-input">
+            <button id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <div class="nav-btn"> 
+            <button id="theme-toggle" class="toggle-btn">Day🌞</button>
+        </div>
+    </div>
+    <div class="main-container">
+        <nav id="side-bar" class="sideBar">
+            <ul class="sidebar-links">
+                <li>
+                    <a href="../HOME/music_home.html">
+                        <span class="icon"><i class="fa-solid fa-house"></i></span>
+                        <span class="link-text">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="active">
+                        <span class="icon"><i class="fa-solid fa-compass"></i></span>
+                        <span class="link-text">Expolre</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../LIBRARY/library.html">
+                        <span class="icon"><i class="fa-solid fa-bookmark"></i></span>
+                        <span class="link-text">Library</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../SAMPLE/sample.html">
+                        <span class="icon"><i class="fa-solid fa-music"></i></span>
+                        <span class="link-text">Sample</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="explore-content">
+            <!-- Filter Chips Section -->
+            <section class="explore-chips">
+                <button class="chip active"><i class="fa-solid fa-compact-disc"></i> New Releases</button>
+                <button class="chip"><i class="fa-solid fa-fire"></i> Charts</button>
+                <button class="chip"><i class="fa-solid fa-masks-theater"></i> Moods & Genres</button>
+                <button class="chip"><i class="fa-solid fa-podcast"></i> Podcasts</button>
+            </section>
+
+            <!-- Section 1: New Release Albums -->
+            <section class="explore-section">
+                <div class="section-header">
+                    <h2>New Release Albums</h2>
+                    <a href="#" class="see-all">See all</a>
+                </div>
+                <div class="card-grid">
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/new1/300/300" alt="Release Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Midnight Buzz</h3>
+                        <p>Album • The Honeycombs</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/new2/300/300" alt="Release Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Golden Waves</h3>
+                        <p>Album • Solar Beats</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/new3/300/300" alt="Release Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Neon Hive</h3>
+                        <p>EP • Synth Collective</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/new4/300/300" alt="Release Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Acoustic Breeze</h3>
+                        <p>Single • Maya Rose</p>
+                    </div>
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/new5/300/300" alt="Release Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Velvet Echoes</h3>
+                        <p>Album • Luna Park</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/new6/300/300" alt="Release Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Starlight Drive</h3>
+                        <p>Album • Retro Skyline</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/new7/300/300" alt="Release Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Desert Bloom</h3>
+                        <p>EP • Oasis Dreams</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/new8/300/300" alt="Release Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Urban Reverie</h3>
+                        <p>Single • Metro Pulse</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Trending Charts -->
+            <section class="explore-section">
+                <div class="section-header">
+                    <h2>Top Trending Charts</h2>
+                    <a href="#" class="see-all">See all</a>
+                </div>
+                <div class="card-grid">
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/chart1/300/300" alt="Chart Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Top 50 Global</h3>
+                        <p>Playlist • Buzz Music</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/chart2/300/300" alt="Chart Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Viral Hits 2026</h3>
+                        <p>Playlist • Daily Updates</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/chart3/300/300" alt="Chart Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Indie Discoveries</h3>
+                        <p>Playlist • Underground</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/chart4/300/300" alt="Chart Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Electronic Buzz</h3>
+                        <p>Playlist • Dance & EDM</p>
+                    </div>
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/chart5/300/300" alt="Chart Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Hip-Hop Rewind</h3>
+                        <p>Playlist • Top Tracks</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/chart6/300/300" alt="Chart Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Pop Essentials</h3>
+                        <p>Playlist • Chart Toppers</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/chart7/300/300" alt="Chart Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Lo-Fi Chill Beats</h3>
+                        <p>Playlist • Study & Relax</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/chart8/300/300" alt="Chart Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Rock Classics</h3>
+                        <p>Playlist • Timeless Anthems</p>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Section 3: Moods & Genres Grid -->
+            <section class="explore-section">
+                <div class="section-header">
+                    <h2>Moods & Genres</h2>
+                </div>
+                <div class="genre-grid">
+                    <div class="genre-card" style="border-left-color: #ffcc00;">Chill & Relaxation</div>
+                    <div class="genre-card" style="border-left-color: #ff4500;">Workout & Fitness</div>
+                    <div class="genre-card" style="border-left-color: #00e5ff;">Focus & Study</div>
+                    <div class="genre-card" style="border-left-color: #7c3aed;">Party & Energy</div>
+                    <div class="genre-card" style="border-left-color: #9c27b0;">Deep Romance</div>
+                    <div class="genre-card" style="border-left-color: #4caf50;">Sleep & Rain</div>
+                    <div class="genre-card" style="border-left-color: #ff9800;">Commute & Drive</div>
+                    <div class="genre-card" style="border-left-color: #00bcd4;">Feel-Good Pop</div>
+                    <div class="genre-card" style="border-left-color: #f44336;">Indie & Alternative</div>
+                    <div class="genre-card" style="border-left-color: #3f51b5;">Hip-Hop & R&B</div>
+                    <div class="genre-card" style="border-left-color: #8bc34a;">Acoustic & Folk</div>
+                    <div class="genre-card" style="border-left-color: #e91e63;">Gaming & Synthwave</div>
+                    <div class="genre-card" style="border-left-color: #ffcc00;">1970's</div>
+                    <div class="genre-card" style="border-left-color: #ff69b4;">Bengali</div>
+                    <div class="genre-card" style="border-left-color: #00ff00;">1990's</div>
+                    <div class="genre-card" style="border-left-color: #ffb266;">Haryanvi</div>
+                    <div class="genre-card" style="border-left-color: #67e8f9;">Deep Devotion</div>
+                    <div class="genre-card" style="border-left-color: #ff9933;">2000's</div>
+                    <div class="genre-card" style="border-left-color: #b22222;">Classical</div>
+                    <div class="genre-card" style="border-left-color: #8b1b5c;">Bhojpuri</div>
+                    <div class="genre-card" style="border-left-color: #8b5cf6;">2010's</div>
+                    <div class="genre-card" style="border-left-color: #dbac93;">Hindi</div>
+                    <div class="genre-card" style="border-left-color: #ff8069;">Folk and Acustic</div>
+                    <div class="genre-card" style="border-left-color: #ff3333;">Rock On</div>
+                </div>
+            </section>
+            
+            <!-- Section 4: Popular Podcasts (NEWLY ADDED) -->
+            <section class="explore-section" id="podcasts-section">
+                <div class="section-header">
+                    <h2>Trending Podcasts</h2>
+                    <a href="#" class="see-all">See all</a>
+                </div>
+                <div class="card-grid">
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/pod1/300/300" alt="Mind Podcast Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>The Hive Mind</h3>
+                        <p>Podcast • Tech & Future</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/pod2/300/300" alt="Stories Podcast Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Deep Dive Stories</h3>
+                        <p>Podcast • True Crime & Mystery</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=300&auto=format&fit=crop" alt="News Podcast Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Daily Buzz News</h3>
+                        <p>Podcast • World & Politics</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1598971639058-fab3c3109a00?q=80&w=300&auto=format&fit=crop](https://images.unsplash.com/photo-1598971639058-fab3c3109a00?q=80&w=300&auto=format&fit=crop)" alt="Mindset & Fitness Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Mindset & Fitness</h3>
+                        <p>Podcast • Health & Wellness</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/pod5/300/300" alt="India Podcast Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Indie Artist Corner</h3>
+                        <p>Podcast • Music & Culture</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                          <img src="https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=300&auto=format&fit=crop" alt="Late Night Podcast Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Late Night Talks</h3>
+                        <p>Podcast • Comedy & Casual</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/podcast7/300/300" alt="Secience Podcast Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Science Unlocked</h3>
+                        <p>Podcast • Education</p>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://picsum.photos/seed/pod8/300/300" alt="Entrepreneur's Podcast Cover">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                        </div>
+                        <h3>Entrepreneur's Hive</h3>
+                        <p>Podcast • Business & Startup</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+    <script src="explore.js"></script>
+</body>
+</html>
