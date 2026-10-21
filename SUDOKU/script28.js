@@ -42,7 +42,10 @@ window.onload = function() {
     setGame();
     initTheme(); // Load saved theme preference on startup
     
-    document.getElementById("start-btn").addEventListener("click", startGame);
+    let startBtn = document.getElementById("start-btn");
+    if (startBtn) {
+        startBtn.addEventListener("click", startGame);
+    }
     
     // Bind click event to reset button
     let resetBtn = document.getElementById("reset-btn");
@@ -96,7 +99,8 @@ function startGame() {
     if (gamestarted) return;
 
     gamestarted = true;
-    document.getElementById("start-btn").disabled = true;
+    let startBtn = document.getElementById("start-btn");
+    if (startBtn) startBtn.disabled = true;
 
     secondElapsed = 0;
     if (timerInterval) clearInterval(timerInterval);
@@ -166,20 +170,24 @@ function resetGame() {
     checkDigitCounts();
 
     // 6. Re-enable start button
-    document.getElementById("start-btn").disabled = false;
+    let startBtn = document.getElementById("start-btn");
+    if (startBtn) startBtn.disabled = false;
 }
 
 function setGame() {
-    document.getElementById("digits").innerHTML = "";
-    document.getElementById("board").innerHTML = "";
+    let digitsElem = document.getElementById("digits");
+    let boardElem = document.getElementById("board");
+
+    if (digitsElem) digitsElem.innerHTML = "";
+    if (boardElem) boardElem.innerHTML = "";
 
     for (let i = 1; i <= 9; i++) {
         let number = document.createElement("div");
-        number.id = i;
+        number.id = i.toString();
         number.innerText = i;
         number.addEventListener("click", selectNumber);
         number.classList.add("number");
-        document.getElementById("digits").appendChild(number);
+        if (digitsElem) digitsElem.appendChild(number);
     }
 
     for (let r = 0; r < 9; r++) {
@@ -198,7 +206,7 @@ function setGame() {
             }
             tile.addEventListener("click", selectTile);
             tile.classList.add("tile");
-            document.getElementById("board").append(tile);
+            if (boardElem) boardElem.append(tile);
         }
     }
 
@@ -269,7 +277,7 @@ function checkDigitCounts() {
         if (numBtn) {
             if (count >= 9) {
                 numBtn.classList.add("disabled-number");
-                numBtn.title = "this number cant be used anymore";
+                numBtn.title = "This number can't be used anymore";
 
                 if (numSelected === numBtn) {
                     numSelected.classList.remove("number-selected");

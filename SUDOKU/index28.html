@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SUDOKU</title>
     <link rel="stylesheet" href="style28.css">
-    <script src="script28.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
       integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
       crossorigin="anonymous"
@@ -15,7 +14,7 @@
     <h1>Sudoku</h1>
     <button id="theme-toggel">Day <i class="fa-regular fa-sun"></i></button>
     <a href="ruels.html">
-    <button id="rules" >Rules</button>
+        <button id="rules">Rules</button>
     </a>
     <hr>
     <h2>Time: <span id="timer">00:00</span></h2>
@@ -29,5 +28,8 @@
     <div id="digits"></div>
     <button id="start-btn">Start Game ▶</button>
     <button id="reset-btn">Reset <i class="fa-solid fa-arrow-rotate-left"></i></button>
+
+    <!-- JS script loaded at bottom to ensure all DOM elements exist -->
+    <script src="script28.js"></script>
 </body>
 </html>
