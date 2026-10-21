@@ -133,6 +133,9 @@ function resetGame() {
     gameFinished = false;
     score = 0;
     errors = 0;
+    document.querySelectorAll(".score-feedback").forEach(function(feedback) {
+        feedback.remove();
+    });
 
     completedRows.clear();
     completedCols.clear();
@@ -239,15 +242,20 @@ function selectTile() {
 
         if (solution[r][c] == numSelected.id) {
             this.innerText = numSelected.id;
+            animateTiles([this], "completed-unit");
+            let scoreChanges = [2];
             score += 2;
 
             checkDigitCounts();
-            checkScoreBonuses(r, c);
+            checkScoreBonuses(r, c, scoreChanges);
             updateUI();
+            animateScoreChange(scoreChanges);
         } else {
             errors += 1;
             score -= 5;
             updateUI();
+            animateTiles([this], "incorrect-placement");
+            animateScoreChange([-5]);
         }
     }
 }
@@ -291,41 +299,103 @@ function checkDigitCounts() {
     }
 }
 
-function checkScoreBonuses(r, c) {
+function checkScoreBonuses(r, c, scoreChanges) {
     if (!completedRows.has(r) && isRowComplete(r)) {
         completedRows.add(r);
         score += 4;
+        scoreChanges.push(4);
+        animateTiles(getRowTiles(r), "completed-unit");
     }
 
     if (!completedCols.has(c) && isColComplete(c)) {
         completedCols.add(c);
         score += 4;
+        scoreChanges.push(4);
+        animateTiles(getColumnTiles(c), "completed-unit");
     }
 
     let boxIndex = Math.floor(r / 3) * 3 + Math.floor(c / 3);
     if (!completedBoxes.has(boxIndex) && isBoxComplete(boxIndex)) {
         completedBoxes.add(boxIndex);
         score += 6;
+        scoreChanges.push(6);
+        animateTiles(getBoxTiles(boxIndex), "completed-unit");
     }
 
     let tierIndex = Math.floor(r / 3);
     if (!completedTiers.has(tierIndex) && isTierComplete(tierIndex)) {
         completedTiers.add(tierIndex);
         score += 8;
+        scoreChanges.push(8);
     }
 
     let towerIndex = Math.floor(c / 3);
     if (!completedTowers.has(towerIndex) && isTowerComplete(towerIndex)) {
         completedTowers.add(towerIndex);
         score += 8;
+        scoreChanges.push(8);
     }
 
     if (completedBoxes.size === 9) {
         score += 10;
+        scoreChanges.push(10);
         gameFinished = true;
         clearInterval(timerInterval);
         alert("Congratulations! Puzzle completed with score: " + score);
     }
+}
+
+function animateScoreChange(changes) {
+    let scoreLabel = document.getElementById("score-txt");
+    if (!scoreLabel || changes.length === 0) return;
+
+    let feedback = document.createElement("span");
+    feedback.className = "score-feedback " + (changes.some(change => change < 0) ? "score-deduction" : "score-increase");
+    feedback.innerText = changes.map(change => (change > 0 ? "+" : "") + change).join(" ");
+    scoreLabel.appendChild(feedback);
+    feedback.addEventListener("animationend", function() {
+        feedback.remove();
+    });
+}
+
+function animateTiles(tiles, animationClass) {
+    tiles.forEach(function(tile) {
+        tile.classList.remove(animationClass);
+        void tile.offsetWidth;
+        tile.classList.add(animationClass);
+        let animationName = animationClass === "completed-unit" ? "completed-unit-glow" : "incorrect-placement-glow";
+        let removeAnimationClass = function(event) {
+            if (event.animationName !== animationName) return;
+            tile.classList.remove(animationClass);
+            tile.removeEventListener("animationend", removeAnimationClass);
+        };
+        tile.addEventListener("animationend", removeAnimationClass);
+    });
+}
+
+function getRowTiles(row) {
+    return Array.from({ length: 9 }, function(_, col) {
+        return document.getElementById(row + "-" + col);
+    }).filter(Boolean);
+}
+
+function getColumnTiles(col) {
+    return Array.from({ length: 9 }, function(_, row) {
+        return document.getElementById(row + "-" + col);
+    }).filter(Boolean);
+}
+
+function getBoxTiles(boxIndex) {
+    let startRow = Math.floor(boxIndex / 3) * 3;
+    let startCol = (boxIndex % 3) * 3;
+    let tiles = [];
+    for (let row = startRow; row < startRow + 3; row++) {
+        for (let col = startCol; col < startCol + 3; col++) {
+            let tile = document.getElementById(row + "-" + col);
+            if (tile) tiles.push(tile);
+        }
+    }
+    return tiles;
 }
 
 function getTileValue(row, col) {
