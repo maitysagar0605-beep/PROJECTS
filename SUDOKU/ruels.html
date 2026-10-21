@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku Game Rules</title>
+    <style>
+        :root {
+            --bg-color: #f4f6f8;
+            --card-bg: #ffffff;
+            --text-primary: #2c3e50;
+            --text-secondary: #6c757d;
+            --border-color: #e2e8f0;
+            --accent-blue: #3b82f6;
+            --badge-green-bg: #dcfce7;
+            --badge-green-text: #15803d;
+            --badge-red-bg: #fee2e2;
+            --badge-red-text: #b91c1c;
+            --badge-purple-bg: #f3e8ff;
+            --badge-purple-text: #6b21a8;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .rules-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            max-width: 600px;
+            width: 100%;
+            padding: 32px;
+            border: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            margin-top: 0;
+            margin-bottom: 24px;
+            text-align: center;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .section-title {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            margin-top: 24px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        ul.rules-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul.rules-list li {
+            position: relative;
+            padding: 10px 12px 10px 32px;
+            margin-bottom: 8px;
+            background-color: #f8fafc;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        ul.rules-list li::before {
+            content: "•";
+            color: var(--accent-blue);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .badge {
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            white-space: nowrap;
+            margin-left: 12px;
+        }
+
+        .badge-positive {
+            background-color: var(--badge-green-bg);
+            color: var(--badge-green-text);
+        }
+
+        .badge-negative {
+            background-color: var(--badge-red-bg);
+            color: var(--badge-red-text);
+        }
+
+        .badge-bonus {
+            background-color: var(--badge-purple-bg);
+            color: var(--badge-purple-text);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="rules-card">
+        <h1>How to Play Sudoku</h1>
+
+        <div class="section-title">Core Grid Rules</div>
+        <ul class="rules-list">
+            <li>Numbers range from 1 to 9</li>
+            <li>Each row must contain all numbers from 1 to 9 (no repetitions)</li>
+            <li>Each column must contain all numbers from 1 to 9 (no repetitions)</li>
+            <li>Each 3x3 box must contain all numbers from 1 to 9 (no repetitions)</li>
+        </ul>
+
+        <div class="section-title">Scoring System</div>
+        <ul class="rules-list">
+            <li>Correct placement of each number <span class="badge badge-positive">+2 pts</span></li>
+            <li>Incorrect placement of each number <span class="badge badge-negative">-5 pts</span></li>
+        </ul>
+
+        <div class="section-title">Bonus Points</div>
+        <ul class="rules-list">
+            <li>Completion of full row <span class="badge badge-bonus">+4 pts</span></li>
+            <li>Completion of full column <span class="badge badge-bonus">+4 pts</span></li>
+            <li>Completion of 3x3 Box <span class="badge badge-bonus">+6 pts</span></li>
+            <li>Completion of a Tier (3 horizontal Boxes) <span class="badge badge-bonus">+8 pts</span></li>
+            <li>Completion of a Tower (3 vertical Boxes) <span class="badge badge-bonus">+8 pts</span></li>
+            <li>Completion of the entire Grid (Victory) <span class="badge badge-bonus">+10 pts</span></li>
+        </ul>
+    </div>
+
+</body>
+</html>

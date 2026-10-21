@@ -154,3 +154,124 @@ hr {
     );
     pointer-events: none;
 }
+
+/* Styling for Theme Toggle and Rules Buttons */
+#theme-toggel, #rules {
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1.5px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+    transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+#theme-toggel:hover{
+    background-color: #e0e0e0;
+    border-color: #888;
+    transform: scale(1.05);
+}
+
+#theme-toggel:active, #rules:active {
+    transform: scale(0.98);
+}
+
+#rules{
+    background-color: #007bff;
+    color: #f0f0f0;
+}
+
+#rules:hover{
+    transform: scale(1.05);
+}
+
+/* Smooth Transition for Theme Switch */
+body, #board, .tile, .number, #theme-toggel, #rules, .markings-container {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Dark Theme Base */
+body.dark-theme {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+/* Text & Headers */
+body.dark-theme #score-txt,
+body.dark-theme #error-txt {
+    color: #e0e0e0;
+}
+
+/* Header Buttons (Theme Toggle & Rules) */
+body.dark-theme #theme-toggel{
+    background-color: #2a2a2a;
+    color: #ffffff;
+    border-color: #444444;
+}
+
+body.dark-theme #theme-toggel:hover{
+    background-color: #383838;
+    border-color: #666666;
+}
+
+body.dark-theme #rules{
+    border-color: #444444;
+}
+
+body.dark-theme #rules:hover{
+    border-color: #666666;
+}
+
+/* Board & Cells */
+body.dark-theme #board {
+    background-color: #1e1e1e;
+    border-color: #555555;
+}
+
+body.dark-theme .tile {
+    border-color: #333333;
+    color: #ffffff;
+}
+
+body.dark-theme .tile-start {
+    background-color: #2a2a2a;
+    color: #ffffff;
+}
+
+body.dark-theme .horizontal-line {
+    border-bottom-color: #ffffff;
+}
+
+body.dark-theme .vertical-line {
+    border-right-color: #ffffff;
+}
+
+/* Digit Selection Palette */
+body.dark-theme .number {
+    background-color: #2a2a2a;
+    border-color: #555555;
+    color: #ffffff;
+}
+
+body.dark-theme .number-selected {
+    background-color: #007bff;
+    color: #ffffff;
+    border-color: #0056b3;
+}
+
+body.dark-theme .number.disabled-number {
+    background-color: #1a1a1a;
+    color: #555555;
+    opacity: 0.4;
+}
+
+body.dark-theme .number.disabled-number::after {
+    background: linear-gradient(
+        to top left,
+        transparent calc(50% - 1.5px),
+        #888888 calc(50% - 1.5px),
+        #888888 calc(50% + 1.5px),
+        transparent calc(50% + 1.5px)
+    );
+}

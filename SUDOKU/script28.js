@@ -40,6 +40,8 @@ var solution = [
 
 window.onload = function() {
     setGame();
+    initTheme(); // Load saved theme preference on startup
+    
     document.getElementById("start-btn").addEventListener("click", startGame);
     
     // Bind click event to reset button
@@ -47,7 +49,48 @@ window.onload = function() {
     if (resetBtn) {
         resetBtn.addEventListener("click", resetGame);
     }
+
+    // Bind click event to theme toggle button
+    let themeBtn = document.getElementById("theme-toggel");
+    if (themeBtn) {
+        themeBtn.addEventListener("click", toggleTheme);
+    }
 };
+
+/* --- Theme Management Functions --- */
+
+function initTheme() {
+    let savedTheme = localStorage.getItem("sudoku-theme");
+    let themeBtn = document.getElementById("theme-toggel");
+
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark-theme");
+        if (themeBtn) {
+            themeBtn.innerHTML = 'Night <i class="fa-solid fa-moon"></i>';
+        }
+    } else {
+        document.body.classList.remove("dark-theme");
+        if (themeBtn) {
+            themeBtn.innerHTML = 'Day <i class="fa-regular fa-sun"></i>';
+        }
+    }
+}
+
+function toggleTheme() {
+    document.body.classList.toggle("dark-theme");
+    let isDark = document.body.classList.contains("dark-theme");
+    let themeBtn = document.getElementById("theme-toggel");
+
+    if (isDark) {
+        if (themeBtn) themeBtn.innerHTML = 'Night <i class="fa-solid fa-moon"></i>';
+        localStorage.setItem("sudoku-theme", "dark");
+    } else {
+        if (themeBtn) themeBtn.innerHTML = 'Day <i class="fa-regular fa-sun"></i>';
+        localStorage.setItem("sudoku-theme", "light");
+    }
+}
+
+/* --- Core Game Functions --- */
 
 function startGame() {
     if (gamestarted) return;
@@ -165,7 +208,7 @@ function setGame() {
 
 function selectNumber() {
     if (!gamestarted) return;
-    if (this.classList.contains("disabled-number")) return; // Prevent selection if number is finished
+    if (this.classList.contains("disabled-number")) return;
 
     if (numSelected != null) {
         numSelected.classList.remove("number-selected");
@@ -190,7 +233,7 @@ function selectTile() {
             this.innerText = numSelected.id;
             score += 2;
 
-            checkDigitCounts(); // Update finished number states
+            checkDigitCounts();
             checkScoreBonuses(r, c);
             updateUI();
         } else {
@@ -209,7 +252,6 @@ function updateUI() {
     if (errorsElement) errorsElement.innerText = errors;
 }
 
-// Function to check and disable numbers that have been fully placed (9 times)
 function checkDigitCounts() {
     for (let num = 1; num <= 9; num++) {
         let count = 0;
@@ -229,7 +271,6 @@ function checkDigitCounts() {
                 numBtn.classList.add("disabled-number");
                 numBtn.title = "this number cant be used anymore";
 
-                // Unselect if the active digit just got completed
                 if (numSelected === numBtn) {
                     numSelected.classList.remove("number-selected");
                     numSelected = null;
