@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#1a1a1a">
+	<title>Lyric Flow | Music, in sync</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="style27.css">
+	<script src="script27.js" defer></script>
+</head>
+<body>
+	<div class="app-shell">
+		<header class="topbar">
+			<a class="brand" href="#" aria-label="Lyric Flow home">
+				<span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+				<span>lyric<span class="brand-accent">flow</span></span>
+			</a>
+			<form class="search" id="search-form" role="search">
+				<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m16 16 4 4"></path></svg>
+				<input id="search-input" type="search" placeholder="Search songs or artists" aria-label="Search songs or artists" autocomplete="off">
+				<kbd>ENTER</kbd>
+			</form>
+			<div class="topbar-note"><span class="live-dot"></span><span>LIVE SESSION</span></div>
+		</header>
+
+		<main class="main-content">
+			<section class="now-playing" aria-labelledby="now-playing-title">
+				<div class="section-label"><span class="eyebrow-mark"></span> YOUR LISTENING ROOM</div>
+				<div class="track-heading">
+					<div>
+						<p class="eyebrow">NOW PLAYING</p>
+						<h1 id="now-playing-title">Find your next<br>favorite song.</h1>
+					</div>
+					<span class="track-number" id="track-number">-- / --</span>
+				</div>
+
+				<div class="artwork-wrap">
+					<div class="artwork-placeholder" id="artwork-placeholder" aria-hidden="true">
+						<span class="placeholder-disc"><span></span></span>
+						<span class="placeholder-word">PRESS<br>PLAY</span>
+					</div>
+					<img class="artwork" id="artwork" alt="" hidden>
+					<div class="artwork-caption"><span class="caption-dot"></span><span id="preview-label">READY WHEN YOU ARE</span></div>
+				</div>
+
+				<div class="track-meta">
+					<div class="track-copy">
+						<h2 id="track-title">A song is waiting</h2>
+						<p id="track-artist">Search above to start listening</p>
+					</div>
+					<button class="icon-button favorite-button" id="favorite-button" type="button" aria-label="Save this song" title="Save this song" disabled>
+						<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"></path></svg>
+					</button>
+				</div>
+
+				<div class="progress-area">
+					<input id="progress" class="range progress-range" type="range" min="0" max="30" value="0" step="0.1" aria-label="Playback position" disabled>
+					<div class="time-row"><span id="current-time">0:00</span><span id="duration">0:30</span></div>
+				</div>
+
+				<div class="player-controls">
+					<button class="icon-button skip-button" id="previous-button" type="button" aria-label="Previous song" title="Previous song" disabled>
+						<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 6 8 12l11 6V6Z"></path></svg>
+					</button>
+					<button class="play-button" id="play-button" type="button" aria-label="Play" title="Play" disabled>
+						<svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 12 7-12 7V5Z"></path></svg>
+						<svg class="pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5h3v14H8zM15 5h3v14h-3z"></path></svg>
+					</button>
+					<button class="icon-button skip-button" id="next-button" type="button" aria-label="Next song" title="Next song" disabled>
+						<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 6l11 6-11 6V6Z"></path></svg>
+					</button>
+					<div class="volume-control">
+						<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5ZM15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"></path></svg>
+						<input id="volume" class="range volume-range" type="range" min="0" max="1" value="0.75" step="0.01" aria-label="Volume">
+					</div>
+				</div>
+				<button class="full-track-button" id="full-track-button" type="button" disabled>
+					<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3m0 0L7 8m5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"></path></svg>
+					Open full track
+				</button>
+				<input id="full-track-input" type="file" accept="audio/*" hidden>
+				<p class="player-status" id="player-status" role="status" aria-live="polite">Search for a song to fill your queue.</p>
+				<audio id="audio-player" preload="none"></audio>
+			</section>
+
+			<section class="lyrics-panel" aria-labelledby="lyrics-title">
+				<div class="panel-heading">
+					<div>
+						<p class="eyebrow">WORD FOR WORD</p>
+						<h2 id="lyrics-title">Live lyrics<span class="heading-period">.</span></h2>
+					</div>
+					<span class="sync-status" id="sync-status"><span></span> WAITING</span>
+				</div>
+				<div class="lyrics-viewport" id="lyrics-viewport" aria-live="polite" aria-label="Synchronized song lyrics">
+					<div class="lyrics-empty" id="lyrics-empty">
+						<span class="lyrics-icon" aria-hidden="true">
+							<svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13M9 18c0 1.1-1.3 2-3 2s-3-.9-3-2 1.3-2 3-2 3 .9 3 2Zm12-2c0 1.1-1.3 2-3 2s-3-.9-3-2 1.3-2 3-2 3 .9 3 2ZM9 9l12-2"></path></svg>
+						</span>
+						<p>Your lyrics will find their rhythm here.</p>
+						<span>Pick a track to get started</span>
+					</div>
+					<div class="lyrics-list" id="lyrics-list" hidden></div>
+				</div>
+				<div class="lyrics-footer"><span id="lyrics-credit">LYRICS BY LRCLIB</span><span class="equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></div>
+			</section>
+
+			<aside class="queue-panel" aria-labelledby="queue-title">
+				<div class="queue-heading">
+					<div>
+						<p class="eyebrow">UP NEXT</p>
+						<h2 id="queue-title">Your queue</h2>
+					</div>
+					<span class="queue-count" id="queue-count">0</span>
+				</div>
+				<p class="queue-message" id="queue-message">Search for an artist, song, or mood. Your results will land here.</p>
+				<ol class="queue-list" id="queue-list" aria-label="Song queue"></ol>
+				<div class="queue-footer"><span class="queue-indicator"></span><span>30-SECOND PREVIEWS</span></div>
+			</aside>
+		</main>
+
+		<footer class="app-footer"><span>MADE FOR THE MOMENT</span><span><span class="footer-spark">*</span> MUSIC IN MOTION</span></footer>
+	</div>
+</body>
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visitor Management System (VMS) Interfaces</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --success: #16a34a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      padding: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
+
+    /* Tab Navigation */
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .tab-btn {
+      padding: 10px 20px;
+      border: none;
+      background: none;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+    }
+
+    .tab-btn.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+
+    /* Tab Content Views */
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+    }
+
+    .card h2 {
+      font-size: 1.25rem;
+      margin-bottom: 15px;
+      color: var(--text);
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.95rem;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    button.btn {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 6px;
+      background: var(--primary);
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    button.btn:hover {
+      background: var(--primary-hover);
+    }
+
+    button.btn-secondary {
+      background: #475569;
+    }
+
+    button.btn-secondary:hover {
+      background: #334155;
+    }
+
+    /* Output Displays & Tables */
+    .alert {
+      padding: 12px;
+      border-radius: 6px;
+      background: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #bae6fd;
+      margin-top: 15px;
+    }
+
+    .alert-success {
+      background: #dcfce7;
+      color: #15803d;
+      border-color: #bbf7d0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 10px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+
+    th {
+      background: #f1f5f9;
+    }
+
+    .notification-item {
+      padding: 12px;
+      border-left: 4px solid var(--primary);
+      background: #f1f5f9;
+      margin-bottom: 10px;
+      border-radius: 0 6px 6px 0;
+    }
+    
+    .notification-item .time {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Visitor Management System (VMS)</h1>
+
+  <!-- Interface Selector Navigation -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('visitor-tab')">Visitor Interface</button>
+    <button class="tab-btn" onclick="switchTab('admin-tab')">Security / Admin Interface</button>
+    <button class="tab-btn" onclick="switchTab('host-tab')">Host Interface</button>
+  </div>
+
+  <!-- 1. VISITOR INTERFACE -->
+  <div id="visitor-tab" class="tab-content active">
+    <div class="card">
+      <h2>Visitor Check-in</h2>
+      <div class="form-group">
+        <label for="barcodeInput">ID Card / Barcode Data</label>
+        <input type="text" id="barcodeInput" placeholder="Scan or enter Barcode ID (e.g., VIS-9921)">
+      </div>
+      <div class="form-group">
+        <label for="visitorName">Visitor Full Name</label>
+        <input type="text" id="visitorName" placeholder="John Doe">
+      </div>
+      <div class="form-group">
+        <label for="hostSelect">Select Host</label>
+        <select id="hostSelect">
+          <option value="Alice Smith (Engineering)">Alice Smith (Engineering)</option>
+          <option value="Bob Jones (HR)">Bob Jones (HR)</option>
+          <option value="Carol White (Operations)">Carol White (Operations)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="visitPurpose">Purpose of Visit</label>
+        <input type="text" id="visitPurpose" placeholder="e.g., Interview, Client Meeting">
+      </div>
+      <button class="btn" onclick="handleCheckIn()">Submit Check-In</button>
+
+      <div id="checkInConfirmation" class="alert alert-success" style="display: none;"></div>
+    </div>
+
+    <div class="card">
+      <h2>Visitor Check-out</h2>
+      <div class="form-group">
+        <label for="checkoutBarcodeInput">Departure Barcode Scan</label>
+        <input type="text" id="checkoutBarcodeInput" placeholder="Scan Barcode ID to Checkout">
+      </div>
+      <button class="btn btn-secondary" onclick="handleCheckOut()">Submit Check-Out</button>
+      
+      <div id="checkOutConfirmation" class="alert" style="display: none;"></div>
+    </div>
+  </div>
+
+  <!-- 2. SECURITY / ADMIN INTERFACE -->
+  <div id="admin-tab" class="tab-content">
+    <div class="card">
+      <h2>Admin Actions & Controls</h2>
+      <div class="btn-group">
+        <button class="btn" onclick="renderLogs()">Refresh Daily Logs</button>
+        <button class="btn btn-secondary" onclick="generateEmergencyList()">Generate Emergency Occupant List</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Daily Visitor Logs (Audit Reports)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Barcode ID</th>
+            <th>Name</th>
+            <th>Host</th>
+            <th>Purpose</th>
+            <th>Check-In Time</th>
+            <th>Check-Out Time</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="logsTableBody">
+          <!-- Dynamically populated -->
+        </tbody>
+      </table>
+    </div>
+
+    <div id="emergencyReportCard" class="card" style="display: none;">
+      <h2 style="color: #dc2626;">🚨 Emergency Occupant List (Currently On-Site)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Barcode ID</th>
+            <th>Visitor Name</th>
+            <th>Host</th>
+            <th>Check-In Time</th>
+          </tr>
+        </thead>
+        <tbody id="emergencyTableBody">
+          <!-- Dynamically populated -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 3. HOST INTERFACE -->
+  <div id="host-tab" class="tab-content">
+    <div class="card">
+      <h2>Host Notifications Panel</h2>
+      <p style="margin-bottom: 15px; color: var(--text-muted); font-size: 0.9rem;">
+        Simulated SMS/Email Arrival Alerts & Check-out Notifications for Hosts.
+      </p>
+      <div id="notificationsContainer">
+        <p style="color: var(--text-muted);">No notifications received yet.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --- Application State ---
+    let visitorLogs = [];
+    let hostNotifications = [];
+
+    // --- Tab Switching Logic ---
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+
+      document.getElementById(tabId).classList.add('active');
+      event.currentTarget.classList.add('active');
+
+      if (tabId === 'admin-tab') renderLogs();
+      if (tabId === 'host-tab') renderNotifications();
+    }
+
+    // --- Visitor Interface Logic ---
+    function handleCheckIn() {
+      const barcode = document.getElementById('barcodeInput').value.trim();
+      const name = document.getElementById('visitorName').value.trim();
+      const host = document.getElementById('hostSelect').value;
+      const purpose = document.getElementById('visitPurpose').value.trim();
+
+      if (!barcode || !name || !purpose) {
+        alert('Please fill out all required fields.');
+        return;
+      }
+
+      const checkInTime = new Date().toLocaleTimeString();
+
+      const newRecord = {
+        barcode,
+        name,
+        host,
+        purpose,
+        checkInTime,
+        checkOutTime: '--',
+        status: 'CHECKED_IN'
+      };
+
+      visitorLogs.push(newRecord);
+
+      // Trigger notification to host
+      hostNotifications.unshift({
+        type: 'ARRIVAL_ALERT',
+        message: `SMS/EMAIL: Guest ${name} has arrived to meet ${host} for "${purpose}".`,
+        timestamp: checkInTime
+      });
+
+      // Show Visitor Confirmation Output
+      const alertBox = document.getElementById('checkInConfirmation');
+      alertBox.style.display = 'block';
+      alertBox.innerHTML = `<strong>Visit Confirmed!</strong><br>Welcome, ${name}. Checked in at ${checkInTime}. Notification sent to ${host}.`;
+
+      // Clear input fields
+      document.getElementById('barcodeInput').value = '';
+      document.getElementById('visitorName').value = '';
+      document.getElementById('visitPurpose').value = '';
+    }
+
+    function handleCheckOut() {
+      const barcode = document.getElementById('checkoutBarcodeInput').value.trim();
+      if (!barcode) {
+        alert('Please enter or scan a Barcode ID.');
+        return;
+      }
+
+      const record = visitorLogs.find(log => log.barcode === barcode && log.status === 'CHECKED_IN');
+
+      if (!record) {
+        alert('Active check-in record not found for this Barcode ID.');
+        return;
+      }
+
+      const checkOutTime = new Date().toLocaleTimeString();
+      record.checkOutTime = checkOutTime;
+      record.status = 'CHECKED_OUT';
+
+      // Trigger checkout notification to host
+      hostNotifications.unshift({
+        type: 'CHECKOUT_ALERT',
+        message: `NOTIFICATION: Guest ${record.name} has checked out at ${checkOutTime}.`,
+        timestamp: checkOutTime
+      });
+
+      // Show Visitor Check-out Confirmation
+      const alertBox = document.getElementById('checkOutConfirmation');
+      alertBox.style.display = 'block';
+      alertBox.innerHTML = `<strong>Check-Out Complete!</strong><br>Goodbye, ${record.name}. Departed at ${checkOutTime}.`;
+
+      document.getElementById('checkoutBarcodeInput').value = '';
+    }
+
+    // --- Security / Admin Interface Logic ---
+    function renderLogs() {
+      const tbody = document.getElementById('logsTableBody');
+      tbody.innerHTML = '';
+
+      if (visitorLogs.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;">No log records found.</td></tr>';
+        return;
+      }
+
+      visitorLogs.forEach(log => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${log.barcode}</td>
+          <td>${log.name}</td>
+          <td>${log.host}</td>
+          <td>${log.purpose}</td>
+          <td>${log.checkInTime}</td>
+          <td>${log.checkOutTime}</td>
+          <td><strong>${log.status}</strong></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function generateEmergencyList() {
+      const activeVisitors = visitorLogs.filter(log => log.status === 'CHECKED_IN');
+      const container = document.getElementById('emergencyReportCard');
+      const tbody = document.getElementById('emergencyTableBody');
+
+      tbody.innerHTML = '';
+      container.style.display = 'block';
+
+      if (activeVisitors.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">No occupants currently inside the building.</td></tr>';
+        return;
+      }
+
+      activeVisitors.forEach(log => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${log.barcode}</td>
+          <td>${log.name}</td>
+          <td>${log.host}</td>
+          <td>${log.checkInTime}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // --- Host Interface Logic ---
+    function renderNotifications() {
+      const container = document.getElementById('notificationsContainer');
+      container.innerHTML = '';
+
+      if (hostNotifications.length === 0) {
+        container.innerHTML = '<p style="color: var(--text-muted);">No notifications received yet.</p>';
+        return;
+      }
+
+      hostNotifications.forEach(notif => {
+        const item = document.createElement('div');
+        item.className = 'notification-item';
+        item.innerHTML = `
+          <div>${notif.message}</div>
+          <div class="time">${notif.timestamp}</div>
+        `;
+        container.appendChild(item);
+      });
+    }
+  </script>
+</body>
+</html>

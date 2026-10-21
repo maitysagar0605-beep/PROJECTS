@@ -1,0 +1,156 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+hr {
+    width: 450px;
+}
+
+.markings-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+#score {
+    color: rgba(18, 190, 18, 0.726);
+}
+
+#score-txt {
+    color: black;
+}
+
+#errors {
+    color: coral;
+}
+
+#error-txt {
+    color: black;
+}
+
+#timer {
+    color: #007bff;
+    font-weight: bold;
+}
+
+#board {
+    width: 450px;
+    height: 450px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tile {
+    width: 50px; 
+    height: 50px;
+    border: 1px solid lightgray;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#digits {
+    width: 450px;
+    height: 50px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.number {
+    width: 44px; 
+    height: 44px;
+    border: 1px solid black;
+    margin: 2px;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.number-selected {
+    background-color: gray;
+    color: white;
+}
+
+.tile-start {
+    background-color: whitesmoke;
+}
+
+.horizontal-line {
+    border-bottom: 2px solid black;
+}
+
+.vertical-line {
+    border-right: 2px solid black;
+}
+
+#start-btn, #reset-btn {
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+#start-btn {
+    background-color: coral;
+}
+
+#reset-btn {
+    background-color: rgba(18, 190, 18, 0.726);
+}
+
+#start-btn:hover, #reset-btn:hover {
+    transform: scale(1.05);
+}
+
+#start-btn:disabled, #reset-btn:disabled {
+    background-color: lightgray;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Disabled number styling */
+.number.disabled-number {
+    position: relative;
+    background-color: #f0f0f0;
+    color: #888;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Diagonal strike-through line */
+.number.disabled-number::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to top left,
+        transparent calc(50% - 1.5px),
+        black calc(50% - 1.5px),
+        black calc(50% + 1.5px),
+        transparent calc(50% + 1.5px)
+    );
+    pointer-events: none;
+}

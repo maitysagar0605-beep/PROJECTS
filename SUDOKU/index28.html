@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUDOKU</title>
+    <link rel="stylesheet" href="style28.css">
+    <script src="script28.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer">
+</head>
+<body>
+    <h1>Sudoku</h1>
+    <hr>
+    <h2>Time: <span id="timer">00:00</span></h2>
+    <div class="markings-container">
+        <h2 id="score-txt">Score: <span id="score">0</span></h2>
+        <h2 id="error-txt">Errors: <span id="errors">0</span></h2>
+    </div>
+    
+    <div id="board"></div>
+    <br>
+    <div id="digits"></div>
+    <button id="start-btn">Start Game ▶</button>
+    <button id="reset-btn">Reset <i class="fa-solid fa-arrow-rotate-left"></i></button>
+</body>
+</html>
