@@ -1,0 +1,128 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Courier New', Courier, monospace;
+  user-select: none;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(180deg, #bdeaff 0%, #f4f4d9 55%, #e4d4ad 100%);
+  transition: background 0.7s ease;
+}
+
+/* Dark Mode class toggled by JS */
+body.dark-mode {
+  background: linear-gradient(180deg, #111a36 0%, #34445f 58%, #202124 100%);
+}
+
+.game-container {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.score-board {
+  position: absolute;
+  z-index: 1;
+  top: clamp(14px, 2.5vh, 28px);
+  right: clamp(14px, 3vw, 36px);
+  padding: 10px 16px;
+  border: 1px solid rgba(83, 83, 83, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.42);
+  font-size: clamp(14px, 1.8vw, 22px);
+  font-weight: bold;
+  color: #535353;
+  letter-spacing: 2px;
+  pointer-events: none;
+}
+
+body.dark-mode .score-board {
+  border-color: rgba(232, 234, 237, 0.18);
+  background: rgba(20, 29, 48, 0.42);
+  color: #e8eaed;
+}
+
+canvas {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  border: 0;
+  display: block;
+}
+
+.instructions {
+  position: absolute;
+  z-index: 1;
+  bottom: clamp(12px, 2.5vh, 26px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 9px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.45);
+  color: #535353;
+  font-size: clamp(11px, 1.2vw, 15px);
+  text-align: center;
+  letter-spacing: 0.4px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+body.dark-mode .instructions {
+  background: rgba(20, 29, 48, 0.45);
+  color: #c8d0dc;
+}
+
+.game-over {
+  display: none;
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #535353;
+  white-space: nowrap;
+}
+
+body.dark-mode .game-over {
+  color: #e8eaed;
+}
+
+.game-over h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.game-over button {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  background: transparent;
+  border: 2px solid #535353;
+  color: #535353;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+body.dark-mode .game-over button {
+  border-color: #e8eaed;
+  color: #e8eaed;
+}
+
+.game-over button:hover {
+  background-color: #535353;
+  color: #ffffff;
+}
+
+body.dark-mode .game-over button:hover {
+  background-color: #e8eaed;
+  color: #202124;
+}

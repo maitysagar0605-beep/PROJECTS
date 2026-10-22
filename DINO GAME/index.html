@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS Dino Runner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="game-container" id="gameContainer">
+    <div class="score-board">
+      HI <span id="highScore">00000</span> &nbsp; <span id="score">00000</span>
+    </div>
+
+    <!-- Canvas for drawing player, obstacles, and ground -->
+    <canvas id="gameCanvas" width="800" height="250"></canvas>
+    <p class="instructions">SPACE / &uarr; Jump &nbsp;&bull;&nbsp; &darr; Crouch under high birds</p>
+
+    <div class="game-over" id="gameOverMenu">
+      <h2>G A M E &nbsp; O V E R</h2>
+      <button id="restartBtn">Press Space or Tap to Restart</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
