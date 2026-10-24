@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stack Visualizer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .stack-container {
+            min-height: 400px;
+            border: 2px solid #3b82f6; /* Blue border */
+            border-radius: 0.5rem;
+            display: flex;
+            flex-direction: column-reverse; /* LIFO: New items appear at the top */
+            align-items: center;
+            padding-bottom: 0.5rem;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        .stack-element {
+            /* Ensures elements transition smoothly */
+            transition: all 0.3s ease-in-out;
+            width: 90%;
+            padding: 0.75rem 0;
+            margin-top: 0.5rem;
+            text-align: center;
+            border-radius: 0.375rem;
+            color: white;
+            font-weight: 700;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+        .peek-highlight {
+            border: 4px solid #f97316; /* Orange border */
+            box-shadow: 0 0 10px #f97316;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans p-4 sm:p-8">
+    <div class="max-w-4xl mx-auto bg-white p-6 sm:p-8 rounded-xl shadow-2xl">
+        <h1 class="text-3xl font-extrabold text-blue-600 mb-2 text-center">Stack Data Structure Visualizer</h1>
+        <p class="text-center text-gray-500 mb-8">LIFO: Last-In, First-Out Principle</p>
+
+        <div class="flex flex-col md:flex-row gap-6">
+            <!-- Left Side Controls-->
+            <div class="md:w-1/3 p-4 bg-gray-100 rounded-lg shadow-inner">
+                <h2 class="text-xl font-bold text-gray-700 mb-4 border-b pb-2">Operations</h2>
+                <input type="text" id="push-input" placeholder="Enter value to push" 
+                       class="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 mb-4">
+                <button onclick="pushElement()" 
+                        class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 rounded-lg transition-colors duration-200 shadow-md mb-3">
+                    PUSH (Add to Top)
+                </button>
+                <button onclick="popElement()" 
+                        class="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-lg transition-colors duration-200 shadow-md mb-3">
+                    POP (Remove from Top)
+                </button>
+                <button onclick="peekElement()" 
+                        class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 rounded-lg transition-colors duration-200 shadow-md mb-3">
+                    PEEK (View Top)
+                </button>
+                <div id="status-message" class="mt-4 p-2 text-sm font-medium text-center bg-blue-100 text-blue-800 rounded-md hidden"></div>
+            </div>
+            <!-- Stack Visualization Canvas-->
+             <div class="md:w-2/3 p-4">
+                <h2 class="text-xl font-bold text-gray-700 mb-4 text-center">The Stack</h2>
+                <div id="stack-container" class="stack-container">
+                    <div class="text-gray-400 mt-20">Stack is empty. Push an element!</div>
+                </div>
+             </div>
+        </div>
+
+    </div>
+    <script>
+        class Stack {
+            constructor() {
+                this.items = [];
+            }
+            push(element) {
+                this.items.push(element);
+            }
+
+            pop() {
+                if (this.isEmpty()) {
+                    return "Underflow";
+                }
+                return this.items.pop();
+            }
+            peek() {
+                if (this.isEmpty()) {
+                    return "Empty";
+                }
+                // Return the last element (the top)
+                return this.items[this.items.length - 1];
+            }
+            isEmpty() {
+                return this.items.length === 0;
+            }
+            get size() {
+                return this.items.length;
+            }
+        }
+        const stack = new Stack();
+        const stackContainer = document.getElementById('stack-container');
+        const statusMessage = document.getElementById('status-message');
+
+        let elementCounter = 1;
+        function updateVisualization(highlightTop = false) {
+            stackContainer.innerHTML = '';
+            if (stack.isEmpty()) {
+                stackContainer.innerHTML = '<div class="text-gray-400 mt-20">Stack is empty. Push an element!</div>';
+                return;
+            }
+            for(let i=stack.items.length-1;i>=0;i--){
+                const item = stack.items[i];
+                const elementDiv = document.createElement('div');
+                elementDiv.className = `stack-element bg-blue-500 hover:bg-blue-700 shadow-lg`;
+                elementDiv.id = `stack-item-${i}`;
+                elementDiv.textContent = item.value;
+
+                if (highlightTop && i === stack.items.length - 1) {
+                    elementDiv.classList.add('peek-highlight');
+                }
+                stackContainer.prepend(elementDiv);
+            }
+        }
+        function pushElement(){
+            const input = document.getElementById('push-input');
+            let value = input.value.trim();
+            if (value === "") {
+                value = `Element ${elementCounter}`;
+            }
+            if (stack.size >= 10) {
+                 showStatus("Stack is full! Cannot push more than 10 elements.", "bg-red-100 text-red-800");
+                 return;
+            }
+            const newItem = { 
+                value: value,
+                id: elementCounter++ 
+            };
+            stack.push(newItem);
+            input.value = '';
+            showStatus(`PUSHED: ${newItem.value}`, "bg-green-100 text-green-800");
+            updateVisualization();
+        }
+        function popElement(){
+            const poppedItem = stack.pop();
+            
+            if (poppedItem === "Underflow") {
+                showStatus("Error: Stack is empty (Underflow).", "bg-red-100 text-red-800");
+            } else {
+                showStatus(`POPPED: ${poppedItem.value}`, "bg-red-100 text-red-800");
+                updateVisualization();
+            }
+        }
+        function peekElement(){
+            const peekedItem = stack.peek();
+            
+            if (peekedItem === "Empty") {
+                showStatus("Stack is empty. Nothing to peek.", "bg-red-100 text-red-800");
+            } else {
+                showStatus(`PEEKED: ${peekedItem.value} (Top element highlighted)`, "bg-yellow-100 text-yellow-800");
+                updateVisualization(true); // Pass true to highlight the top element
+            }
+        }
+        function showStatus(message, styleClasses) {
+            statusMessage.textContent = message;
+            statusMessage.className = `mt-4 p-2 text-sm font-medium text-center rounded-md ${styleClasses}`;
+            statusMessage.classList.remove('hidden');
+            
+            // Hide message after 3 seconds
+            setTimeout(() => {
+                statusMessage.classList.add('hidden');
+            }, 3000);
+        }
+        window.onload = updateVisualization; 
+    </script>
+</body>
+</html>
