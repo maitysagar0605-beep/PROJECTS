@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Linked List Visualizer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Three.js and OrbitControls -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: #0f172a;
+        }
+        #canvas-container {
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        /* Custom Scrollbar for panel */
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: rgba(51, 65, 85, 0.8);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="text-slate-100">
+
+    <!-- 3D Canvas -->
+    <div id="canvas-container"></div>
+
+    <!-- Main UI Overlay -->
+    <div class="relative z-10 pointer-events-none min-h-screen flex flex-col justify-between p-4 sm:p-6">
+        
+        <!-- Header & Stats Bar -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div class="glass-panel p-4 rounded-2xl pointer-events-auto max-w-md">
+                <h1 class="text-2xl font-extrabold bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">
+                    3D Singly Linked List Visualizer
+                </h1>
+                <p class="text-xs text-slate-400 mt-1">
+                    Nodes linked dynamically with memory pointers. Left Click + Drag to rotate canvas.
+                </p>
+            </div>
+
+            <div class="glass-panel px-5 py-3 rounded-2xl pointer-events-auto flex items-center gap-6 text-xs sm:text-sm font-semibold">
+                <div>
+                    <span class="text-slate-400 block text-[10px] uppercase tracking-wider">Head Addr</span>
+                    <span id="head-addr-label" class="text-emerald-400 font-mono">0x0000</span>
+                </div>
+                <div class="h-8 w-[1px] bg-slate-700"></div>
+                <div>
+                    <span class="text-slate-400 block text-[10px] uppercase tracking-wider">Tail Addr</span>
+                    <span id="tail-addr-label" class="text-purple-400 font-mono">0x0000</span>
+                </div>
+                <div class="h-8 w-[1px] bg-slate-700"></div>
+                <div>
+                    <span class="text-slate-400 block text-[10px] uppercase tracking-wider">Total Size</span>
+                    <span id="list-size-label" class="text-blue-400 font-mono">0 / 7</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notification / Status Banner -->
+        <div id="status-message" class="self-center glass-panel px-6 py-3 rounded-xl font-semibold text-sm hidden transition-all duration-300 pointer-events-auto shadow-2xl">
+        </div>
+
+        <!-- Interactive Control Panel (Floating Bottom Left) -->
+        <div class="glass-panel p-5 rounded-2xl pointer-events-auto w-full sm:w-80 custom-scroll max-h-[80vh] overflow-y-auto">
+            <h2 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-3 pb-2 border-b border-slate-700/60">
+                List Operations
+            </h2>
+
+            <div class="space-y-3">
+                <!-- Input Box -->
+                <div>
+                    <label for="node-input" class="block text-xs text-slate-400 mb-1 font-medium">Node Value / Search Key</label>
+                    <input type="text" id="node-input" placeholder="e.g. 42" 
+                           class="w-full bg-slate-900/80 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-blue-500 transition">
+                </div>
+
+                <!-- Insertion Group -->
+                <div class="grid grid-cols-2 gap-2">
+                    <button onclick="insertHead()" 
+                            class="bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-semibold py-2 px-3 rounded-lg text-xs transition shadow-lg shadow-emerald-900/30">
+                        Insert Head
+                    </button>
+                    <button onclick="insertTail()" 
+                            class="bg-blue-600 hover:bg-blue-500 active:scale-95 text-white font-semibold py-2 px-3 rounded-lg text-xs transition shadow-lg shadow-blue-900/30">
+                        Insert Tail
+                    </button>
+                </div>
+
+                <!-- Deletion Group -->
+                <div class="grid grid-cols-2 gap-2">
+                    <button onclick="deleteHead()" 
+                            class="bg-rose-600 hover:bg-rose-500 active:scale-95 text-white font-semibold py-2 px-3 rounded-lg text-xs transition shadow-lg shadow-rose-900/30">
+                        Delete Head
+                    </button>
+                    <button onclick="deleteTail()" 
+                            class="bg-purple-600 hover:bg-purple-500 active:scale-95 text-white font-semibold py-2 px-3 rounded-lg text-xs transition shadow-lg shadow-purple-900/30">
+                        Delete Tail
+                    </button>
+                </div>
+
+                <!-- Search -->
+                <button onclick="searchValue()" 
+                        class="w-full bg-amber-600 hover:bg-amber-500 active:scale-95 text-white font-semibold py-2 px-3 rounded-lg text-xs transition shadow-lg shadow-amber-900/30">
+                    Search Node
+                </button>
+
+                <!-- Clear -->
+                <button onclick="clearList()" 
+                        class="w-full bg-slate-800 hover:bg-slate-700 active:scale-95 text-slate-300 font-semibold py-2 px-3 rounded-lg text-xs transition border border-slate-700 mt-2">
+                    Clear List
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3D Visualization Logic -->
+    <script>
+        // Data Models
+        class LinkedListNode {
+            constructor(value) {
+                this.value = value;
+                this.next = null;
+                this.address = '0x' + Math.floor(Math.random()*65535).toString(16).padStart(4, '0').toUpperCase();
+                this.meshGroup = null; // References Three.js Object Group
+            }
+        }
+
+        class LinkedList {
+            constructor() {
+                this.head = null;
+                this.tail = null;
+                this.count = 0;
+                this.maxCapacity = 7;
+            }
+
+            insertHead(value) {
+                if (this.count >= this.maxCapacity) return "Overflow";
+                const newNode = new LinkedListNode(value);
+                if (!this.head) {
+                    this.head = newNode;
+                    this.tail = newNode;
+                } else {
+                    newNode.next = this.head;
+                    this.head = newNode;
+                }
+                this.count++;
+                return newNode;
+            }
+
+            insertTail(value) {
+                if (this.count >= this.maxCapacity) return "Overflow";
+                const newNode = new LinkedListNode(value);
+                if (!this.tail) {
+                    this.head = newNode;
+                    this.tail = newNode;
+                } else {
+                    this.tail.next = newNode;
+                    this.tail = newNode;
+                }
+                this.count++;
+                return newNode;
+            }
+
+            deleteHead() {
+                if (!this.head) return "Underflow";
+                const removed = this.head;
+                this.head = this.head.next;
+                if (!this.head) this.tail = null;
+                this.count--;
+                return removed;
+            }
+
+            deleteTail() {
+                if (!this.head) return "Underflow";
+                if (this.head === this.tail) {
+                    const removed = this.head;
+                    this.head = null;
+                    this.tail = null;
+                    this.count = 0;
+                    return removed;
+                }
+                let curr = this.head;
+                while (curr.next !== this.tail) {
+                    curr = curr.next;
+                }
+                const removed = this.tail;
+                curr.next = null;
+                this.tail = curr;
+                this.count--;
+                return removed;
+            }
+
+            isEmpty() {
+                return this.count === 0;
+            }
+
+            clear() {
+                this.head = null;
+                this.tail = null;
+                this.count = 0;
+            }
+        }
+
+        const list = new LinkedList();
+        let defaultCounter = 1;
+
+        // Three.js Scene Setup
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x0f172a, 0.015);
+
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 8, 22);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        container.appendChild(renderer.domElement);
+
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+        controls.maxPolarAngle = Math.PI / 2 + 0.1;
+
+        // Lighting
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
+
+        const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        dirLight.position.set(10, 20, 15);
+        dirLight.castShadow = true;
+        dirLight.shadow.mapSize.width = 1024;
+        dirLight.shadow.mapSize.height = 1024;
+        scene.add(dirLight);
+
+        const pointLight = new THREE.PointLight(0x3b82f6, 1.5, 30);
+        pointLight.position.set(0, 5, 5);
+        scene.add(pointLight);
+
+        // Ground Grid
+        const gridHelper = new THREE.GridHelper(60, 40, 0x334155, 0x1e293b);
+        gridHelper.position.y = -2;
+        scene.add(gridHelper);
+
+        // Text Texture Generator for 3D Blocks
+        function createTextCanvasTexture(text, subtext = "", bgColor = "#3b82f6", textColor = "#ffffff") {
+            const canvas = document.createElement('canvas');
+            canvas.width = 256;
+            canvas.height = 256;
+            const ctx = canvas.getContext('2d');
+
+            ctx.fillStyle = bgColor;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 8;
+            ctx.strokeRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = textColor;
+            ctx.font = 'Bold 48px Inter, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(text, 128, subtext ? 100 : 128);
+
+            if (subtext) {
+                ctx.fillStyle = 'rgba(255,255,255,0.8)';
+                ctx.font = '28px monospace';
+                ctx.fillText(subtext, 128, 170);
+            }
+
+            return new THREE.CanvasTexture(canvas);
+        }
+
+        // Create 3D Object Group for Node
+        function createNode3DGroup(node, isHead = false, isTail = false) {
+            const group = new THREE.Group();
+
+            // 1. Data Box (Cube)
+            const dataGeo = new THREE.BoxGeometry(2, 2, 2);
+            const dataTex = createTextCanvasTexture(String(node.value), "DATA", "#2563eb");
+            const dataMat = [
+                new THREE.MeshStandardMaterial({ color: 0x1d4ed8 }),
+                new THREE.MeshStandardMaterial({ color: 0x1d4ed8 }),
+                new THREE.MeshStandardMaterial({ color: 0x1d4ed8 }),
+                new THREE.MeshStandardMaterial({ color: 0x1d4ed8 }),
+                new THREE.MeshStandardMaterial({ map: dataTex }), // Front
+                new THREE.MeshStandardMaterial({ color: 0x1d4ed8 })
+            ];
+            const dataMesh = new THREE.Mesh(dataGeo, dataMat);
+            dataMesh.position.x = -1;
+            dataMesh.castShadow = true;
+            group.add(dataMesh);
+
+            // 2. Next Pointer Box (Smaller Block attached)
+            const nextGeo = new THREE.BoxGeometry(1.2, 2, 2);
+            const nextTex = createTextCanvasTexture(node.next ? node.next.address : "NULL", "NEXT", "#7c3aed");
+            const nextMat = [
+                new THREE.MeshStandardMaterial({ color: 0x6d28d9 }),
+                new THREE.MeshStandardMaterial({ color: 0x6d28d9 }),
+                new THREE.MeshStandardMaterial({ color: 0x6d28d9 }),
+                new THREE.MeshStandardMaterial({ color: 0x6d28d9 }),
+                new THREE.MeshStandardMaterial({ map: nextTex }), // Front
+                new THREE.MeshStandardMaterial({ color: 0x6d28d9 })
+            ];
+            const nextMesh = new THREE.Mesh(nextGeo, nextMat);
+            nextMesh.position.x = 0.6;
+            nextMesh.castShadow = true;
+            group.add(nextMesh);
+
+            // 3. Pointer Address Tag Floating Below
+            const addrTex = createTextCanvasTexture(node.address, "", "#0f172a", "#38bdf8");
+            const addrGeo = new THREE.PlaneGeometry(2.4, 0.8);
+            const addrMat = new THREE.MeshBasicMaterial({ map: addrTex, transparent: true });
+            const addrMesh = new THREE.Mesh(addrGeo, addrMat);
+            addrMesh.position.set(-0.2, -1.6, 0);
+            group.add(addrMesh);
+
+            return group;
+        }
+
+        // Create 3D Arrow Connector
+        function createArrow3D() {
+            const group = new THREE.Group();
+
+            const cylGeo = new THREE.CylinderGeometry(0.12, 0.12, 2, 16);
+            const mat = new THREE.MeshStandardMaterial({ color: 0xf59e0b, metalness: 0.5, roughness: 0.2 });
+            const cylinder = new THREE.Mesh(cylGeo, mat);
+            cylinder.rotation.z = -Math.PI / 2;
+            cylinder.position.x = 1;
+            group.add(cylinder);
+
+            const coneGeo = new THREE.ConeGeometry(0.35, 0.7, 16);
+            const cone = new THREE.Mesh(coneGeo, mat);
+            cone.rotation.z = -Math.PI / 2;
+            cone.position.x = 2;
+            group.add(cone);
+
+            return group;
+        }
+
+        // Floating Indicator Pointer (HEAD / TAIL)
+        function createFloatingPointer(label, colorHex) {
+            const group = new THREE.Group();
+
+            const coneGeo = new THREE.ConeGeometry(0.4, 1, 16);
+            const coneMat = new THREE.MeshStandardMaterial({ color: colorHex, emissive: colorHex, emissiveIntensity: 0.3 });
+            const cone = new THREE.Mesh(coneGeo, coneMat);
+            cone.rotation.z = Math.PI; // Pointing down
+            cone.position.y = 2.2;
+            group.add(cone);
+
+            const tex = createTextCanvasTexture(label, "", colorHex, "#ffffff");
+            const planeGeo = new THREE.PlaneGeometry(1.8, 0.8);
+            const planeMat = new THREE.MeshBasicMaterial({ map: tex });
+            const plane = new THREE.Mesh(planeGeo, planeMat);
+            plane.position.y = 3.3;
+            group.add(plane);
+
+            return group;
+        }
+
+        // NULL Block
+        function createNullBlock3D() {
+            const group = new THREE.Group();
+            const geo = new THREE.BoxGeometry(1.8, 1.8, 1.8);
+            const tex = createTextCanvasTexture("NULL", "", "#475569");
+            const mat = new THREE.MeshStandardMaterial({ map: tex });
+            const mesh = new THREE.Mesh(geo, mat);
+            mesh.castShadow = true;
+            group.add(mesh);
+            return group;
+        }
+
+        // Render & Synchronize 3D Scene with Linked List Data
+        let sceneObjects = [];
+
+        function render3DList() {
+            // Clear existing scene meshes
+            sceneObjects.forEach(obj => scene.remove(obj));
+            sceneObjects = [];
+
+            // UI Label updates
+            document.getElementById('list-size-label').textContent = `${list.count} / ${list.maxCapacity}`;
+            document.getElementById('head-addr-label').textContent = list.head ? list.head.address : '0x0000';
+            document.getElementById('tail-addr-label').textContent = list.tail ? list.tail.address : '0x0000';
+
+            if (list.isEmpty()) return;
+
+            const startX = -((list.count - 1) * 4.8) / 2;
+            let current = list.head;
+            let index = 0;
+
+            while (current) {
+                const posX = startX + (index * 4.8);
+                const nodeGroup = createNode3DGroup(current);
+                nodeGroup.position.set(posX, 0, 0);
+                current.meshGroup = nodeGroup;
+                scene.add(nodeGroup);
+                sceneObjects.push(nodeGroup);
+
+                // Add Arrows between nodes
+                if (current.next) {
+                    const arrow = createArrow3D();
+                    arrow.position.set(posX + 1.2, 0, 0);
+                    scene.add(arrow);
+                    sceneObjects.push(arrow);
+                } else {
+                    // Arrow pointing to NULL
+                    const arrow = createArrow3D();
+                    arrow.position.set(posX + 1.2, 0, 0);
+                    scene.add(arrow);
+                    sceneObjects.push(arrow);
+
+                    const nullBlock = createNullBlock3D();
+                    nullBlock.position.set(posX + 4.2, 0, 0);
+                    scene.add(nullBlock);
+                    sceneObjects.push(nullBlock);
+                }
+
+                // Add Head Indicator
+                if (current === list.head) {
+                    const headPointer = createFloatingPointer("HEAD", "#10b981");
+                    headPointer.position.set(posX - 0.5, 0, 0);
+                    scene.add(headPointer);
+                    sceneObjects.push(headPointer);
+                }
+
+                // Add Tail Indicator
+                if (current === list.tail) {
+                    const tailPointer = createFloatingPointer("TAIL", "#a855f7");
+                    tailPointer.position.set(posX + 0.5, 0, 0);
+                    scene.add(tailPointer);
+                    sceneObjects.push(tailPointer);
+                }
+
+                current = current.next;
+                index++;
+            }
+        }
+
+        // Helper: Get user input or fallback default
+        function getInputValue() {
+            const input = document.getElementById('node-input');
+            let val = input.value.trim();
+            if (!val) val = String(defaultCounter++);
+            input.value = '';
+            return val;
+        }
+
+        // User Operation Handlers
+        function insertHead() {
+            const val = getInputValue();
+            const res = list.insertHead(val);
+            if (res === "Overflow") {
+                showStatus("List Overflow! Maximum 7 nodes reached.", "bg-rose-900/80 text-rose-200 border-rose-700");
+                return;
+            }
+            showStatus(`Inserted "${val}" at HEAD`, "bg-emerald-900/80 text-emerald-200 border-emerald-700");
+            render3DList();
+        }
+
+        function insertTail() {
+            const val = getInputValue();
+            const res = list.insertTail(val);
+            if (res === "Overflow") {
+                showStatus("List Overflow! Maximum 7 nodes reached.", "bg-rose-900/80 text-rose-200 border-rose-700");
+                return;
+            }
+            showStatus(`Inserted "${val}" at TAIL`, "bg-blue-900/80 text-blue-200 border-blue-700");
+            render3DList();
+        }
+
+        function deleteHead() {
+            const res = list.deleteHead();
+            if (res === "Underflow") {
+                showStatus("List Underflow! Nothing to delete.", "bg-rose-900/80 text-rose-200 border-rose-700");
+                return;
+            }
+            showStatus(`Deleted HEAD node ("${res.value}")`, "bg-rose-900/80 text-rose-200 border-rose-700");
+            render3DList();
+        }
+
+        function deleteTail() {
+            const res = list.deleteTail();
+            if (res === "Underflow") {
+                showStatus("List Underflow! Nothing to delete.", "bg-rose-900/80 text-rose-200 border-rose-700");
+                return;
+            }
+            showStatus(`Deleted TAIL node ("${res.value}")`, "bg-purple-900/80 text-purple-200 border-purple-700");
+            render3DList();
+        }
+
+        // Search Traversal with 3D Animations
+        async function searchValue() {
+            const val = document.getElementById('node-input').value.trim();
+            if (!val) {
+                showStatus("Enter a value to search!", "bg-amber-900/80 text-amber-200 border-amber-700");
+                return;
+            }
+            if (list.isEmpty()) {
+                showStatus("List is empty! Nothing to search.", "bg-amber-900/80 text-amber-200 border-amber-700");
+                return;
+            }
+
+            let curr = list.head;
+            let found = false;
+            let idx = 0;
+
+            while (curr) {
+                showStatus(`Traversing... Checking Node ${idx} (${curr.value})`, "bg-amber-900/80 text-amber-200 border-amber-700");
+
+                // Animate Mesh bounce
+                if (curr.meshGroup) {
+                    const origY = curr.meshGroup.position.y;
+                    curr.meshGroup.position.y = 1.0;
+                    await new Promise(r => setTimeout(r, 600));
+                    curr.meshGroup.position.y = origY;
+                }
+
+                if (String(curr.value) === val) {
+                    found = true;
+                    showStatus(`FOUND "${val}" at Index ${idx} (${curr.address})!`, "bg-emerald-900/80 text-emerald-200 border-emerald-700");
+                    break;
+                }
+
+                curr = curr.next;
+                idx++;
+            }
+
+            if (!found) {
+                showStatus(`Value "${val}" not found in list.`, "bg-rose-900/80 text-rose-200 border-rose-700");
+            }
+        }
+
+        // Clear List (Includes requested empty state check)
+        function clearList() {
+            if (list.isEmpty()) {
+                showStatus("List is empty!! Nothing to Clear", "bg-rose-900/80 text-rose-200 border-rose-700");
+                return;
+            }
+
+            list.clear();
+            showStatus("Linked List cleared.", "bg-slate-800 text-slate-200 border-slate-700");
+            render3DList();
+        }
+
+        // Status Banner Helper
+        let statusTimeout;
+        function showStatus(msg, classNames) {
+            const statusEl = document.getElementById('status-message');
+            clearTimeout(statusTimeout);
+            statusEl.textContent = msg;
+            statusEl.className = `self-center glass-panel px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-300 pointer-events-auto border shadow-2xl ${classNames}`;
+            statusEl.classList.remove('hidden');
+
+            statusTimeout = setTimeout(() => {
+                statusEl.classList.add('hidden');
+            }, 3500);
+        }
+
+        // Animation Loop & Window Resize
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+
+            // Gentle floating animation for 3D objects
+            sceneObjects.forEach(obj => {
+                if (obj.children && obj.children.length > 0 && obj.position.y > -0.5) {
+                    obj.rotation.y += 0.002;
+                }
+            });
+
+            renderer.render(scene, camera);
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        window.onload = () => {
+            // Seed initial nodes
+            list.insertTail('10');
+            list.insertTail('20');
+            list.insertTail('30');
+            render3DList();
+            animate();
+        };
+    </script>
+</body>
+</html>
