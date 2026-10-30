@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OmniConvert</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand-wrap">
+        <div class="brand-mark">Ω</div>
+        <div class="brand-text">
+          <h1>OmniConvert</h1>
+          <span>ALL-IN-ONE CONVERTER</span>
+        </div>
+      </div>
+
+      <div class="header-tools">
+        <label class="search-box" aria-label="Search conversions">
+          <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+          <input id="searchInput" type="text" placeholder="Search units..." />
+        </label>
+        <button class="tool-button" type="button" aria-label="Settings" onclick="window.location.href='settings.html'">
+          <span class="tool-button-inner"><i class="fa-solid fa-gear"></i></span>
+        </button>
+      </div>
+    </header>
+
+    <main class="page-body">
+      <nav class="type-tabs" aria-label="Converter types">
+        <button class="tab-button active" type="button" data-type="data">Data Storage</button>
+        <button class="tab-button" type="button" data-type="length">Length</button>
+        <button class="tab-button" type="button" data-type="mass">Weight &amp; Mass</button>
+        <button class="tab-button" type="button" data-type="temperature">Temperature</button>
+        <button class="tab-button" type="button" data-type="currency">Currency</button>
+        <button class="tab-button" type="button" data-type="speed">Speed</button>
+        <button class="tab-button" type="button" data-type="number">Number System</button>
+        <button class="tab-button" type="button" data-type="color">Colour Code</button>
+      </nav>
+
+      <section class="main-panel">
+        <div class="panel-title-row">
+          <div class="panel-title-wrap">
+            <span class="panel-mark"></span>
+            <h2 id="converterTitle">Data Storage</h2>
+            <button id="favTitleBtn" class="fav-title-btn" type="button" aria-label="Add to Favourites" data-tooltip="Add to Favourites">
+              <i class="fa-regular fa-star"></i>
+            </button>
+          </div>
+          <span class="live-indicator">Live Auto-Convert</span>
+        </div>
+
+        <div class="converter-layout">
+          <div class="converter-card">
+            <div class="field-group">
+              <label>From (Input)</label>
+              <div class="input-row">
+                <input id="fromValue" type="number" value="1024" />
+                <select id="fromUnit" aria-label="From unit"></select>
+              </div>
+            </div>
+
+            <button id="swapButton" type="button" class="swap-button">
+              <span>⇅</span> Swap Units
+            </button>
+
+            <div class="field-group to-group">
+              <label>To (Result)</label>
+              <div class="input-row result-row">
+                <input id="toValue" type="text" readonly />
+                <select id="toUnit" aria-label="To unit"></select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Sidebar Column -->
+          <aside class="sidebar-column">
+            <!-- Top Box: Quick Equivalents -->
+            <div class="equivalent-card">
+              <div class="equivalent-header">
+                <span>Quick Equivalents</span>
+                <span class="header-dot">•</span>
+              </div>
+              <div id="equivalentList" class="equivalent-list"></div>
+            </div>
+
+            <!-- Bottom Box: Color Search & Preview Card (Placed directly under Quick Equivalents) -->
+            <div id="colorPreviewCard" class="equivalent-card color-preview-card" style="display: none;">
+              <div class="equivalent-header">
+                <span>Colour Name Search</span>
+                <span class="header-dot">•</span>
+              </div>
+
+              <!-- Search Input -->
+              <div class="color-search-wrap">
+                <i class="fa-solid fa-magnifying-glass color-search-icon"></i>
+                <input id="colorNameSearch" type="text" placeholder="Type color (cyan, crimson, gold)..." />
+              </div>
+
+              <!-- Color Swatch & Live Output -->
+              <div class="color-swatch-wrap">
+                <div id="colorSwatch" class="color-swatch"></div>
+                <div class="color-info-details">
+                  <span id="colorNameDisplay" class="color-name-text">Cyan</span>
+                  <span id="colorHexDisplay" class="color-hex-text">#60EAFF</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bottom-nav">
+      <button class="nav-item active" type="button">
+        <span class="nav-icon"><i class="fa-solid fa-home"></i></span>
+        <span>Home</span>
+      </button>
+      <button class="nav-item" type="button" id="star" onclick="window.location.href='favourites.html'">
+        <span class="nav-icon"><i class="fa-regular fa-star"></i></span>
+        <span>Favorites</span>
+      </button>
+      <button class="nav-item" type="button" id="history" onclick="window.location.href='history.html'">
+        <span class="nav-icon"><i class="fa-regular fa-clock"></i></span>
+        <span>History</span>
+      </button>
+      <button class="nav-item" type="button" id="tools" onclick="window.location.href='tools.html'">
+        <span class="nav-icon"><i class="fa-solid fa-wrench"></i></span>
+        <span>Tools</span>
+      </button>
+    </footer>
+
+    <button class="ask-gemini" type="button" onclick="window.location.href='https://gemini.google.com/app?utm_source=app_launcher&amp;utm_medium=owned&amp;utm_campaign=base_all'">Ask Gemini</button>
+
+    <script src="script.js"></script>
+  </body>
+</html>

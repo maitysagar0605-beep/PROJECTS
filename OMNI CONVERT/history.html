@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OmniConvert - History</title>
+  <!-- Font Awesome 6 CDN for matching vector icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <style>
+    /* --- ROOT VARIABLES (OmniConvert Theme) --- */
+    :root {
+      --bg-gradient: radial-gradient(circle at top, #141a29 0%, #080b12 100%);
+      --card-bg: rgba(18, 26, 43, 0.65);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-glow: rgba(0, 0, 0, 0.4);
+      --text-main: #f0f4f8;
+      --text-muted: #8395a7;
+      --accent-cyan: #86eaff;
+      --accent-blue: #0072ff;
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-family);
+    }
+
+    body {
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 90px; /* Space for fixed bottom navbar */
+    }
+
+    /* --- TOP HEADER --- */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      width: 100%;
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 56px 10px 56px;
+      background: rgba(6, 15, 24, 0.9);
+      border-bottom: 1px solid rgba(133, 158, 185, 0.14);
+      backdrop-filter: blur(8px);
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 26px;
+      height: 26px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: linear-gradient(135deg, rgba(83, 129, 255, 0.38), rgba(97, 230, 255, 0.16));
+      border: 1px solid rgba(101, 227, 255, 0.52);
+      box-shadow: inset 0 0 18px rgba(97, 234, 255, 0.22), 0 0 14px rgba(67, 190, 255, 0.12);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #befcff;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    .brand-text h1 {
+      margin: 0;
+      font-size: clamp(1.1rem, 2vw, 1.9rem);
+      letter-spacing: -0.05em;
+      font-weight: 700;
+    }
+
+    .brand-text span {
+      font-size: 0.63rem;
+      letter-spacing: 0.12em;
+      color: rgba(205, 219, 230, 0.72);
+      margin-top: 4px;
+    }
+
+    .header-tools {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .search-box {
+      width: min(28vw, 220px);
+      min-width: 160px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 12px;
+      border-radius: 10px;
+      background: rgba(29, 36, 46, 0.8);
+      border: 1px solid rgba(132, 156, 186, 0.2);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+
+    .search-icon {
+      font-size: 1.18rem;
+      color: rgba(232, 240, 250, 0.7);
+    }
+
+    .search-box input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      color: var(--text-main);
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .search-box input::placeholder {
+      color: rgba(204, 219, 234, 0.62);
+    }
+
+    .tool-button {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      border: 1px solid rgba(132, 156, 186, 0.2);
+      background: rgba(26, 34, 46, 0.8);
+      color: var(--text-main);
+      cursor: pointer;
+    }
+
+    .tool-button-inner {
+      display: inline-block;
+      transform: scale(1.1);
+    }
+
+    /* --- MAIN CONTENT CONTAINER --- */
+    .container {
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 32px 20px;
+      flex: 1;
+    }
+
+    .page-title-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .page-title {
+      font-size: 20px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .page-title i {
+      color: var(--accent-cyan);
+    }
+
+    .clear-all-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 12px;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .clear-all-btn:hover {
+      color: #ff5252;
+    }
+
+    /* --- HISTORY GRID LAYOUT --- */
+    .history-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .history-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px var(--card-glow);
+      transition: transform 0.25s ease, border-color 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .history-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(134, 234, 255, 0.3);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .category-badge {
+      background: rgba(134, 234, 255, 0.1);
+      color: var(--accent-cyan);
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .timestamp {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .delete-item-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 13px;
+      transition: color 0.2s ease;
+    }
+
+    .delete-item-btn:hover {
+      color: #ff5252;
+    }
+
+    .conversion-flow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 10px 0 16px 0;
+    }
+
+    .unit-box {
+      flex: 1;
+    }
+
+    .unit-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .unit-value {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-main);
+      word-break: break-all;
+    }
+
+    .swap-icon {
+      color: var(--accent-cyan);
+      margin: 0 12px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .use-btn {
+      flex: 1;
+      background: linear-gradient(135deg, rgba(134, 234, 255, 0.15) 0%, rgba(0, 114, 255, 0.25) 100%);
+      border: 1px solid var(--accent-cyan);
+      color: var(--accent-cyan);
+      padding: 9px 0;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .use-btn:hover {
+      background: var(--accent-cyan);
+      color: #080b12;
+      box-shadow: 0 0 12px rgba(134, 234, 255, 0.4);
+    }
+
+    /* --- EMPTY STATE --- */
+    .empty-state {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+      text-align: center;
+      color: var(--text-muted);
+    }
+
+    .empty-state i {
+      font-size: 48px;
+      margin-bottom: 16px;
+      color: rgba(255, 255, 255, 0.15);
+    }
+
+    .empty-state h3 {
+      font-size: 16px;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .empty-state p {
+      font-size: 13px;
+    }
+
+    /* --- BOTTOM NAVIGATION BAR --- */
+    .bottom-nav {
+      position: fixed;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: min(100%, 1180px);
+      height: 86px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      align-items: center;
+      background: rgba(6, 17, 25, 0.9);
+      border-top: 1px solid rgba(119, 152, 180, 0.16);
+      backdrop-filter: blur(8px);
+      padding: 0 18px;
+      box-shadow: 0 -14px 30px rgba(0,0,0,0.18);
+    }
+
+    .nav-item {
+      appearance: none;
+      border: none;
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: rgba(218, 229, 240, 0.7);
+      font-size: 0.68rem;
+      cursor: pointer;
+    }
+
+    .nav-item.active {
+      color: #86eaff;
+    }
+
+    .nav-icon {
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    #home:hover, #star:hover, #tools:hover {
+      color: #86eaff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="topbar">
+    <div class="brand-wrap">
+      <div class="brand-mark">Ω</div>
+      <div class="brand-text">
+        <h1>OmniConvert</h1>
+        <span>ALL-IN-ONE CONVERTER</span>
+      </div>
+    </div>
+
+    <div class="header-tools">
+      <label class="search-box" aria-label="Search history">
+        <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+        <input id="searchInput" type="text" placeholder="Search history..." oninput="filterHistory()" />
+      </label>
+      <button class="tool-button" type="button" aria-label="Settings" onclick="window.location.href='settings.html'">
+        <span class="tool-button-inner"><i class="fa-solid fa-gear"></i></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="container">
+    <div class="page-title-section">
+      <div class="page-title">
+        <i class="fa-regular fa-clock"></i> Conversion History
+      </div>
+      <button class="clear-all-btn" onclick="clearAllHistory()">Clear History</button>
+    </div>
+
+    <!-- HISTORY GRID -->
+    <div class="history-grid" id="historyGrid"></div>
+
+    <!-- EMPTY STATE -->
+    <div class="empty-state" id="emptyState">
+      <i class="fa-regular fa-clock"></i>
+      <h3>No History Found</h3>
+      <p>Perform conversions on the Home page to automatically record your recent calculations.</p>
+    </div>
+  </main>
+
+  <!-- BOTTOM NAVIGATION BAR -->
+  <footer class="bottom-nav">
+    <button class="nav-item" type="button" id="home" onclick="window.location.href='index.html'">
+      <span class="nav-icon"><i class="fa-solid fa-home"></i></span>
+      <span>Home</span>
+    </button>
+    <button class="nav-item" type="button" id="star" onclick="window.location.href='favorites.html'">
+      <span class="nav-icon"><i class="fa-regular fa-star"></i></span>
+      <span>Favorites</span>
+    </button>
+    <button class="nav-item active" type="button" id="history">
+      <span class="nav-icon"><i class="fa-regular fa-clock"></i></span>
+      <span>History</span>
+    </button>
+    <button class="nav-item" type="button" id="tools" onclick="window.location.href='tools.html'">
+      <span class="nav-icon"><i class="fa-solid fa-wrench"></i></span>
+      <span>Tools</span>
+    </button>
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    const STORAGE_KEY = 'omniconvert_history';
+
+    // Retrieve history from localStorage
+    function getHistory() {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        return stored ? JSON.parse(stored) : [];
+      } catch (e) {
+        console.error("Failed to load history from localStorage:", e);
+        return [];
+      }
+    }
+
+    // Format ISO timestamp into a readable date string
+    function formatDate(isoString) {
+      if (!isoString) return '';
+      const date = new Date(isoString);
+      return date.toLocaleString(undefined, {
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+    }
+
+    // Render history grid
+    function renderHistory(items) {
+      const grid = document.getElementById('historyGrid');
+      const emptyState = document.getElementById('emptyState');
+
+      grid.innerHTML = '';
+
+      if (!items || items.length === 0) {
+        emptyState.style.display = 'flex';
+        return;
+      }
+
+      emptyState.style.display = 'none';
+
+      items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'history-card';
+        card.innerHTML = `
+          <div>
+            <div class="card-top">
+              <span class="category-badge">${item.category || 'General'}</span>
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <span class="timestamp">${formatDate(item.timestamp)}</span>
+                <button class="delete-item-btn" title="Remove Item" onclick="removeHistoryItem(${item.id})">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+            </div>
+            <div class="conversion-flow">
+              <div class="unit-box">
+                <div class="unit-label">From</div>
+                <div class="unit-value">${item.fromValue} ${item.fromUnit}</div>
+              </div>
+              <i class="fa-solid fa-arrow-right swap-icon"></i>
+              <div class="unit-box" style="text-align: right;">
+                <div class="unit-label">To</div>
+                <div class="unit-value">${item.toValue} ${item.toUnit}</div>
+              </div>
+            </div>
+          </div>
+          <div class="card-actions">
+            <button class="use-btn" onclick="openConverter('${item.category}', '${item.fromUnit}', '${item.toUnit}', '${item.fromValue}')">
+              <span>Re-convert</span>
+              <i class="fa-solid fa-rotate-right"></i>
+            </button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Delete single item by ID
+    function removeHistoryItem(id) {
+      let history = getHistory();
+      history = history.filter(item => item.id !== id);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+      filterHistory();
+    }
+
+    // Clear all history
+    function clearAllHistory() {
+        const currentHistory = getHistory();
+        //Show alert msg when no history is present
+        if(currentHistory.length === 0){
+         alert("The Page is already empty :)");
+         return;
+        }
+
+      //Clear History if exsits  
+      if (confirm('Are you sure you want to clear your conversion history?')) {
+        localStorage.removeItem(STORAGE_KEY);
+        renderHistory([]);
+      }
+    }
+
+    // Search and filter history
+    function filterHistory() {
+      const query = (document.getElementById('searchInput')?.value || '').toLowerCase();
+      const history = getHistory();
+      const filtered = history.filter(item => 
+        (item.category && item.category.toLowerCase().includes(query)) ||
+        (item.fromUnit && item.fromUnit.toLowerCase().includes(query)) ||
+        (item.toUnit && item.toUnit.toLowerCase().includes(query)) ||
+        (item.fromValue && item.fromValue.toString().toLowerCase().includes(query)) ||
+        (item.toValue && item.toValue.toString().toLowerCase().includes(query))
+      );
+      renderHistory(filtered);
+    }
+
+    // Navigate to Home converter pre-filled with parameters
+    function openConverter(category, fromUnit, toUnit, value) {
+      window.location.href = `index.html?cat=${encodeURIComponent(category)}&from=${encodeURIComponent(fromUnit)}&to=${encodeURIComponent(toUnit)}&val=${encodeURIComponent(value)}`;
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      renderHistory(getHistory());
+    });
+  </script>
+</body>
+</html>
