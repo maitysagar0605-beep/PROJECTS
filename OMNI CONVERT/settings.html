@@ -1,11 +1,727 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Settings</title>
-</head>
-<body>
-    <h1>This is settings page</h1>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OmniConvert - Settings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+      :root {
+        --bg: #040d18;
+        --bg-deep: #020b13;
+        --panel: rgba(9, 23, 35, 0.88);
+        --panel-strong: rgba(12, 28, 41, 0.96);
+        --panel-soft: rgba(17, 36, 52, 0.93);
+        --panel-light: rgba(19, 42, 60, 0.8);
+        --border: rgba(117, 173, 210, 0.2);
+        --border-soft: rgba(118, 160, 196, 0.18);
+        --text: #edf7ff;
+        --muted: #a5b7c7;
+        --cyan: #60eaff;
+        --cyan-soft: rgba(96, 234, 255, 0.22);
+        --purple: #af7cff;
+        --shadow: rgba(0, 0, 0, 0.48);
+        --glow: rgba(94, 240, 255, 0.78);
+        --danger: #ff5252;
+        --danger-soft: rgba(255, 82, 82, 0.15);
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        min-height: 100%;
+        font-family: "Segoe UI", Tahoma, sans-serif;
+        background:
+          radial-gradient(circle at 50% 30%, rgba(50, 111, 219, 0.18), transparent 42%),
+          radial-gradient(circle at 84% 74%, rgba(146, 73, 255, 0.14), transparent 36%),
+          linear-gradient(180deg, #040c15 0%, #091722 100%);
+        color: var(--text);
+      }
+
+      body {
+        min-height: 100vh;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      button, input, select {
+        font: inherit;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      /* Header */
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        width: 100%;
+        height: 78px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 56px 10px 56px;
+        background: rgba(6, 15, 24, 0.9);
+        border-bottom: 1px solid rgba(133, 158, 185, 0.14);
+        backdrop-filter: blur(8px);
+      }
+
+      .brand-wrap {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .brand-mark {
+        width: 26px;
+        height: 26px;
+        display: grid;
+        place-items: center;
+        border-radius: 8px;
+        background: linear-gradient(135deg, rgba(83, 129, 255, 0.38), rgba(97, 230, 255, 0.16));
+        border: 1px solid rgba(101, 227, 255, 0.52);
+        box-shadow: inset 0 0 18px rgba(97, 234, 255, 0.22), 0 0 14px rgba(67, 190, 255, 0.12);
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #befcff;
+      }
+
+      .brand-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        line-height: 1;
+      }
+
+      .brand-text h1 {
+        margin: 0;
+        font-size: clamp(1.1rem, 2vw, 1.9rem);
+        letter-spacing: -0.05em;
+        font-weight: 700;
+      }
+
+      .brand-text span {
+        font-size: 0.63rem;
+        letter-spacing: 0.12em;
+        color: rgba(205, 219, 230, 0.72);
+        margin-top: 4px;
+      }
+
+      .header-tools {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .tool-button {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        border: 1px solid rgba(132, 156, 186, 0.2);
+        background: rgba(26, 34, 46, 0.8);
+        color: var(--text);
+        transition: 0.2s ease;
+      }
+
+      .tool-button:hover {
+        border-color: rgba(96, 234, 255, 0.4);
+        color: var(--cyan);
+      }
+
+      .tool-button-inner {
+        display: inline-block;
+        transform: scale(1.1);
+      }
+
+      /* Page Layout */
+      .page-body {
+        width: min(100%, 1180px);
+        margin: 0 auto;
+        padding: 28px 12px 110px;
+      }
+
+      .main-panel {
+        width: min(100%, 780px);
+        margin: 0 auto;
+        padding-top: 8px;
+      }
+
+      .panel-title-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(123, 159, 188, 0.18);
+        padding-bottom: 12px;
+        margin-bottom: 24px;
+      }
+
+      .panel-title-wrap {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .panel-mark {
+        width: 10px;
+        height: 10px;
+        border-radius: 3px;
+        background: linear-gradient(180deg, rgba(96,234,255,0.9), rgba(96,234,255,0.45));
+        box-shadow: 0 0 10px rgba(96,234,255,0.7);
+      }
+
+      .panel-title-wrap h2 {
+        margin: 0;
+        font-size: 0.9rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(239, 246, 255, 0.8);
+      }
+
+      .live-indicator {
+        font-size: 0.7rem;
+        color: rgba(195, 214, 229, 0.74);
+        letter-spacing: 0.06em;
+      }
+
+      /* Settings Container & Cards */
+      .settings-container {
+        display: grid;
+        gap: 20px;
+      }
+
+      .settings-card {
+        width: 100%;
+        padding: 20px 22px;
+        border-radius: 18px;
+        background: linear-gradient(180deg, rgba(7, 20, 29, 0.95), rgba(18, 30, 42, 0.9));
+        border: 1px solid rgba(124, 174, 205, 0.22);
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02), 0 18px 40px rgba(0,0,0,0.22);
+      }
+
+      .card-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 16px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(117, 173, 210, 0.12);
+        color: var(--cyan);
+      }
+
+      .card-title h3 {
+        margin: 0;
+        font-size: 0.95rem;
+        letter-spacing: 0.05em;
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      .setting-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 12px 0;
+      }
+
+      .setting-row:not(:last-child) {
+        border-bottom: 1px solid rgba(118, 160, 196, 0.08);
+      }
+
+      .setting-info label {
+        display: block;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: rgba(237, 247, 255, 0.95);
+        margin-bottom: 4px;
+      }
+
+      .setting-info p {
+        margin: 0;
+        font-size: 0.78rem;
+        color: var(--muted);
+        line-height: 1.35;
+      }
+
+      /* Select Controls */
+      .setting-control select {
+        width: 200px;
+        height: 42px;
+        padding: 0 32px 0 12px;
+        border: 1px solid rgba(138, 171, 203, 0.25);
+        border-radius: 10px;
+        background: rgba(10, 20, 28, 0.85);
+        color: #eaf2ff;
+        font-size: 0.82rem;
+        appearance: none;
+        background-image: linear-gradient(45deg, transparent 50%, rgba(255,255,255,0.75) 50%), linear-gradient(135deg, rgba(255,255,255,0.75) 50%, transparent 50%);
+        background-position: calc(100% - 16px) calc(50% - 2px), calc(100% - 10px) calc(50% - 2px);
+        background-size: 6px 6px, 6px 6px;
+        background-repeat: no-repeat;
+        outline: none;
+        transition: 0.2s ease;
+      }
+
+      .setting-control select:focus {
+        border-color: rgba(96, 234, 255, 0.5);
+        box-shadow: 0 0 12px rgba(96, 234, 255, 0.15);
+      }
+
+      /* Toggle Switch */
+      .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 48px;
+        height: 26px;
+      }
+
+      .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-color: rgba(29, 44, 58, 0.8);
+        border: 1px solid rgba(124, 174, 205, 0.3);
+        transition: .3s ease;
+        border-radius: 34px;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+        background-color: var(--muted);
+        transition: .3s ease;
+        border-radius: 50%;
+      }
+
+      input:checked + .slider {
+        background: linear-gradient(135deg, rgba(68, 217, 255, 0.3), rgba(84, 152, 255, 0.25));
+        border-color: rgba(96, 234, 255, 0.66);
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(22px);
+        background-color: var(--cyan);
+        box-shadow: 0 0 8px var(--cyan);
+      }
+
+      /* Buttons */
+      .action-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        height: 38px;
+        padding: 0 16px;
+        border-radius: 10px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        transition: 0.2s ease;
+      }
+
+      .danger-btn {
+        background: var(--danger-soft);
+        border: 1px solid rgba(255, 82, 82, 0.4);
+        color: #ff8888;
+      }
+
+      .danger-btn:hover {
+        background: rgba(255, 82, 82, 0.28);
+        border-color: var(--danger);
+        color: #ffffff;
+        box-shadow: 0 0 12px rgba(255, 82, 82, 0.3);
+      }
+
+      .outline-btn {
+        background: rgba(26, 34, 46, 0.8);
+        border: 1px solid rgba(132, 156, 186, 0.25);
+        color: var(--text);
+      }
+
+      .outline-btn:hover {
+        border-color: rgba(96, 234, 255, 0.4);
+        color: var(--cyan);
+      }
+
+      /* Bottom Navigation */
+      .bottom-nav {
+        position: fixed;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+        width: min(100%, 1180px);
+        height: 86px;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        align-items: center;
+        background: rgba(6, 17, 25, 0.9);
+        border-top: 1px solid rgba(119, 152, 180, 0.16);
+        backdrop-filter: blur(8px);
+        padding: 0 18px;
+        box-shadow: 0 -14px 30px rgba(0,0,0,0.18);
+      }
+
+      .nav-item {
+        appearance: none;
+        border: none;
+        background: transparent;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        color: rgba(218, 229, 240, 0.7);
+        font-size: 0.68rem;
+        transition: 0.2s ease;
+      }
+
+      .nav-item:hover, .nav-item.active {
+        color: #86eaff;
+      }
+
+      .nav-icon {
+        font-size: 1.2rem;
+        line-height: 1;
+      }
+
+      .ask-gemini {
+        position: fixed;
+        right: 24px;
+        bottom: 16px;
+        width: 110px;
+        height: 38px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(158, 164, 173, 0.22);
+        color: var(--text);
+        font-weight: 600;
+        box-shadow: 0 12px 18px rgba(0,0,0,0.18);
+        transition: 0.2s ease;
+      }
+
+      .ask-gemini:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      /* Toast Popup Notification */
+      .toast-notification {
+        position: fixed;
+        bottom: 100px;
+        left: 50%;
+        transform: translateX(-50%) translateY(20px);
+        background: rgba(12, 28, 41, 0.95);
+        border: 1px solid var(--cyan);
+        color: var(--cyan);
+        padding: 10px 20px;
+        border-radius: 20px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        box-shadow: 0 0 15px rgba(96, 234, 255, 0.3);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 100;
+      }
+
+      .toast-notification.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      @media (max-width: 860px) {
+        .topbar {
+          padding-left: 18px;
+          padding-right: 18px;
+        }
+      }
+
+      @media (max-width: 620px) {
+        .topbar {
+          height: 70px;
+          padding-top: 12px;
+        }
+
+        .brand-text span {
+          display: none;
+        }
+
+        .setting-row {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
+
+        .setting-control {
+          width: 100%;
+        }
+
+        .setting-control select {
+          width: 100%;
+        }
+
+        .ask-gemini {
+          right: 14px;
+          bottom: 90px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand-wrap">
+        <div class="brand-mark">Ω</div>
+        <div class="brand-text">
+          <h1>OmniConvert</h1>
+          <span>ALL-IN-ONE CONVERTER</span>
+        </div>
+      </div>
+
+      <div class="header-tools">
+        <button class="tool-button" type="button" aria-label="Home" onclick="window.location.href='index.html'">
+          <span class="tool-button-inner"><i class="fa-solid fa-house"></i></span>
+        </button>
+      </div>
+    </header>
+
+    <main class="page-body">
+      <section class="main-panel">
+        <div class="panel-title-row">
+          <div class="panel-title-wrap">
+            <span class="panel-mark"></span>
+            <h2>Preferences &amp; Settings</h2>
+          </div>
+          <span class="live-indicator">Auto-Saved</span>
+        </div>
+
+        <div class="settings-container">
+          <!-- General Preferences -->
+          <div class="settings-card">
+            <div class="card-title">
+              <i class="fa-solid fa-sliders"></i>
+              <h3>General Preferences</h3>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <label for="defaultCategory">Default Launch Category</label>
+                <p>Choose which converter tab opens automatically on application start.</p>
+              </div>
+              <div class="setting-control">
+                <select id="defaultCategory">
+                  <option value="data">Data Storage</option>
+                  <option value="length">Length</option>
+                  <option value="mass">Weight &amp; Mass</option>
+                  <option value="temperature">Temperature</option>
+                  <option value="currency">Currency</option>
+                  <option value="speed">Speed</option>
+                  <option value="number">Number System</option>
+                  <option value="color">Colour Code</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <label for="decimalPrecision">Decimal Precision</label>
+                <p>Set max decimal places for standard conversion values.</p>
+              </div>
+              <div class="setting-control">
+                <select id="decimalPrecision">
+                  <option value="2">2 Decimals (e.g., 1.23)</option>
+                  <option value="4">4 Decimals (e.g., 1.2345)</option>
+                  <option value="6">6 Decimals (Default)</option>
+                  <option value="8">8 Decimals (High Precision)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Behavior Settings -->
+          <div class="settings-card">
+            <div class="card-title">
+              <i class="fa-solid fa-bolt"></i>
+              <h3>Behavior &amp; Storage</h3>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <label for="autoSwap">Auto-Swap Unit Logic</label>
+                <p>Remember current inputs during conversion switches.</p>
+              </div>
+              <div class="setting-control">
+                <label class="toggle-switch">
+                  <input type="checkbox" id="autoSwap" checked />
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <label for="saveHistory">Conversion History</label>
+                <p>Automatically log your recent calculations locally.</p>
+              </div>
+              <div class="setting-control">
+                <label class="toggle-switch">
+                  <input type="checkbox" id="saveHistory" checked />
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Data Management -->
+          <div class="settings-card">
+            <div class="card-title">
+              <i class="fa-solid fa-database"></i>
+              <h3>Data Management</h3>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <label>Clear Favourites &amp; History</label>
+                <p>Permanently remove saved items and historical logs stored locally.</p>
+              </div>
+              <div class="setting-control">
+                <button id="clearDataBtn" class="action-btn danger-btn" type="button">
+                  <i class="fa-solid fa-trash-can"></i> Clear Data
+                </button>
+              </div>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <label>Reset Settings</label>
+                <p>Restore default configuration settings.</p>
+              </div>
+              <div class="setting-control">
+                <button id="resetSettingsBtn" class="action-btn outline-btn" type="button">
+                  <i class="fa-solid fa-rotate-left"></i> Reset Defaults
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bottom-nav">
+      <button class="nav-item" type="button" onclick="window.location.href='index.html'">
+        <span class="nav-icon"><i class="fa-solid fa-home"></i></span>
+        <span>Home</span>
+      </button>
+      <button class="nav-item" type="button" id="star" onclick="window.location.href='favourites.html'">
+        <span class="nav-icon"><i class="fa-regular fa-star"></i></span>
+        <span>Favorites</span>
+      </button>
+      <button class="nav-item" type="button" id="history" onclick="window.location.href='history.html'">
+        <span class="nav-icon"><i class="fa-regular fa-clock"></i></span>
+        <span>History</span>
+      </button>
+      <button class="nav-item" type="button" id="tools" onclick="window.location.href='tools.html'">
+        <span class="nav-icon"><i class="fa-solid fa-wrench"></i></span>
+        <span>Tools</span>
+      </button>
+    </footer>
+
+    <button class="ask-gemini" type="button" onclick="window.location.href='https://gemini.google.com/app?utm_source=app_launcher&amp;utm_medium=owned&amp;utm_campaign=base_all'">Ask Gemini</button>
+
+    <div id="toast" class="toast-notification">Settings Saved</div>
+
+    <script>
+      const defaultSettings = {
+        defaultCategory: 'data',
+        decimalPrecision: '6',
+        autoSwap: true,
+        saveHistory: true
+      };
+
+      const defaultCategorySelect = document.getElementById('defaultCategory');
+      const decimalPrecisionSelect = document.getElementById('decimalPrecision');
+      const autoSwapToggle = document.getElementById('autoSwap');
+      const saveHistoryToggle = document.getElementById('saveHistory');
+      const clearDataBtn = document.getElementById('clearDataBtn');
+      const resetSettingsBtn = document.getElementById('resetSettingsBtn');
+      const toast = document.getElementById('toast');
+
+      function loadSettings() {
+        const stored = localStorage.getItem('omni_settings');
+        const settings = stored ? { ...defaultSettings, ...JSON.parse(stored) } : defaultSettings;
+
+        if (defaultCategorySelect) defaultCategorySelect.value = settings.defaultCategory;
+        if (decimalPrecisionSelect) decimalPrecisionSelect.value = settings.decimalPrecision;
+        if (autoSwapToggle) autoSwapToggle.checked = settings.autoSwap;
+        if (saveHistoryToggle) saveHistoryToggle.checked = settings.saveHistory;
+      }
+
+      function saveSettings() {
+        const currentSettings = {
+          defaultCategory: defaultCategorySelect.value,
+          decimalPrecision: decimalPrecisionSelect.value,
+          autoSwap: autoSwapToggle.checked,
+          saveHistory: saveHistoryToggle.checked
+        };
+
+        localStorage.setItem('omni_settings', JSON.stringify(currentSettings));
+        showToast('Settings saved automatically');
+      }
+
+      let toastTimeout;
+      function showToast(message) {
+        if (!toast) return;
+        toast.textContent = message;
+        toast.classList.add('show');
+
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
+          toast.classList.remove('show');
+        }, 2200);
+      }
+
+      function initSettingsEvents() {
+        if (defaultCategorySelect) defaultCategorySelect.addEventListener('change', saveSettings);
+        if (decimalPrecisionSelect) decimalPrecisionSelect.addEventListener('change', saveSettings);
+        if (autoSwapToggle) autoSwapToggle.addEventListener('change', saveSettings);
+        if (saveHistoryToggle) saveHistoryToggle.addEventListener('change', saveSettings);
+
+        if (clearDataBtn) {
+          clearDataBtn.addEventListener('click', () => {
+            if (confirm('Are you sure you want to clear all stored favourites and conversion history?')) {
+              localStorage.removeItem('omni_favorites');
+              localStorage.removeItem('omni_history');
+              showToast('Favourites & History cleared');
+            }
+          });
+        }
+
+        if (resetSettingsBtn) {
+          resetSettingsBtn.addEventListener('click', () => {
+            if (confirm('Reset all settings to default configuration?')) {
+              localStorage.setItem('omni_settings', JSON.stringify(defaultSettings));
+              loadSettings();
+              showToast('Settings reset to default');
+            }
+          });
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        loadSettings();
+        initSettingsEvents();
+      });
+    </script>
+  </body>
 </html>
