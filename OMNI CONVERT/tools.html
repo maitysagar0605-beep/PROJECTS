@@ -1,11 +1,777 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tools</title>
-</head>
-<body>
-    <h1>This is the tools page</h1>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OmniConvert - Developer & Math Tools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+      :root {
+        --bg: #040d18;
+        --bg-deep: #020b13;
+        --panel: rgba(9, 23, 35, 0.88);
+        --panel-strong: rgba(12, 28, 41, 0.96);
+        --panel-soft: rgba(17, 36, 52, 0.93);
+        --panel-light: rgba(19, 42, 60, 0.8);
+        --border: rgba(117, 173, 210, 0.2);
+        --border-soft: rgba(118, 160, 196, 0.18);
+        --text: #edf7ff;
+        --muted: #a5b7c7;
+        --cyan: #60eaff;
+        --cyan-soft: rgba(96, 234, 255, 0.22);
+        --purple: #af7cff;
+        --shadow: rgba(0, 0, 0, 0.48);
+        --glow: rgba(94, 240, 255, 0.78);
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        min-height: 100%;
+        font-family: "Segoe UI", Tahoma, sans-serif;
+        background:
+          radial-gradient(circle at 50% 30%, rgba(50, 111, 219, 0.18), transparent 42%),
+          radial-gradient(circle at 84% 74%, rgba(146, 73, 255, 0.14), transparent 36%),
+          linear-gradient(180deg, #040c15 0%, #091722 100%);
+        color: var(--text);
+      }
+
+      body {
+        min-height: 100vh;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      button, input, select, textarea {
+        font: inherit;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        width: 100%;
+        height: 78px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 56px 10px 56px;
+        background: rgba(6, 15, 24, 0.9);
+        border-bottom: 1px solid rgba(133, 158, 185, 0.14);
+        backdrop-filter: blur(8px);
+      }
+
+      .brand-wrap {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .brand-mark {
+        width: 26px;
+        height: 26px;
+        display: grid;
+        place-items: center;
+        border-radius: 8px;
+        background: linear-gradient(135deg, rgba(83, 129, 255, 0.38), rgba(97, 230, 255, 0.16));
+        border: 1px solid rgba(101, 227, 255, 0.52);
+        box-shadow: inset 0 0 18px rgba(97, 234, 255, 0.22), 0 0 14px rgba(67, 190, 255, 0.12);
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #befcff;
+      }
+
+      .brand-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        line-height: 1;
+      }
+
+      .brand-text h1 {
+        margin: 0;
+        font-size: clamp(1.1rem, 2vw, 1.9rem);
+        letter-spacing: -0.05em;
+        font-weight: 700;
+      }
+
+      .brand-text span {
+        font-size: 0.63rem;
+        letter-spacing: 0.12em;
+        color: rgba(205, 219, 230, 0.72);
+        margin-top: 4px;
+      }
+
+      .header-tools {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .search-box {
+        width: min(28vw, 220px);
+        min-width: 160px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0 12px;
+        border-radius: 10px;
+        background: rgba(29, 36, 46, 0.8);
+        border: 1px solid rgba(132, 156, 186, 0.2);
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+      }
+
+      .search-icon {
+        font-size: 1.18rem;
+        color: rgba(232, 240, 250, 0.7);
+      }
+
+      .search-box input {
+        flex: 1;
+        border: none;
+        background: transparent;
+        color: var(--text);
+        font-size: 0.9rem;
+        outline: none;
+      }
+
+      .search-box input::placeholder {
+        color: rgba(204, 219, 234, 0.62);
+      }
+
+      .tool-button {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        border: 1px solid rgba(132, 156, 186, 0.2);
+        background: rgba(26, 34, 46, 0.8);
+        color: var(--text);
+      }
+
+      .tool-button-inner {
+        display: inline-block;
+        transform: scale(1.1);
+      }
+
+      .page-body {
+        width: min(100%, 1180px);
+        margin: 0 auto;
+        padding: 28px 12px 110px;
+      }
+
+      .type-tabs {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: min(100%, 900px);
+        margin: 0 auto 18px;
+        padding: 10px 14px;
+        border-radius: 14px;
+        background: rgba(13, 28, 40, 0.5);
+        border: 1px solid rgba(128, 162, 194, 0.14);
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+
+      .type-tabs::-webkit-scrollbar { display: none; }
+
+      .tab-button {
+        flex: 0 0 auto;
+        padding: 10px 16px;
+        border: 1px solid transparent;
+        border-radius: 10px;
+        background: transparent;
+        color: rgba(233, 240, 249, 0.8);
+        font-size: 0.78rem;
+        white-space: nowrap;
+        transition: 0.2s ease;
+      }
+
+      .tab-button.active {
+        color: var(--text);
+        background: rgba(20, 38, 52, 0.9);
+        border-color: rgba(111, 184, 220, 0.35);
+        box-shadow: inset 0 0 0 1px rgba(96, 234, 255, 0.32), 0 0 20px rgba(67, 197, 255, 0.1);
+      }
+
+      .main-panel {
+        width: min(100%, 1080px);
+        margin: 0 auto;
+        padding-top: 8px;
+      }
+
+      .panel-title-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(123, 159, 188, 0.18);
+        padding-bottom: 12px;
+        margin-bottom: 16px;
+      }
+
+      .panel-title-wrap {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .panel-mark {
+        width: 10px;
+        height: 10px;
+        border-radius: 3px;
+        background: linear-gradient(180deg, rgba(96,234,255,0.9), rgba(96,234,255,0.45));
+        box-shadow: 0 0 10px rgba(96,234,255,0.7);
+      }
+
+      #converterTitle {
+        margin: 0;
+        font-size: 0.9rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(239, 246, 255, 0.8);
+      }
+
+      .live-indicator {
+        font-size: 0.7rem;
+        color: rgba(195, 214, 229, 0.74);
+        letter-spacing: 0.06em;
+      }
+
+      /* Tools Grid Layout */
+      .tools-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 22px;
+        width: 100%;
+      }
+
+      .converter-card {
+        padding: 18px 16px 14px;
+        border-radius: 18px;
+        background: linear-gradient(180deg, rgba(7, 20, 29, 0.95), rgba(18, 30, 42, 0.9));
+        border: 1px solid rgba(124, 174, 205, 0.22);
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02), 0 18px 40px rgba(0,0,0,0.22);
+      }
+
+      .tool-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .field-group {
+        margin-bottom: 12px;
+      }
+
+      .field-group label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 0.68rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: rgba(191, 211, 231, 0.8);
+      }
+
+      .input-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-height: 56px;
+        padding: 8px 12px;
+        border-radius: 12px;
+        background: rgba(10, 20, 28, 0.74);
+        border: 1px solid rgba(117, 170, 205, 0.18);
+      }
+
+      .input-row input {
+        flex: 1;
+        border: none;
+        outline: none;
+        background: transparent;
+        color: var(--text);
+        font-weight: 700;
+        font-size: 1.25rem;
+        letter-spacing: -0.03em;
+        min-width: 0;
+      }
+
+      .input-row input[type="number"]::-webkit-outer-spin-button,
+      .input-row input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      .input-row input[type="number"] {
+        appearance: textfield;
+        -moz-appearance: textfield;
+      }
+
+      .input-row input::placeholder {
+        color: rgba(165, 183, 199, 0.4);
+        font-weight: 400;
+        font-size: 0.95rem;
+      }
+
+      .unit-tag {
+        font-weight: 700;
+        font-size: 0.88rem;
+        color: var(--cyan);
+        letter-spacing: 0.05em;
+      }
+
+      .tool-action-row {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 12px;
+      }
+
+      .swap-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        height: 38px;
+        border-radius: 999px;
+        border: 1px solid rgba(94, 235, 255, 0.66);
+        background: linear-gradient(90deg, rgba(68, 217, 255, 0.16), rgba(84, 152, 255, 0.12));
+        color: var(--text);
+        font-weight: 700;
+        box-shadow: 0 0 0 1px rgba(96,234,255,0.24), 0 8px 24px rgba(84,184,255,0.12);
+        transition: 0.2s ease;
+      }
+
+      .swap-button:hover {
+        background: linear-gradient(90deg, rgba(68, 217, 255, 0.26), rgba(84, 152, 255, 0.22));
+      }
+
+      .tool-btn {
+        flex: 1;
+        margin: 0;
+        font-size: 0.78rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .tool-textarea {
+        width: 100%;
+        min-height: 86px;
+        background: transparent;
+        border: none;
+        outline: none;
+        color: var(--text);
+        font-family: inherit;
+        font-size: 0.95rem;
+        resize: vertical;
+      }
+
+      .tool-textarea::placeholder {
+        color: rgba(165, 183, 199, 0.4);
+      }
+
+      .copy-btn {
+        background: transparent;
+        border: none;
+        color: var(--muted);
+        font-size: 1.1rem;
+        padding: 4px 8px;
+        cursor: pointer;
+        transition: color 0.2s ease, transform 0.2s ease;
+      }
+
+      .copy-btn:hover {
+        color: var(--cyan);
+        transform: scale(1.1);
+      }
+
+      .equivalent-card {
+        border-radius: 14px;
+        background: linear-gradient(180deg, rgba(19, 35, 49, 0.9), rgba(10, 23, 33, 0.9));
+        border: 1px solid rgba(124, 174, 205, 0.18);
+        padding: 12px 14px;
+      }
+
+      .tool-stats-panel {
+        width: 100%;
+        margin-top: 6px;
+      }
+
+      .equivalent-item {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        align-items: center;
+        min-height: 32px;
+        padding: 0 4px;
+        color: rgba(236, 244, 255, 0.84);
+      }
+
+      .equivalent-item span {
+        font-size: 0.82rem;
+        color: rgba(232, 239, 249, 0.8);
+      }
+
+      .equivalent-item strong {
+        font-size: 0.95rem;
+        letter-spacing: -0.03em;
+        color: var(--cyan);
+      }
+
+      .bottom-nav {
+        position: fixed;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+        width: min(100%, 1180px);
+        height: 86px;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        align-items: center;
+        background: rgba(6, 17, 25, 0.9);
+        border-top: 1px solid rgba(119, 152, 180, 0.16);
+        backdrop-filter: blur(8px);
+        padding: 0 18px;
+        box-shadow: 0 -14px 30px rgba(0,0,0,0.18);
+      }
+
+      .nav-item {
+        appearance: none;
+        border: none;
+        background: transparent;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        color: rgba(218, 229, 240, 0.7);
+        font-size: 0.68rem;
+      }
+
+      .nav-item.active {
+        color: #86eaff;
+      }
+
+      .nav-icon {
+        font-size: 1.2rem;
+        line-height: 1;
+      }
+
+      #star:hover, #history:hover, #tools:hover {
+        color: #86eaff;
+      }
+
+      .ask-gemini {
+        position: fixed;
+        right: 24px;
+        bottom: 16px;
+        width: 110px;
+        height: 38px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(158, 164, 173, 0.22);
+        color: var(--text);
+        font-weight: 600;
+        box-shadow: 0 12px 18px rgba(0,0,0,0.18);
+      }
+
+      @media (max-width: 860px) {
+        .topbar {
+          padding-left: 18px;
+          padding-right: 18px;
+        }
+
+        .search-box {
+          width: min(50vw, 220px);
+        }
+
+        .tools-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 620px) {
+        .topbar {
+          height: 70px;
+          padding-top: 12px;
+        }
+
+        .brand-text span {
+          display: none;
+        }
+
+        .header-tools {
+          gap: 8px;
+        }
+
+        .search-box {
+          width: 150px;
+          min-width: 0;
+        }
+
+        .page-body {
+          padding-top: 18px;
+        }
+
+        .type-tabs {
+          gap: 8px;
+          justify-content: flex-start;
+          padding-left: 10px;
+          padding-right: 10px;
+        }
+
+        .tab-button {
+          padding: 10px 12px;
+          font-size: 0.7rem;
+        }
+
+        .panel-title-row {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
+        }
+
+        .ask-gemini {
+          right: 14px;
+          bottom: 90px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand-wrap">
+        <div class="brand-mark">Ω</div>
+        <div class="brand-text">
+          <h1>OmniConvert</h1>
+          <span>ALL-IN-ONE CONVERTER</span>
+        </div>
+      </div>
+
+      <div class="header-tools">
+        <label class="search-box" aria-label="Search tools">
+          <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+          <input id="toolSearchInput" type="text" placeholder="Search tools..." />
+        </label>
+        <button class="tool-button" type="button" aria-label="Settings" onclick="window.location.href='settings.html'">
+          <span class="tool-button-inner"><i class="fa-solid fa-gear"></i></span>
+        </button>
+      </div>
+    </header>
+
+    <main class="page-body">
+      <nav class="type-tabs" aria-label="Tool Categories">
+        <button class="tab-button active" type="button" data-cat="all">All Tools</button>
+        <button class="tab-button" type="button" data-cat="calc">Calculators</button>
+        <button class="tab-button" type="button" data-cat="dev">Dev Utilities</button>
+        <button class="tab-button" type="button" data-cat="text">Text Tools</button>
+      </nav>
+
+      <section class="main-panel">
+        <div class="panel-title-row">
+          <div class="panel-title-wrap">
+            <span class="panel-mark"></span>
+            <h2 id="converterTitle">Developer & Math Tools</h2>
+          </div>
+          <span class="live-indicator">Client-Side Utilities</span>
+        </div>
+
+        <div class="tools-grid">
+          
+          <article class="converter-card tool-card" data-category="calc">
+            <div class="field-group">
+              <label><i class="fa-solid fa-ruler-combined"></i> PX to REM Converter</label>
+              <div class="input-row">
+                <input id="pxInput" type="number" value="16" placeholder="Pixels (px)" />
+                <span class="unit-tag">PX</span>
+              </div>
+            </div>
+            <div class="field-group to-group">
+              <label>Result (16px base)</label>
+              <div class="input-row result-row">
+                <input id="remOutput" type="text" value="1rem" readonly />
+                <button class="copy-btn" type="button" onclick="copyToolResult('remOutput')"><i class="fa-regular fa-copy"></i></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="converter-card tool-card" data-category="dev">
+            <div class="field-group">
+              <label><i class="fa-solid fa-code"></i> Base64 Encoder / Decoder</label>
+              <div class="input-row">
+                <input id="base64Input" type="text" placeholder="Type or paste string..." />
+              </div>
+            </div>
+            <div class="tool-action-row">
+              <button class="swap-button tool-btn" type="button" id="encodeBtn">Encode</button>
+              <button class="swap-button tool-btn" type="button" id="decodeBtn">Decode</button>
+            </div>
+            <div class="field-group to-group">
+              <div class="input-row result-row">
+                <input id="base64Output" type="text" readonly placeholder="Output string" />
+                <button class="copy-btn" type="button" onclick="copyToolResult('base64Output')"><i class="fa-regular fa-copy"></i></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="converter-card tool-card" data-category="text">
+            <div class="field-group">
+              <label><i class="fa-solid fa-font"></i> Real-time Word & Character Counter</label>
+              <div class="input-row">
+                <textarea id="textStatsInput" class="tool-textarea" placeholder="Paste text here to analyze..."></textarea>
+              </div>
+            </div>
+            <div class="equivalent-card tool-stats-panel">
+              <div class="equivalent-item"><span>Words:</span> <strong id="wordCountStat">0</strong></div>
+              <div class="equivalent-item"><span>Characters:</span> <strong id="charCountStat">0</strong></div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+    </main>
+
+    <footer class="bottom-nav">
+      <button class="nav-item" type="button" onclick="window.location.href='index.html'">
+        <span class="nav-icon"><i class="fa-solid fa-home"></i></span>
+        <span>Home</span>
+      </button>
+      <button class="nav-item" type="button" id="star" onclick="window.location.href='favourites.html'">
+        <span class="nav-icon"><i class="fa-regular fa-star"></i></span>
+        <span>Favorites</span>
+      </button>
+      <button class="nav-item" type="button" id="history" onclick="window.location.href='history.html'">
+        <span class="nav-icon"><i class="fa-regular fa-clock"></i></span>
+        <span>History</span>
+      </button>
+      <button class="nav-item active" type="button" id="tools">
+        <span class="nav-icon"><i class="fa-solid fa-wrench"></i></span>
+        <span>Tools</span>
+      </button>
+    </footer>
+
+    <button class="ask-gemini" type="button" onclick="window.location.href='https://gemini.google.com/app?utm_source=app_launcher&amp;utm_medium=owned&amp;utm_campaign=base_all'">Ask Gemini</button>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toolSearchInput = document.getElementById('toolSearchInput');
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const toolCards = document.querySelectorAll('.tool-card');
+
+        const pxInput = document.getElementById('pxInput');
+        const remOutput = document.getElementById('remOutput');
+
+        const base64Input = document.getElementById('base64Input');
+        const base64Output = document.getElementById('base64Output');
+        const encodeBtn = document.getElementById('encodeBtn');
+        const decodeBtn = document.getElementById('decodeBtn');
+
+        const textStatsInput = document.getElementById('textStatsInput');
+        const wordCountStat = document.getElementById('wordCountStat');
+        const charCountStat = document.getElementById('charCountStat');
+
+        function convertPxToRem() {
+          const pxVal = parseFloat(pxInput.value);
+          if (isNaN(pxVal) || pxVal === 0) {
+            remOutput.value = '0rem';
+            return;
+          }
+          const remVal = pxVal / 16;
+          remOutput.value = `${Number(remVal.toFixed(4))}rem`;
+        }
+
+        if (pxInput) {
+          pxInput.addEventListener('input', convertPxToRem);
+          convertPxToRem();
+        }
+
+        if (encodeBtn) {
+          encodeBtn.addEventListener('click', () => {
+            const val = base64Input.value;
+            try {
+              base64Output.value = btoa(val);
+            } catch (e) {
+              base64Output.value = 'Error: Invalid text for Base64';
+            }
+          });
+        }
+
+        if (decodeBtn) {
+          decodeBtn.addEventListener('click', () => {
+            const val = base64Input.value;
+            try {
+              base64Output.value = atob(val);
+            } catch (e) {
+              base64Output.value = 'Error: Invalid Base64 string';
+            }
+          });
+        }
+
+        if (textStatsInput) {
+          textStatsInput.addEventListener('input', () => {
+            const text = textStatsInput.value;
+            const chars = text.length;
+            const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+            charCountStat.textContent = chars;
+            wordCountStat.textContent = words;
+          });
+        }
+
+        tabButtons.forEach(button => {
+          button.addEventListener('click', () => {
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            filterTools();
+          });
+        });
+
+        if (toolSearchInput) {
+          toolSearchInput.addEventListener('input', filterTools);
+        }
+
+        function filterTools() {
+          const query = toolSearchInput ? toolSearchInput.value.toLowerCase().trim() : '';
+          const activeTab = document.querySelector('.tab-button.active');
+          const selectedCategory = activeTab ? activeTab.dataset.cat : 'all';
+
+          toolCards.forEach(card => {
+            const cardCategory = card.dataset.category;
+            const cardText = card.textContent.toLowerCase();
+
+            const matchesCat = selectedCategory === 'all' || cardCategory === selectedCategory;
+            const matchesSearch = !query || cardText.includes(query);
+
+            if (matchesCat && matchesSearch) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        }
+      });
+
+      function copyToolResult(elementId) {
+        const target = document.getElementById(elementId);
+        if (!target || !target.value) return;
+        navigator.clipboard.writeText(target.value).then(() => {
+          const btn = target.nextElementSibling;
+          if (btn && btn.classList.contains('copy-btn')) {
+            const icon = btn.querySelector('i');
+            if (icon) {
+              icon.className = 'fa-solid fa-check';
+              setTimeout(() => {
+                icon.className = 'fa-regular fa-copy';
+              }, 1500);
+            }
+          }
+        });
+      }
+    </script>
+  </body>
 </html>

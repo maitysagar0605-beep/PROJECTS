@@ -613,9 +613,9 @@ select {
     padding-top: 12px;
   }
 
-  .brand-text span {
+/*  .brand-text span {
     display: none;
-  }
+  }*/
 
   .header-tools {
     gap: 8px;
