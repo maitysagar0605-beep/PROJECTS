@@ -1,0 +1,192 @@
+:root {
+  --primary-color: #4ade80;
+  --primary-dark: #22c55e;
+  --primary-light: #86efac;
+  --bg-dark: #1a1a1a;
+  --text-light: #f3f4f6;
+  --text-gray: #9ca3af;
+  --card-bg: #252525;
+  --card-hover: #2e2e2e;
+  --border-radius: 12px;
+  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 20px 25px rgba(0, 0, 0, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  background: var(--bg-dark);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+h1 {
+  color: var(--text-light);
+  margin-bottom: 8px;
+}
+
+.header p {
+  color: var(--text-gray);
+}
+
+.notification-wrapper {
+  position: relative;
+}
+
+.bell-btn {
+  margin: 0 auto;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border: none;
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s;
+}
+
+.bell-btn:hover {
+  background: var(--card-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.bell-btn i {
+  color: var(--text-light);
+  font-size: 1.5rem;
+}
+
+.badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: var(--primary-dark);
+  color: var(--text-light);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 10px;
+  min-width: 20px;
+  text-align: center;
+}
+
+.notification-dropdown {
+  position: absolute;
+  top: 60px;
+  width: 320px;
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  opacity: 0; /* makes the element not visible but you can still interact with it i.e. click */
+  visibility: hidden; /* makes the element invisible and prevents interaction */
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.notification-dropdown.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--card-hover);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-header h3 {
+  font-size: 18px;
+  color: var(--text-light);
+}
+
+.mark-read {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+
+.mark-read:hover {
+  background: var(--card-hover);
+}
+
+.notifications-list {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.notification-item {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--card-hover);
+  cursor: pointer;
+  transition: 0.2s;
+  position: relative;
+}
+
+.notification-item:last-child {
+  border-bottom: none;
+}
+
+.notification-item:hover {
+  background: var(--card-hover);
+}
+
+.notification-item.unread::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--primary-dark);
+}
+
+.notification-title {
+  font-size: 15px;
+  color: var(--text-light);
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.notification-time {
+  font-size: 13px;
+  color: var(--text-gray);
+}
+
+@media (max-width: 480px) {
+  .notification-dropdown {
+    width: calc(100vw - 40px);
+  }
+}
