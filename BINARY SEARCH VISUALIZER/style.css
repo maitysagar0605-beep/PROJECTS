@@ -21,20 +21,27 @@
   padding: 0;
 }
 
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   background-color: var(--bg-deep);
   color: var(--text-primary);
   font-family: var(--font-sans);
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2.5rem 1.25rem;
+  padding: 2.5rem 1.25rem 1.75rem;
   position: relative;
-  overflow-x: hidden;
 }
 
-/* Subtle top-right and left ambient backdrop inspired by reference image */
+/* Subtle top-right and left ambient backdrop */
 .ambient-glow {
   position: fixed;
   inset: 0;
@@ -45,17 +52,19 @@ body {
   z-index: 0;
 }
 
-/* Header */
+/* Header with evenly spread gradient across the full title */
 .app-header {
   text-align: center;
   margin-bottom: 2.5rem;
   position: relative;
   z-index: 1;
+  width: 100%;
+  padding: 0 0.5rem;
 }
 
 .app-header h1 {
   display: inline-block;
-  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-size: clamp(1.75rem, 4vw, 3.25rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.15;
@@ -70,7 +79,7 @@ body {
 .sub-header {
   font-family: var(--font-mono);
   color: var(--text-muted);
-  font-size: 0.95rem;
+  font-size: clamp(0.82rem, 2.2vw, 0.95rem);
   margin-top: 0.65rem;
   letter-spacing: 0.04em;
 }
@@ -94,6 +103,7 @@ body {
   padding: 1.75rem;
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
 }
 
 /* Special Case (i): Input Container Border Glow */
@@ -139,6 +149,7 @@ body {
   font-weight: 600;
 }
 
+/* Font-size >= 16px prevents automatic zoom on iOS Safari when focusing inputs */
 input[type="number"] {
   width: 100%;
   background: #0d1018;
@@ -147,7 +158,7 @@ input[type="number"] {
   padding: 0.75rem 0.9rem;
   color: var(--text-primary);
   font-family: var(--font-mono);
-  font-size: 0.95rem;
+  font-size: 1rem;
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -157,7 +168,6 @@ input[type="number"]:focus {
   box-shadow: 0 0 0 3px rgba(79, 209, 165, 0.15);
 }
 
-/* Remove default number spinners for cleaner look */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -182,10 +192,11 @@ input[type="number"]::-webkit-outer-spin-button {
   font-family: var(--font-mono);
   font-size: 0.88rem;
   font-weight: 700;
-  padding: 0.75rem 1.15rem;
+  padding: 0.78rem 1.15rem;
   border-radius: 10px;
   border: 1px solid transparent;
   cursor: pointer;
+  touch-action: manipulation;
   transition: transform 0.15s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
@@ -247,6 +258,8 @@ input[type="number"]::-webkit-outer-spin-button {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
   font-family: var(--font-mono);
   font-size: 0.92rem;
   padding-bottom: 1rem;
@@ -283,6 +296,7 @@ input[type="number"]::-webkit-outer-spin-button {
   color: var(--text-muted);
   font-size: 0.9rem;
   text-align: center;
+  line-height: 1.5;
 }
 
 .element-wrapper {
@@ -293,7 +307,6 @@ input[type="number"]::-webkit-outer-spin-button {
   transition: opacity 0.4s ease, transform 0.3s ease;
 }
 
-/* Faded out elements outside active [lo..up] search space */
 .element-wrapper.faded {
   opacity: 0.22;
 }
@@ -321,6 +334,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .array-box {
   width: 64px;
   height: 64px;
+  padding: 0 0.35rem;
   background: var(--bg-tile);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
@@ -357,7 +371,7 @@ input[type="number"]::-webkit-outer-spin-button {
   font-size: 0.8rem;
   font-weight: 700;
   color: var(--pink-accent);
-  min-height: 1.5rem;
+  min-height: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -377,6 +391,7 @@ input[type="number"]::-webkit-outer-spin-button {
   font-size: 0.88rem;
   line-height: 1.65;
   text-align: center;
+  word-break: break-word;
 }
 
 .status-box.hidden {
@@ -407,8 +422,131 @@ input[type="number"]::-webkit-outer-spin-button {
   padding-top: 0.5rem;
 }
 
+/* Footer */
+.app-footer {
+  margin-top: auto;
+  padding-top: 2.5rem;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  line-height: 1.5;
+}
+
+.app-footer .author-handle {
+  color: var(--sea-green);
+  font-weight: 700;
+}
+
+/* =========================================
+   RESPONSIVE MEDIA QUERIES (Tablet & Mobile)
+   ========================================= */
+
+/* Tablets & Small Laptops */
 @media (max-width: 860px) {
   .main-container {
     grid-template-columns: 1fr;
+    gap: 1.35rem;
+  }
+
+  .visualizer-container {
+    min-height: 360px;
+  }
+
+  .btn-stack {
+    flex-direction: row;
+  }
+
+  .btn-stack .btn {
+    flex: 1;
+  }
+}
+
+/* Smartphones */
+@media (max-width: 600px) {
+  body {
+    padding: 1.5rem 0.85rem 1.25rem;
+  }
+
+  .app-header {
+    margin-bottom: 1.6rem;
+  }
+
+  .card {
+    padding: 1.25rem;
+    border-radius: 14px;
+  }
+
+  .vis-top-bar {
+    font-size: 0.82rem;
+    padding-bottom: 0.8rem;
+  }
+
+  .array-stage {
+    gap: 0.55rem;
+    padding: 2rem 0.15rem;
+    min-height: 180px;
+  }
+
+  .array-box {
+    width: 48px;
+    height: 48px;
+    font-size: 1.02rem;
+    border-radius: 10px;
+  }
+
+  .pointer-top,
+  .pointer-bottom,
+  .index-label {
+    font-size: 0.72rem;
+  }
+
+  .status-box {
+    font-size: 0.8rem;
+    padding: 0.85rem 0.9rem;
+  }
+
+  .vis-actions {
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .vis-actions .btn {
+    width: 100%;
+  }
+
+  .app-footer {
+    padding-top: 2rem;
+    font-size: 0.78rem;
+  }
+}
+
+/* Very Narrow Phones (<= 380px) */
+@media (max-width: 380px) {
+  body {
+    padding: 1.2rem 0.65rem 1rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .btn-stack {
+    flex-direction: column;
+  }
+
+  .array-box {
+    width: 42px;
+    height: 42px;
+    font-size: 0.92rem;
+  }
+
+  .vis-top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
   }
 }
