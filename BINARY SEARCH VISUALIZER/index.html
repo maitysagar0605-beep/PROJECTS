@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Binary Search Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ambient-glow"></div>
+
+  <header class="app-header">
+    <h1>
+      Binary Search Visualizer
+    </h1>
+    <p class="sub-header">Searching Algorithms Made Easy</p>
+  </header>
+
+  <main class="main-container">
+    <!-- Left Container: User Input -->
+    <div id="inputContainer" class="card input-container">
+      <div class="card-header">
+        <h2>Array & Target Controls</h2>
+        <p class="criteria-note">(Please Enter The Numbers In Ascending Order)</p>
+      </div>
+
+      <div class="control-group">
+        <label for="elementInput">Numbers Only</label>
+        <input
+          type="number"
+          id="elementInput"
+          placeholder="e.g. 2, 5, 8, 12..."
+          autocomplete="off"
+        />
+        <div class="btn-stack">
+          <button id="insertBtn" class="btn btn-primary">Insert</button>
+          <button id="deleteBtn" class="btn btn-danger">Delete</button>
+        </div>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="control-group">
+        <label for="targetInput">Enter Item to Search</label>
+        <input
+          type="number"
+          id="targetInput"
+          placeholder="e.g. 24"
+          autocomplete="off"
+        />
+      </div>
+    </div>
+
+    <!-- Right Container: Visualization -->
+    <div id="visualizerContainer" class="card visualizer-container">
+      <div class="vis-top-bar">
+        <span class="vis-title">The Visualizer</span>
+        <span class="vis-target">
+          Your Target = <strong id="targetDisplay">—</strong>
+        </span>
+      </div>
+
+      <div id="arrayStage" class="array-stage">
+        <p id="emptyPlaceholder" class="empty-placeholder">
+          Insert ascending numbers on the left to build the array...
+        </p>
+      </div>
+
+      <div id="statusBox" class="status-box hidden"></div>
+
+      <div class="vis-actions">
+        <button id="beginSearchBtn" class="btn btn-sea-green">Begin Search</button>
+        <button id="newSearchBtn" class="btn btn-outline">Begin New Search</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

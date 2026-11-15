@@ -1,0 +1,49 @@
+Build a binary search visualizer or simulator. It should conssist:
+
+1. An app header --> "Binary Search Visualizer" & a sub-header --> "Seraching Algorithms Made Easy".
+
+2. In the main section there should be two div containers:
+   
+   i) Frist container is for getting user input: 
+      
+       a) Input shold be an array of ascending numbers & this crieteria sholud be provided to the user as "(Please Enter The Numbers In Ascending Order)"
+       
+       b) As the user input each number it should be added to the actual array (You can assume it like an queue) inside the acual visualizing container beside the input container.
+       
+       c) In the input container there should be :
+          
+            > A text-box (input-box) where the user can give input the numbers, with a label --> "Numbers Only"  
+            > Under that there should be an insert button (for inserting the number in the array)
+            > Under that there should be an delete button (for deleting a number if user wanted)
+            > Under that there shouldbe another section for entering the item of the array (with also an input-box similar to the elemnt input box) that the user want to search.
+        
+       d) In the viasulaization container there should be :
+          
+          > At the top of the visualiztion container ther should be two headings "The Visualizer" & "Your Target = {The nuber the user want to search}", they should be palced at the top far left and top far right corners respectively. 
+          > The actual array be visible & it should grow as new elements are inputed by the user, the array elements should be visible with there corresponding indices staring from 0.
+          > Under that there should be a button with the label "Begin Search"
+          > As the user hit that button the actual search should begin:
+            With each iteration the actual logic of binary search should be visible, that is:
+            The lower bound/limit should be pointed as (↑lo)
+            The upper bound/limit should be pointed as (↑up)
+            The middle element(mid point) should be pointed as (↓mid)
+            The part that is not nedded in the next iteraion/pass should be faded out
+            The mid point in each iteartion/pass should glow in see green color
+         > After searching the whole array :
+           
+            If item is found inside the visualiztion container it should display a success msg with deatils of the search:
+            Search is Successful, item found at index: {the index where the item is found}
+            Total comparison(s): {the total number of comparisons} Total comparison(s): {the total numbers of comparisons} Time taken: {time taken to complete the searching in miliseconds(ms)}
+
+            If item is not found inside the visualiztion container it should display a faliure msg with deatils of the search:
+            Search is Unsuccessful, item not found.
+            Total comparison(s): {the total number of comparisons} Total comparison(s): {the total numbers of comparisons} Time taken: {time taken to complete the searching in miliseconds(ms)}
+       
+           > There should also be a button for begin a new search with the lable "Begin New Search"
+           > If the user hit the button everything should reset to normal, for a new searching operation.
+
+3. Spcial Cases:
+   
+   i)   User hit the "Begin Search" button without entering any element, then a msg should be displayed "Please Enter Numbers to Search" & the input container's border should glow.
+   ii)  In the middle of a search opration if the user hit the "Begin New Search" button the page should give an alert with msg "A search is going on, Please Wait" & as the user hit the ok button in the alert the search should continue as usal.
+   iii) If the user not enter the elements in ascending order the page should give an alert with msg "Please Enter the elements in ascending order" & as the user enter ok button in the alert the container shouldremove all the previous elements and reset everything.
