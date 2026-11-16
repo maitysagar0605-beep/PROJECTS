@@ -32,3 +32,4 @@ BUILDING ROUTE:
      c) The actual array be visible & it should grow as new elements are inputed by the user, also the indices.
 
      d) Under that there should be a button with the label "Begin Sorting"
+3. Special Cases:
