@@ -15,7 +15,7 @@ Build a binary search visualizer or simulator. It should conssist:
             > A text-box (input-box) where the user can give input the numbers, with a label --> "Numbers Only"  
             > Under that there should be an insert button (for inserting the number in the array)
             > Under that there should be an delete button (for deleting a number if user wanted)
-            > Under that there shouldbe another section for entering the item of the array (with also an input-box similar to the elemnt input box) that the user want to search.
+            > Under that there should be another section for entering the item of the array (with also an input-box similar to the elemnt input box) that the user want to search.
         
        d) In the viasulaization container there should be :
           

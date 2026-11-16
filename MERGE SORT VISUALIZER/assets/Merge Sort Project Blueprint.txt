@@ -1,0 +1,34 @@
+MERGE SORT VISUALIZER
+
+MAIN COMPONENTS:
+
+ 1. input container for user input
+ 2. main sorting container for sorting the unsorted list
+
+BUILDING ROUTE:
+
+1. An app header --> "MERGE SORT VISUALIZER" & a sub-header --> "Sorting Algorithms Made Easy".
+
+2. In the main section there should be two div containers:
+   
+   i) Frist container is for getting user input: 
+      
+       a) Input shold be an array of ascending numbers & this crieteria sholud be provided to the user as "(Please Enter The Numbers)"
+       
+       b) As the user input each number it should be added to the actual array (You can assume it like an queue) inside the acual visualizing container beside the input container.
+       
+       c) In the input container there should be :
+          
+            > A text-box (input-box) where the user can give input the numbers, with a label --> "Numbers Only"  
+            > Under that there should be an insert button (for inserting the number in the array)
+            > Under that there should be an delete button (for deleting a number if user wanted)
+   
+   ii) Second container for the atual sorting algorithm visualzer:
+     
+     a) At the top of the visualiztion container ther should be two headings "The Visualizer" & "Total Elements = {The total nuber of elements the user has enterd}", they should be palced at the top far left and top far right corners respectively.  
+       
+     b) The inputed array should be visible with their indices starting from 0
+     
+     c) The actual array be visible & it should grow as new elements are inputed by the user, also the indices.
+
+     d) Under that there should be a button with the label "Begin Sorting"
