@@ -55,7 +55,8 @@ BUILDING ROUTE:
    > User hit the "Begin Sort" button without entering any element, then a msg should be displayed "Please Enter Numbers" & the input container's border should glow.
    > In the middle of a sorting opration if the user hit the "Begin New Sort" button the page should give an alert with msg "A sort is going on, Please Wait" & as the user hit the ok button in the alert the search should continue as usal.
    > If the user enter an already sorted array(ascending order) then a msg should be displayed --> "The List is already Sorted"
-   > The app should work on pc, laptop, smart-phones, any browser, slim-phones, i-phones, mac-books; so please add the neccessary @media updates/coding in the css file
+   > The app should work on pc, laptop, smart-phones, any browser, slim-phones, i-phones, mac-books; so please add the neccessary @media updates/coding in the css file; so that the UI/UX is adtaptable according to the screen size of devices.
+
 ADDITIONAL STYLING FEATUERS:
 
 Root Colors:
@@ -76,3 +77,7 @@ Root Colors:
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }   
+
+Project Developer Details:
+
+Built by maitysagar0605-beep® • © 2026 All Rights Reserved 
