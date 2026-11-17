@@ -31,5 +31,48 @@ BUILDING ROUTE:
      
      c) The actual array be visible & it should grow as new elements are inputed by the user, also the indices.
 
-     d) Under that there should be a button with the label "Begin Sorting"
+     d) Under that there should be a button with the label "Begin Sort"
+
+     e) As the user hit that button the actual search should begin:
+        With each iteration the actual logic of binary search should be visible, that is:
+        > Implementing the Divide & Conquer Rule
+        > The array sholud be divided from an element with each iteration
+        > All the sub-arrays should be connected to the actual array they come from by means of lines, building a tree like structure
+        > After sorting of the elements are done they should merge in a single sorted array with indices.
+        > The mid point/ the element from which the array is sub-divided, should glow in sea-green color
+        > The sort should always produce sorted elements in ascending order  
+      
+     f) After the sorting is done; in the visualization container a success msg with the details of the sorting should be displayed:
+        > The Sort is Done
+        > Total comparison(s): {the total number of comparisons} | Time taken: {time taken to complete the searching in miliseconds(ms)}
+        > Time Complexity: {Merge Sort Time Complexity: O(nlogn)} | Space Complexity: {Space Complexity of Merge Sort: O(n)}
+  
+     g) Button For Fresh Sorting:
+         > There should also be a button for begin a new sorting with the lable "Begin New Sort"
+         > If the user hit the button everything should reset to normal, for a new sorting operation
+
 3. Special Cases:
+   > User hit the "Begin Sort" button without entering any element, then a msg should be displayed "Please Enter Numbers" & the input container's border should glow.
+   > In the middle of a sorting opration if the user hit the "Begin New Sort" button the page should give an alert with msg "A sort is going on, Please Wait" & as the user hit the ok button in the alert the search should continue as usal.
+   > If the user enter an already sorted array(ascending order) then a msg should be displayed --> "The List is already Sorted"
+   > The app should work on pc, laptop, smart-phones, any browser, slim-phones, i-phones, mac-books; so please add the neccessary @media updates/coding in the css file
+ADDITIONAL STYLING FEATUERS:
+
+Root Colors:
+
+:root {
+  --bg-deep: #0b0d14;
+  --bg-card: #131622;
+  --bg-tile: #1c2030;
+  --bg-tile-faded: #11131d;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --text-primary: #f1f5f9;
+  --text-muted: #b0b8ce;
+  --sea-green: #4fd1a5;
+  --sea-green-glow: rgba(79, 209, 165, 0.45);
+  --pink-accent: #f472b6;
+  --gold-accent: #f5b041;
+  --danger-accent: #f87171;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}   
