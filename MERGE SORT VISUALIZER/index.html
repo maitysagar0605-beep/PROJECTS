@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Merge Sort Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ambient-glow glow-left"></div>
+  <div class="ambient-glow glow-right"></div>
+
+  <header class="app-header">
+    <h1 class="main-title">MERGE SORT VISUALIZER</h1>
+    <p class="sub-header">Sorting Algorithms Made Easy</p>
+  </header>
+
+  <main class="main-container">
+    <!-- Left Container: User Input -->
+    <section class="card input-card" id="inputCard">
+      <div class="card-header-block">
+        <h2 class="card-title">Array Controls</h2>
+        <p class="card-subtitle">(Please Enter The Numbers)</p>
+      </div>
+
+      <div class="control-group">
+        <label for="numberInput" class="input-label">Numbers Only</label>
+        <input
+          type="text"
+          id="numberInput"
+          class="text-input"
+          placeholder="e.g. 38, 27, 43, 3, 9, 82, 10..."
+          autocomplete="off"
+        />
+        <button type="button" id="insertBtn" class="btn btn-insert">Insert</button>
+        <button type="button" id="deleteBtn" class="btn btn-delete">Delete</button>
+      </div>
+
+      <div class="legend-box">
+        <p class="legend-title">Visual Guide</p>
+        <div class="legend-item">
+          <span class="dot dot-mid"></span>
+          <span>Split / Midpoint Element</span>
+        </div>
+        <div class="legend-item">
+          <span class="dot dot-compare"></span>
+          <span>Comparing Sub-arrays</span>
+        </div>
+        <div class="legend-item">
+          <span class="dot dot-sorted"></span>
+          <span>Merged &amp; Sorted</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Container: Sorting Visualizer -->
+    <section class="card visualizer-card" id="visualizerCard">
+      <div class="visualizer-top-bar">
+        <span class="vis-heading-left">The Visualizer</span>
+        <span class="vis-heading-right" id="totalElementsText">Total Elements = 0</span>
+      </div>
+
+      <!-- Status / Alert Banner -->
+      <div class="status-banner hidden" id="statusBanner"></div>
+
+      <!-- Live Array Display (Queue View with Indices) -->
+      <div class="array-stage" id="arrayStage">
+        <p class="empty-placeholder" id="emptyPlaceholder">
+          Insert numbers on the left to build the array...
+        </p>
+        <div class="array-row" id="initialArrayRow"></div>
+      </div>
+
+      <!-- Divide & Conquer Recursion Tree Canvas -->
+      <div class="tree-wrapper hidden" id="treeWrapper">
+        <div class="tree-stage" id="treeStage">
+          <svg class="tree-lines" id="treeSvg"></svg>
+          <div class="tree-levels" id="treeLevels"></div>
+        </div>
+      </div>
+
+      <!-- Final Sorted Array Output -->
+      <div class="sorted-stage hidden" id="sortedStage">
+        <p class="stage-label">Final Sorted Array (Ascending)</p>
+        <div class="array-row" id="sortedArrayRow"></div>
+      </div>
+
+      <!-- Metrics & Completion Summary -->
+      <div class="summary-card hidden" id="summaryCard">
+        <h3 class="summary-title">The Sort is Done</h3>
+        <p class="summary-line" id="metricsLine">
+          Total comparison(s): 0 | Time taken: 0 ms
+        </p>
+        <p class="summary-line complexity-line">
+          Time Complexity: O(n log n) | Space Complexity: O(n)
+        </p>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button type="button" id="beginSortBtn" class="btn btn-primary">Begin Sort</button>
+        <button type="button" id="newSortBtn" class="btn btn-secondary">Begin New Sort</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    Built by <span class="author-highlight">maitysagar0605-beep®</span> &bull; &copy; 2026 All Rights Reserved
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
