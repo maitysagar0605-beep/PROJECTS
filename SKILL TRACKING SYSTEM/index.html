@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sagar Maity (@maitysagar0605-beep) — 2026 IT Readiness & Skill Telemetry</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        carbon: {
+                            950: '#0B0D0E',
+                            900: '#111417',
+                            850: '#16191D',
+                            800: '#1E2329',
+                            700: '#2A3038',
+                        },
+                        lizard: {
+                            DEFAULT: '#76B900',
+                            hover: '#86D100',
+                            dim: 'rgba(118, 185, 0, 0.14)',
+                            border: 'rgba(118, 185, 0, 0.35)',
+                        },
+                        gtgold: {
+                            DEFAULT: '#FFCC00',
+                            dim: 'rgba(255, 204, 0, 0.14)',
+                            border: 'rgba(255, 204, 0, 0.35)',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0B0D0E;
+            color: #F3F4F6;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        /* Subtle carbon fiber grid texture */
+        .carbon-grid {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+        /* Smooth progress bar transitions */
+        .bar-fill {
+            transition: width 0.65s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s ease;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0D0E;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2A3038;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #76B900;
+        }
+    </style>
+</head>
+<body class="carbon-grid min-h-screen antialiased selection:bg-lizard selection:text-carbon-950">
+
+    <!-- Top Telemetry Bar -->
+    <header class="sticky top-0 z-40 border-b border-carbon-700/80 bg-carbon-950/90 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-lg bg-lizard/15 border border-lizard/40 flex items-center justify-center text-lizard font-mono font-bold text-sm">
+                    SM
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="font-bold text-white tracking-tight text-sm sm:text-base">SAGAR MAITY</span>
+                        <span class="hidden sm:inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-carbon-800 text-gray-300 border border-carbon-700">
+                            @maitysagar0605-beep
+                        </span>
+                    </div>
+                    <p class="text-[11px] font-mono text-gray-400">CAREER TELEMETRY &amp; 2026 AI-ERA BENCHMARK</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2 sm:gap-4">
+                <div class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-carbon-850 border border-carbon-700 text-xs font-mono">
+                    <span class="w-2 h-2 rounded-full bg-lizard animate-pulse"></span>
+                    <span class="text-gray-300">B.Sc. (Hons) CS • Sem V</span>
+                </div>
+                <a href="#simulator" class="px-3.5 py-2 rounded-lg bg-lizard hover:bg-lizard-hover text-carbon-950 font-semibold text-xs sm:text-sm transition flex items-center gap-1.5 shadow-lg shadow-lizard/10">
+                    <i data-lucide="sliders" class="w-4 h-4"></i>
+                    <span>Hiring Simulator</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+
+        <!-- SECTION 1: PROFILE HERO & ACADEMIC TELEMETRY -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <!-- Main Identity Card -->
+            <div class="lg:col-span-8 bg-carbon-850 border border-carbon-700/80 rounded-2xl p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-lizard/5 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none"></div>
+                
+                <div>
+                    <div class="flex flex-wrap items-center gap-2 mb-4">
+                        <span class="px-2.5 py-1 rounded-md text-xs font-mono font-semibold bg-lizard-dim text-lizard border border-lizard-border">
+                            ACTIVE BUILDER • 2026 COHORT
+                        </span>
+                        <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-gtgold-dim text-gtgold border border-gtgold-border">
+                            40-HR REACT &amp; REACT NATIVE CERTIFIED
+                        </span>
+                    </div>
+
+                    <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mb-2">
+                        Full-Stack, Mobile &amp; Interactive 3D Engineer
+                    </h1>
+                    <p class="text-gray-300 text-sm sm:text-base leading-relaxed max-w-3xl">
+                        5th Semester <span class="text-white font-medium">B.Sc. (Honours) Computer Science</span> undergraduate at <span class="text-white font-medium">Midnapore College (Autonomous)</span>. Unlike typical undergraduate profiles limited to textbook syntax, your repository demonstrates shipped, production-deployed software spanning <span class="text-lizard font-medium">Three.js WebGL asset pipelines</span>, <span class="text-lizard font-medium">React Native + Flask/MySQL enterprise tools</span>, and <span class="text-gtgold font-medium">low-level systems &amp; algorithmic foundations</span>.
+                    </p>
+                </div>
+
+                <!-- Core Academic & Systems Pills -->
+                <div class="mt-6 pt-6 border-t border-carbon-700/80">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-mono uppercase tracking-wider text-gray-400">Verified Academic Core (Midnapore College Autonomous)</span>
+                        <span class="text-xs font-mono text-lizard">7 Core Modules</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 rounded-lg bg-carbon-900 border border-carbon-700 text-xs text-gray-200 font-medium">Design &amp; Analysis of Algorithms (DAA)</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-carbon-900 border border-carbon-700 text-xs text-gray-200 font-medium">DBMS (COSDSC-502 &amp; MySQL 8.0)</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-carbon-900 border border-carbon-700 text-xs text-gray-200 font-medium">Operating Systems</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-carbon-900 border border-carbon-700 text-xs text-gray-200 font-medium">Computer Networks</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-carbon-900 border border-carbon-700 text-xs text-gray-200 font-medium">Software Engineering</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-carbon-900 border border-carbon-700 text-xs text-gray-200 font-medium">Microprocessors (8085 / Z80 / x86 / 68000)</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-carbon-900 border border-carbon-700 text-xs text-gray-200 font-medium">Numerical Methods &amp; Python</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Readiness Gauge Card -->
+            <div class="lg:col-span-4 bg-carbon-850 border border-carbon-700/80 rounded-2xl p-6 sm:p-7 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-mono uppercase tracking-wider text-gray-400">Baseline Readiness Index</span>
+                        <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-carbon-900 text-gtgold border border-carbon-700">NOV 2026</span>
+                    </div>
+                    <div class="flex items-baseline gap-3 my-3">
+                        <span id="hero-score" class="text-5xl font-extrabold font-mono text-lizard tracking-tight">74</span>
+                        <span class="text-lg font-mono text-gray-400">/ 100</span>
+                    </div>
+                    <p id="hero-tier-label" class="text-sm font-semibold text-white mb-1">Tier-1 Builder • Above-Average B.Sc. CS Fresher</p>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Ranks in the <span class="text-white font-medium">top ~12–15%</span> of B.Sc. CS undergraduates for practical shipping ability, tempered by B.Sc. vs. B.Tech screening filters in Indian campus drives.
+                    </p>
+                </div>
+
+                <div class="space-y-3 mt-6 pt-5 border-t border-carbon-700/80">
+                    <div>
+                        <div class="flex justify-between text-xs mb-1">
+                            <span class="text-gray-300">Practical Engineering &amp; Shipping</span>
+                            <span class="font-mono text-lizard font-semibold">86%</span>
+                        </div>
+                        <div class="w-full h-2 bg-carbon-950 rounded-full overflow-hidden">
+                            <div class="h-full bg-lizard rounded-full" style="width: 86%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs mb-1">
+                            <span class="text-gray-300">Core CS &amp; Systems Theory</span>
+                            <span class="font-mono text-lizard font-semibold">78%</span>
+                        </div>
+                        <div class="w-full h-2 bg-carbon-950 rounded-full overflow-hidden">
+                            <div class="h-full bg-lizard rounded-full" style="width: 78%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs mb-1">
+                            <span class="text-gray-300">2026 AI-Native &amp; DSA Interview Prep</span>
+                            <span class="font-mono text-gtgold font-semibold">58%</span>
+                        </div>
+                        <div class="w-full h-2 bg-carbon-950 rounded-full overflow-hidden">
+                            <div class="h-full bg-gtgold rounded-full" style="width: 58%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: INTERACTIVE SKILL MATRIX -->
+        <section class="bg-carbon-850 border border-carbon-700/80 rounded-2xl p-6 sm:p-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight flex items-center gap-2">
+                        <i data-lucide="cpu" class="w-5 h-5 text-lizard"></i>
+                        <span>Verified Technical Skill Matrix</span>
+                    </h2>
+                    <p class="text-xs sm:text-sm text-gray-400 mt-1">
+                        Every proficiency rating below is anchored to actual code artifacts, deployments, and coursework—not self-declared buzzwords.
+                    </p>
+                </div>
+
+                <!-- Category Filter Buttons -->
+                <div id="skill-filters" class="flex flex-wrap gap-2">
+                    <button data-filter="all" class="filter-btn active px-3.5 py-2 rounded-xl text-xs font-semibold bg-lizard text-carbon-950 transition">
+                        All Stacks (18)
+                    </button>
+                    <button data-filter="frontend" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-carbon-900 text-gray-300 hover:text-white border border-carbon-700 transition">
+                        Frontend &amp; 3D
+                    </button>
+                    <button data-filter="backend" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-carbon-900 text-gray-300 hover:text-white border border-carbon-700 transition">
+                        Mobile &amp; Backend
+                    </button>
+                    <button data-filter="systems" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-carbon-900 text-gray-300 hover:text-white border border-carbon-700 transition">
+                        Core CS &amp; Systems
+                    </button>
+                    <button data-filter="devops" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-carbon-900 text-gray-300 hover:text-white border border-carbon-700 transition">
+                        DevOps &amp; Tooling
+                    </button>
+                </div>
+            </div>
+
+            <!-- Skills Grid -->
+            <div id="skills-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Populated dynamically via JS -->
+            </div>
+        </section>
+
+        <!-- SECTION 3: VERIFIED PROJECT PORTFOLIO SHOWCASE -->
+        <section class="space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight flex items-center gap-2">
+                        <i data-lucide="layers" class="w-5 h-5 text-gtgold"></i>
+                        <span>Proof-of-Work Engineering Portfolio</span>
+                    </h2>
+                    <p class="text-xs sm:text-sm text-gray-400 mt-1">
+                        Click any project card to inspect the technical differentiators that stand out to technical interviewers.
+                    </p>
+                </div>
+                <span class="text-xs font-mono text-gray-400">4 FLAGSHIP REPOSITORIES</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5" id="projects-grid">
+                <!-- Project 1: Porsche 911 GT3 RS -->
+                <div class="bg-carbon-850 border border-carbon-700/80 hover:border-lizard/60 rounded-2xl p-6 transition group flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-start justify-between gap-3 mb-3">
+                            <div>
+                                <span class="text-[11px] font-mono uppercase tracking-wider text-lizard font-semibold">3D WebGL &amp; Performance Engineering</span>
+                                <h3 class="text-lg font-bold text-white mt-0.5 group-hover:text-lizard transition">Porsche 911 GT3 RS (992) 3D Configurator</h3>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-lg bg-carbon-900 border border-carbon-700 text-[11px] font-mono text-gray-300 shrink-0">Vercel Live</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-gray-300 leading-relaxed mb-4">
+                            Interactive 3D automotive showcase featuring real-time PBR paint/wheel customization, OrbitControls camera telemetry, procedural flat-six engine synthesis via Web Audio API, and aggressive asset optimization.
+                        </p>
+                        <div class="p-3 rounded-xl bg-carbon-900/90 border border-carbon-700/70 mb-4">
+                            <div class="text-[11px] font-mono text-gtgold mb-1">RECRUITER TALKING POINT:</div>
+                            <p class="text-xs text-gray-300">
+                                Reduced raw <code class="text-white">.glb</code> payload by <span class="text-lizard font-bold">88% (111.7 MB → 13.4 MB)</span> using Draco mesh compression &amp; WebP textures, backed by Git LFS and immutable <code class="text-white">vercel.json</code> cache headers.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5 pt-2">
+                        <span class="px-2.5 py-1 rounded-md bg-carbon-900 text-[11px] font-mono text-gray-300 border border-carbon-700">Three.js</span>
+                        <span class="px-2.5 py-1 rounded-md bg-carbon-900 text-[11px] font-mono text-gray-300 border border-carbon-700">Draco / GLTFLoader</span>
+                        <span class="px-2.5 py-1 rounded-md bg-carbon-900 text-[11px] font-mono text-gray-300 border border-carbon-700">Web Audio API</span>
+                        <span class="px-2.5 py-1 rounded-md bg-carbon-900 text-[11px] font-mono text-gray-300 border border-carbon-700">Git LFS</span>
+                    </div>
+                </div>
+
+                <!-- Project 2: Visitor Management System -->
+                <div class="bg-carbon-850 border border-carbon-700/80 hover:border-lizard/60 rounded-2xl p-6 transition group flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-start justify-between gap-3 mb-3">
+                            <div>
+                                <span class="text-[11px] font-mono uppercase tracking-wider text-lizard font-semibold">Full-Stack Mobile &amp; Relational DB</span>
+                                <h3 class="text-lg font-bold text-white mt-0.5 group-hover:text-lizard transition">Enterprise Visitor Management System (VMS)</h3>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-lg bg-gtgold-dim border border-gtgold-border text-[11px] font-mono text-gtgold shrink-0">Active Build</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-gray-300 leading-relaxed mb-4">
+                            End-to-end mobile gatekeeping solution built with React Native (Expo) featuring live barcode/QR check-in scanning, backed by a Python Flask REST API and normalized MySQL schema (<code class="text-gray-200">vms_db</code>).
+                        </p>
+                        <div class="p-3 rounded-xl bg-carbon-900/90 border border-carbon-700/70 mb-4">
+                            <div class="text-[11px] font-mono text-gtgold mb-1">RECRUITER TALKING POINT:</div>
+                            <p class="text-xs text-gray-300">
+                                Demonstrates true multi-tier architecture: mobile hardware camera integration, RESTful API design, transactional SQL persistence, and automated Gmail SMTP host notifications.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5 pt-2">
+                        <span class="px-2.5 py-1 rounded-md bg-carbon-900 text-[11px] font-mono text-gray-300 border border-carbon-700">React Native (Expo)</span>
+                        <span class="px-2.5 py-1 rounded-md bg-carbon-900 text-[11px] font-mono text-gray-300 border border-carbon-700">Python Flask</span>
+                        <span class="px-2.5 py-1 rounded-md bg-carbon-900 text-[11px] font-mono text-gray-300 border border-carbon-700">MySQL 8.0</span>
+                        <span class="px-2.5 py-1 rounded-md bg-carbon-900 text-[11px] font-mono text-gray-300 border border-carbon-700">SMTP Automation</span>
+                    </div>
+                </div>
+
+                <!-- Project 3: BUZZ-BEE -->
+                <div class="bg-carbon-850 border border-carbon-700/80 hover:border-lizard/60 rounded-2xl p-6 transition group flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-start justify-between gap-3 mb-3">
+                            <div>
+                                <span class="text-[11px] font-mono uppercase tracking-wider text-lizard font-semibold">Real-Time DSP &amp; Frontend Architecture</span>
+                                <h3 class="text-lg font-bold text-white mt-0.5 group-hover:text-lizard transition">BUZZ-BEE Music Streaming Platform</h3>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-lg bg-carbon-900 border border-carbon-700 text-[11px] font-mono text-gray-300 shrink-0">Web App</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-gray-300 leading-relaxed mb-4">
+                            Multi-page streaming web application combining live catalog search via the iTunes Search API, persistent client-side session/playlist state, and real-time frequency analysis.
+                        </p>
+                        <div class="p-3 rounded-xl bg-carbon-900/90 border border-carbon-700/70 mb-4">
+                            <div class="text-[11px] font-mono text-gtgold mb-1">RECRUITER TALKING POINT:</div>
+                            <p class="text-xs text-gray-300">
+                                Engineered a <span class="text-white font-medium">bass-reactive audio visualizer</span> using <code class="text-white">AnalyserNode</code> FFT frequency bins alongside asynchronous API fetching and clean state persistence.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5 pt-2">
+                        <span class="px-2.5 py-1 rounded-md bg-carbon-900 text-[11px] font-mono text-gray-300 border border-carbon-700">JavaScript ES6+</span>
+                        <span class="px-2.5 py-1 rounded-md bg-carbon-900 text-[11px] font-mono text-gray-300 border border-carbon-700">Web Audio FFT</span>
+                        <span class="px-2.5 py-1 rounded-md bg-carbon-900 text-[11px] font-mono text-gray-300 border border-carbon-700">iTunes REST API</span>
+                        <span class="px-2.5 py-1 rounded-md bg-carbon-900 text-[11px] font-mono text-gray-300 border border-carbon-700">localStorage Auth</span>
+                    </div>
+                </div>
+
+                <!-- Project 4: Algorithmic & Systems Suite -->
+                <div class="bg-carbon-850 border border-carbon-700/80 hover:border-lizard/60 rounded-2xl p-6 transition group flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-start justify-between gap-3 mb-3">
+                            <div>
+                                <span class="text-[11px] font-mono uppercase tracking-wider text-lizard font-semibold">Algorithms, Backtracking &amp; Game Loops</span>
+                                <h3 class="text-lg font-bold text-white mt-0.5 group-hover:text-lizard transition">OmniConvert &amp; Algorithmic Visualizers</h3>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-lg bg-carbon-900 border border-carbon-700 text-[11px] font-mono text-gray-300 shrink-0">Netlify + Python</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-gray-300 leading-relaxed mb-4">
+                            Suite of focused utilities and CS algorithm implementations: Merge Sort Visualizer with early-exit pre-sorted optimization, Constraint-Based Sudoku Engine on Netlify, and a 2D Chess engine in <code class="text-gray-200">pygame-ce</code>.
+                        </p>
+                        <div class="p-3 rounded-xl bg-carbon-900/90 border border-carbon-700/70 mb-4">
+                            <div class="text-[11px] font-mono text-gtgold mb-1">RECRUITER TALKING POINT:</div>
+                            <p class="text-xs text-gray-300">
+                                Bridges academic DAA theory directly to interactive software—visualizing recursion trees, time-complexity optimizations, and deterministic state validation.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5 pt-2">
+                        <span class="px-2.5 py-1 rounded-md bg-carbon-900 text-[11px] font-mono text-gray-300 border border-carbon-700">Python / pygame-ce</span>
+                        <span class="px-2.5 py-1 rounded-md bg-carbon-900 text-[11px] font-mono text-gray-300 border border-carbon-700">DAA Optimization</span>
+                        <span class="px-2.5 py-1 rounded-md bg-carbon-900 text-[11px] font-mono text-gray-300 border border-carbon-700">Backtracking</span>
+                        <span class="px-2.5 py-1 rounded-md bg-carbon-900 text-[11px] font-mono text-gray-300 border border-carbon-700">Netlify</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: 2026 AI-ERA IT INDUSTRY READINESS & HIRING SIMULATOR -->
+        <section id="simulator" class="bg-carbon-850 border border-carbon-700/80 rounded-2xl p-6 sm:p-8 space-y-8">
+            <div class="border-b border-carbon-700/80 pb-6">
+                <div class="flex flex-wrap items-center justify-between gap-3">
+                    <div>
+                        <span class="px-2.5 py-1 rounded-md text-xs font-mono font-semibold bg-gtgold-dim text-gtgold border border-gtgold-border">
+                            2026 INDIAN IT MARKET REALITY CHECK
+                        </span>
+                        <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight mt-2">
+                            AI-Era Hiring Odds &amp; Milestone Simulator
+                        </h2>
+                        <p class="text-xs sm:text-sm text-gray-400 mt-1 max-w-3xl">
+                            In 2026, AI coding assistants have automated basic boilerplate CRUD tasks. Entry-level hiring in India rewards engineers who can <span class="text-white">architect systems, debug complex edge cases, integrate AI APIs, and ship full-stack products</span>. Toggle your upcoming milestones below to simulate how each action shifts your hiring probability.
+                        </p>
+                    </div>
+
+                    <button id="reset-sim-btn" class="px-3.5 py-2 rounded-xl bg-carbon-900 hover:bg-carbon-800 border border-carbon-700 text-xs font-mono text-gray-300 hover:text-white transition flex items-center gap-1.5">
+                        <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                        <span>Reset Baseline</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Interactive Simulator Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Left: Milestone Checkboxes (7 cols) -->
+                <div class="lg:col-span-7 space-y-3">
+                    <div class="flex items-center justify-between mb-1">
+                        <h3 class="text-sm font-mono uppercase tracking-wider text-gray-300">Select Pre-Graduation Milestones to Simulate</h3>
+                        <span id="active-milestones-count" class="text-xs font-mono text-lizard">0 / 6 Selected</span>
+                    </div>
+
+                    <div id="milestones-container" class="space-y-3">
+                        <!-- Rendered via JS -->
+                    </div>
+                </div>
+
+                <!-- Right: Live Hiring Probability Gauges (5 cols) -->
+                <div class="lg:col-span-5 bg-carbon-900 border border-carbon-700/90 rounded-2xl p-6 flex flex-col justify-between space-y-6">
+                    <div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-mono uppercase tracking-wider text-gray-400">Simulated Readiness Score</span>
+                            <span id="sim-delta-badge" class="px-2 py-0.5 rounded text-xs font-mono bg-carbon-800 text-gray-400">+0 pts</span>
+                        </div>
+                        <div class="flex items-baseline gap-2 mt-2">
+                            <span id="sim-total-score" class="text-5xl font-extrabold font-mono text-lizard">74</span>
+                            <span class="text-base font-mono text-gray-400">/ 100</span>
+                        </div>
+                        <p id="sim-verdict" class="text-xs sm:text-sm text-gray-300 mt-2 leading-relaxed">
+                            Strong portfolio for Frontend/React Native internships and specialist web studios; needs DSA &amp; AI integration to unlock product startups.
+                        </p>
+                    </div>
+
+                    <!-- Role-Specific Probability Bars -->
+                    <div class="space-y-4 pt-4 border-t border-carbon-700/80">
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="font-medium text-white">Frontend / React Native / Creative Web Roles</span>
+                                <span id="prob-frontend" class="font-mono font-bold text-lizard">68%</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-carbon-950 rounded-full overflow-hidden">
+                                <div id="bar-frontend" class="bar-fill h-full bg-lizard rounded-full" style="width: 68%"></div>
+                            </div>
+                            <p class="text-[11px] text-gray-400 mt-1">Portfolio-driven startups &amp; agencies value your Three.js + Expo proof-of-work.</p>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="font-medium text-white">Service-Based MNCs (TCS, Infosys, Wipro, Cognizant)</span>
+                                <span id="prob-service" class="font-mono font-bold text-lizard">62%</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-carbon-950 rounded-full overflow-hidden">
+                                <div id="bar-service" class="bar-fill h-full bg-lizard rounded-full" style="width: 62%"></div>
+                            </div>
+                            <p class="text-[11px] text-gray-400 mt-1">B.Sc. CS eligible via Smart Hiring / Ninja / Ignite tracks; heavily aptitude + basic coding filtered.</p>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="font-medium text-white">Product Startups (Full-Stack / AI-Enabled SDE)</span>
+                                <span id="prob-product" class="font-mono font-bold text-gtgold">44%</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-carbon-950 rounded-full overflow-hidden">
+                                <div id="bar-product" class="bar-fill h-full bg-gtgold rounded-full" style="width: 44%"></div>
+                            </div>
+                            <p class="text-[11px] text-gray-400 mt-1">High bar in 2026: requires TypeScript, DSA problem-solving, and LLM/RAG workflow fluency.</p>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="font-medium text-white">Tier-1 SDE / High-Package Off-Campus (via MCA / GATE)</span>
+                                <span id="prob-tier1" class="font-mono font-bold text-gtgold">35%</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-carbon-950 rounded-full overflow-hidden">
+                                <div id="bar-tier1" class="bar-fill h-full bg-gtgold rounded-full" style="width: 35%"></div>
+                            </div>
+                            <p class="text-[11px] text-gray-400 mt-1">Many legacy ATS portals still filter B.Sc. (3-yr) unless paired with NIMCET MCA or GATE CS.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Honest Edge vs Gap Matrix -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-carbon-700/80">
+                <!-- Competitive Advantages -->
+                <div class="bg-carbon-900/70 border border-lizard/30 rounded-2xl p-5">
+                    <h3 class="text-sm font-bold text-lizard uppercase tracking-wider font-mono flex items-center gap-2 mb-3">
+                        <i data-lucide="shield-check" class="w-4 h-4"></i>
+                        <span>Where You Already Beat 85% of B.Sc. Freshers</span>
+                    </h3>
+                    <ul class="space-y-2.5 text-xs sm:text-sm text-gray-300">
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-lizard font-bold mt-0.5">✓</span>
+                            <span><strong class="text-white">Real Asset &amp; Performance Optimization:</strong> Cutting a 111.7MB WebGL model to 13.4MB with Draco/WebP shows production engineering instincts most freshers lack.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-lizard font-bold mt-0.5">✓</span>
+                            <span><strong class="text-white">Cross-Platform + Backend Ownership:</strong> Connecting React Native (Expo) hardware scanning to Python Flask + MySQL proves end-to-end system fluency.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-lizard font-bold mt-0.5">✓</span>
+                            <span><strong class="text-white">Strong Hardware-to-Algorithm Foundation:</strong> Coursework in Microprocessors (8085/x86/68000), OS, Networks, and DAA gives you real debugging depth when AI-generated code fails.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Strategic Gaps to Close -->
+                <div class="bg-carbon-900/70 border border-gtgold/30 rounded-2xl p-5">
+                    <h3 class="text-sm font-bold text-gtgold uppercase tracking-wider font-mono flex items-center gap-2 mb-3">
+                        <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+                        <span>Critical 2026 Gaps to Close Before Graduation</span>
+                    </h3>
+                    <ul class="space-y-2.5 text-xs sm:text-sm text-gray-300">
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-gtgold font-bold mt-0.5">!</span>
+                            <span><strong class="text-white">TypeScript &amp; Modern Node/Next.js Ecosystem:</strong> Vanilla JS + Flask is great, but 70%+ of 2026 Indian startup JDs mandate TypeScript across frontend and backend.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-gtgold font-bold mt-0.5">!</span>
+                            <span><strong class="text-white">AI-Native Engineering Proof:</strong> Add at least one project using LLM APIs, structured outputs, embeddings/RAG, or AI agents to prove you build <em>with</em> AI rather than competing against it.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-gtgold font-bold mt-0.5">!</span>
+                            <span><strong class="text-white">Bypassing the 3-Year B.Sc. Filter:</strong> Target off-campus startups via live demo links (Vercel/Expo), Smart India Hackathon / open-source bounties, or keep <strong class="text-white">NIMCET (NIT MCA) / GATE CS</strong> open as a force multiplier.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-carbon-800 bg-carbon-950 py-6 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500 font-mono">
+            <div>
+                Sagar Maity (@maitysagar0605-beep) • Midnapore College (Autonomous)
+            </div>
+            <div>
+                Telemetry calibrated for 2026 Indian Software Engineering Market
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // 1. VERIFIED SKILLS DATA
+        const skillsData = [
+            // Frontend & 3D
+            { name: "Three.js & WebGL", category: "frontend", level: 88, proof: "Porsche 911 GT3 RS 3D Configurator (GLTFLoader, PBR, OrbitControls)" },
+            { name: "3D Asset Optimization (Draco / WebP)", category: "frontend", level: 86, proof: "Compressed 111.7MB GLB to 13.4MB without visual loss" },
+            { name: "JavaScript (ES6+)", category: "frontend", level: 85, proof: "BUZZ-BEE async APIs, Merge Sort visualizer, Sudoku engine" },
+            { name: "HTML5 & Modern CSS3 / Tailwind", category: "frontend", level: 90, proof: "Responsive multi-page UIs, Porsche showcase, OmniConvert" },
+            { name: "React.js", category: "frontend", level: 80, proof: "40-Hour React.js & React Native Certification + component SPAs" },
+            { name: "Web Audio API (DSP & Synthesis)", category: "frontend", level: 82, proof: "Procedural flat-six engine audio & BUZZ-BEE FFT bass visualizer" },
+
+            // Mobile & Backend
+            { name: "React Native (Expo)", category: "backend", level: 82, proof: "Visitor Management System mobile app + barcode/QR scanner" },
+            { name: "Python", category: "backend", level: 84, proof: "Flask REST APIs, Numerical Methods coursework, pygame-ce Chess" },
+            { name: "Flask REST API", category: "backend", level: 78, proof: "VMS backend endpoints, validation & Gmail SMTP automation" },
+            { name: "MySQL 8.0 & Relational Modeling", category: "backend", level: 80, proof: "vms_db schema design + DBMS (COSDSC-502) coursework" },
+            { name: "C / C++", category: "backend", level: 76, proof: "Core data structures, DAA labs & memory-level programming" },
+            { name: "Java", category: "backend", level: 72, proof: "Object-oriented programming & university lab implementations" },
+
+            // Core CS & Systems
+            { name: "Design & Analysis of Algorithms", category: "systems", level: 82, proof: "Merge Sort pre-sorted optimization, backtracking & complexity analysis" },
+            { name: "Microprocessors (8085/Z80/x86/68000)", category: "systems", level: 78, proof: "5th Sem architecture, instruction sets & low-level hardware logic" },
+            { name: "Operating Systems & Networks", category: "systems", level: 76, proof: "Process scheduling, memory management, TCP/IP & HTTP caching" },
+
+            // DevOps & Tooling
+            { name: "Git & Git LFS", category: "devops", level: 85, proof: "Version control & large binary .glb tracking on GitHub" },
+            { name: "Vercel & Netlify Deployment", category: "devops", level: 88, proof: "Custom domains, vercel.json caching rules & CI previews" },
+            { name: "MySQL CLI & VS Code Workflow", category: "devops", level: 84, proof: "Database administration, debugging & multi-environment testing" }
+        ];
+
+        const skillsGrid = document.getElementById('skills-grid');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+
+        function renderSkills(filter = 'all') {
+            skillsGrid.innerHTML = '';
+            const filtered = filter === 'all' 
+                ? skillsData 
+                : skillsData.filter(s => s.category === filter);
+
+            filtered.forEach(skill => {
+                const isHigh = skill.level >= 84;
+                const badgeColor = isHigh 
+                    ? 'text-lizard bg-lizard-dim border-lizard-border' 
+                    : 'text-gtgold bg-gtgold-dim border-gtgold-border';
+                const barColor = isHigh ? 'bg-lizard' : 'bg-gtgold';
+
+                const card = document.createElement('div');
+                card.className = 'bg-carbon-900/90 border border-carbon-700/80 hover:border-carbon-600 rounded-xl p-4 flex flex-col justify-between transition';
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-2">
+                            <h3 class="font-semibold text-white text-sm">${skill.name}</h3>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono font-bold border ${badgeColor}">
+                                ${skill.level}%
+                            </span>
+                        </div>
+                        <div class="w-full h-1.5 bg-carbon-950 rounded-full overflow-hidden mb-3">
+                            <div class="h-full ${barColor} rounded-full" style="width: ${skill.level}%"></div>
+                        </div>
+                    </div>
+                    <p class="text-[11px] text-gray-400 leading-relaxed">
+                        <span class="text-gray-300 font-mono">Proof:</span> ${skill.proof}
+                    </p>
+                `;
+                skillsGrid.appendChild(card);
+            });
+        }
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => {
+                    b.classList.remove('bg-lizard', 'text-carbon-950');
+                    b.classList.add('bg-carbon-900', 'text-gray-300', 'border', 'border-carbon-700');
+                });
+                btn.classList.remove('bg-carbon-900', 'text-gray-300', 'border', 'border-carbon-700');
+                btn.classList.add('bg-lizard', 'text-carbon-950');
+                renderSkills(btn.dataset.filter);
+            });
+        });
+
+        renderSkills('all');
+
+        // 2. 2026 AI-ERA HIRING SIMULATOR LOGIC
+        const milestones = [
+            {
+                id: 'vms_ship',
+                title: 'Finish & Deploy Visitor Management System (SMS/Email + Cloud API)',
+                desc: 'Host Flask + MySQL on Render/Railway and publish an Expo APK/demo video.',
+                impact: '+4 pts',
+                scoreDelta: 4,
+                frontendDelta: 5,
+                serviceDelta: 4,
+                productDelta: 6,
+                tier1Delta: 2
+            },
+            {
+                id: 'typescript',
+                title: 'Adopt TypeScript + Next.js / Node.js in 1 Production App',
+                desc: 'Eliminates the #1 resume filter on modern Indian startup job boards.',
+                impact: '+5 pts',
+                scoreDelta: 5,
+                frontendDelta: 9,
+                serviceDelta: 3,
+                productDelta: 11,
+                tier1Delta: 5
+            },
+            {
+                id: 'ai_app',
+                title: 'Ship 1 AI-Integrated Full-Stack App (LLM API + RAG / Structured Agents)',
+                desc: 'Proves you can build reliable AI-powered features rather than static CRUD.',
+                impact: '+6 pts',
+                scoreDelta: 6,
+                frontendDelta: 7,
+                serviceDelta: 5,
+                productDelta: 14,
+                tier1Delta: 6
+            },
+            {
+                id: 'dsa_150',
+                title: 'Solve 150+ Curated DSA Problems (NeetCode 150 / Striver A2Z)',
+                desc: 'Converts your academic DAA knowledge into timed online-assessment speed.',
+                impact: '+6 pts',
+                scoreDelta: 6,
+                frontendDelta: 4,
+                serviceDelta: 12,
+                productDelta: 13,
+                tier1Delta: 12
+            },
+            {
+                id: 'internship',
+                title: 'Complete 1 Remote / Startup Internship or Hackathon Win (SIH / FOSS)',
+                desc: 'Provides external industry validation that overrides college-tier bias.',
+                impact: '+5 pts',
+                scoreDelta: 5,
+                frontendDelta: 8,
+                serviceDelta: 6,
+                productDelta: 10,
+                tier1Delta: 8
+            },
+            {
+                id: 'gate_mca',
+                title: 'Clear NIMCET (NIT MCA) or GATE CS 2027 Qualification',
+                desc: 'Unlocks Tier-1 campus placements and removes 3-year degree ATS caps permanently.',
+                impact: '+4 pts',
+                scoreDelta: 4,
+                frontendDelta: 2,
+                serviceDelta: 8,
+                productDelta: 7,
+                tier1Delta: 24
+            }
+        ];
+
+        const baseMetrics = {
+            score: 74,
+            frontend: 68,
+            service: 62,
+            product: 44,
+            tier1: 35
+        };
+
+        const selectedMilestones = new Set();
+        const milestonesContainer = document.getElementById('milestones-container');
+
+        function renderMilestones() {
+            milestonesContainer.innerHTML = '';
+            milestones.forEach(m => {
+                const isChecked = selectedMilestones.has(m.id);
+                const wrapper = document.createElement('label');
+                wrapper.className = `block cursor-pointer rounded-xl p-4 border transition select-none ${
+                    isChecked 
+                        ? 'bg-lizard/10 border-lizard/60' 
+                        : 'bg-carbon-900/80 border-carbon-700/80 hover:border-carbon-600'
+                }`;
+                wrapper.innerHTML = `
+                    <div class="flex items-start gap-3.5">
+                        <input type="checkbox" data-id="${m.id}" ${isChecked ? 'checked' : ''} 
+                            class="mt-1 w-4 h-4 rounded accent-[#76B900] cursor-pointer shrink-0">
+                        <div class="flex-1">
+                            <div class="flex flex-wrap items-center justify-between gap-2">
+                                <span class="font-semibold text-xs sm:text-sm ${isChecked ? 'text-white' : 'text-gray-200'}">
+                                    ${m.title}
+                                </span>
+                                <span class="px-2 py-0.5 rounded text-[11px] font-mono font-bold ${
+                                    isChecked ? 'bg-lizard text-carbon-950' : 'bg-carbon-800 text-lizard border border-carbon-700'
+                                }">
+                                    ${m.impact}
+                                </span>
+                            </div>
+                            <p class="text-xs text-gray-400 mt-1">${m.desc}</p>
+                        </div>
+                    </div>
+                `;
+                milestonesContainer.appendChild(wrapper);
+            });
+
+            // Attach change listeners
+            milestonesContainer.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                cb.addEventListener('change', (e) => {
+                    const id = e.target.dataset.id;
+                    if (e.target.checked) {
+                        selectedMilestones.add(id);
+                    } else {
+                        selectedMilestones.delete(id);
+                    }
+                    renderMilestones();
+                    updateSimulator();
+                });
+            });
+        }
+
+        function clamp(val, min, max) {
+            return Math.min(Math.max(val, min), max);
+        }
+
+        function updateSimulator() {
+            let score = baseMetrics.score;
+            let frontend = baseMetrics.frontend;
+            let service = baseMetrics.service;
+            let product = baseMetrics.product;
+            let tier1 = baseMetrics.tier1;
+
+            selectedMilestones.forEach(id => {
+                const m = milestones.find(item => item.id === id);
+                if (m) {
+                    score += m.scoreDelta;
+                    frontend += m.frontendDelta;
+                    service += m.serviceDelta;
+                    product += m.productDelta;
+                    tier1 += m.tier1Delta;
+                }
+            });
+
+            score = clamp(score, 0, 99);
+            frontend = clamp(frontend, 0, 96);
+            service = clamp(service, 0, 95);
+            product = clamp(product, 0, 92);
+            tier1 = clamp(tier1, 0, 90);
+
+            const delta = score - baseMetrics.score;
+
+            // Update DOM values
+            document.getElementById('active-milestones-count').textContent = `${selectedMilestones.size} / ${milestones.length} Selected`;
+            document.getElementById('sim-total-score').textContent = score;
+            
+            const deltaBadge = document.getElementById('sim-delta-badge');
+            if (delta > 0) {
+                deltaBadge.textContent = `+${delta} pts gained`;
+                deltaBadge.className = 'px-2 py-0.5 rounded text-xs font-mono font-bold bg-lizard-dim text-lizard border border-lizard-border';
+            } else {
+                deltaBadge.textContent = '+0 pts (Baseline)';
+                deltaBadge.className = 'px-2 py-0.5 rounded text-xs font-mono bg-carbon-800 text-gray-400';
+            }
+
+            // Update bars and labels
+            updateBar('frontend', frontend);
+            updateBar('service', service);
+            updateBar('product', product);
+            updateBar('tier1', tier1);
+
+            // Dynamic verdict text
+            const verdictEl = document.getElementById('sim-verdict');
+            if (score >= 90) {
+                verdictEl.textContent = "Highly competitive 2026 engineering profile: ready for high-growth product startups, specialized frontend/3D roles, and Tier-1 off-campus pipelines.";
+            } else if (score >= 82) {
+                verdictEl.textContent = "Strong full-stack & AI-ready candidate: well-positioned to convert off-campus startup interviews and service-based digital/specialist tracks.";
+            } else if (score > 74) {
+                verdictEl.textContent = "Solid upward trajectory: adding concrete DSA and AI/TypeScript proof-of-work noticeably widens your shortlist rate.";
+            } else {
+                verdictEl.textContent = "Strong portfolio for Frontend/React Native internships and specialist web studios; needs DSA & AI integration to unlock product startups.";
+            }
+        }
+
+        function updateBar(key, value) {
+            const textEl = document.getElementById(`prob-${key}`);
+            const barEl = document.getElementById(`bar-${key}`);
+            textEl.textContent = `${value}%`;
+            barEl.style.width = `${value}%`;
+
+            if (value >= 65) {
+                textEl.className = 'font-mono font-bold text-lizard';
+                barEl.className = 'bar-fill h-full bg-lizard rounded-full';
+            } else {
+                textEl.className = 'font-mono font-bold text-gtgold';
+                barEl.className = 'bar-fill h-full bg-gtgold rounded-full';
+            }
+        }
+
+        document.getElementById('reset-sim-btn').addEventListener('click', () => {
+            selectedMilestones.clear();
+            renderMilestones();
+            updateSimulator();
+        });
+
+        renderMilestones();
+        updateSimulator();
+    </script>
+</body>
+</html>
